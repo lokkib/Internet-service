@@ -1,12 +1,14 @@
-import styles from './style.module.scss'
-
+import styles from './style.module.scss';
+import ButtonEnter from '../../../components/ButtonEnter/ButtonEnter';
 
 const Header = () => {
-    return <header className={styles.header}>
-        <nav className={styles.headerNav}>
-            <button className={styles.buttonMainEnter}>Вход в личный кабинет</button>
-        </nav>
+  return (
+    <header className={styles.header}>
+      <nav className={styles.headerNav}>
+        <ButtonEnter classType="mainEnter" text="Вход в личный кабинет" />
+      </nav>
     </header>
-}
+  );
+};
 
-export default Header
+export default Header;

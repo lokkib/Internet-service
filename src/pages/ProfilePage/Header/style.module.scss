@@ -1,8 +1,9 @@
+
 .header {
     background-color: #009EE4;
 }
 
-.headerNav {
+.navHeader {
     max-width: 1178px;
     margin: 0 auto;
     padding: 0 10px;
@@ -11,8 +12,7 @@
     -webkit-box-align: center;
     -ms-flex-align: center;
     align-items: center;
-    -webkit-box-pack: flex-end;
-    -ms-flex-pack: flex-end;
-    justify-content: flex-end;
+    -webkit-box-pack: end;
+    -ms-flex-pack: end;
+    justify-content: end;
 }
-
