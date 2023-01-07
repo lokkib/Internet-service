@@ -1,0 +1,34 @@
+
+.mainEnter{
+    width: 224px;
+    height: 40px;
+    border: 1px solid #FFFFFF;
+    border-radius: 6px;
+    background-color: transparent;
+    color: #FFFFFF;
+    font-size: 16px;
+    line-height: 1;
+
+    &:hover {
+        background-color: #0080C1;
+        cursor: pointer;
+    }
+}
+
+
+.advertisement {
+    composes: mainEnter;
+        width: 232px;
+        &:hover {
+            background: rgba(255, 255, 255, 0.15);
+            cursor: pointer;
+        }
+
+}
+
+.account  {
+    width: 173px;
+    margin-left: 10px;
+    composes: advertisement;
+   
+}

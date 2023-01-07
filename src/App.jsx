@@ -1,8 +1,9 @@
-import './App.css';
-import MainPage from './pages/MainPage/MainPage';
 
-function App() {
-  return <MainPage />;
+// import MainPage from './pages/MainPage/MainPage';
+import ProfilePage from './pages/ProfilePage/ProfilePage';
+
+const App = () => {
+  return <ProfilePage />
 }
 
 export default App;
