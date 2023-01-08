@@ -1,7 +1,7 @@
 import MainMenu from '../../../components/MainMenu/MainMenu';
 import styles from './style.module.scss';
 import MainProfile from './MainProfile/MainProfile';
-import ContentCards from './ContentCards/ContentCards';
+import ContentCards from '../../../components/ContentCards/ContentCards';
 
 const MainContent = () => {
   return (

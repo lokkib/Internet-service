@@ -1,4 +1,4 @@
-import CardItem from '../../../../components/CardItem/CardItem';
+import CardItem from '../CardItem/CardItem';
 import styles from './style.module.scss';
 
 const ContentCards = () => {
