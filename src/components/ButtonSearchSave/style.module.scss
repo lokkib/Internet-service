@@ -44,3 +44,20 @@
   font-size: 14px;
   font-weight: 400;
 }
+
+.edit {
+  composes: search;
+  width: 189px;
+  margin-right: 10px;
+  font-weight: 400;
+  line-height: 1;
+  margin-bottom: 10px;
+}
+
+.deleteAdv {
+  composes: search;
+  width: 225px;
+  font-weight: 400;
+  line-height: 1;
+  margin-bottom: 10px;
+}
