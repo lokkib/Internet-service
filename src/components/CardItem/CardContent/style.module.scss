@@ -1,42 +1,41 @@
-
 .linkHeading {
-    text-decoration: none;
-    cursor: pointer;
+  text-decoration: none;
+  cursor: pointer;
 
-    &:visited {
-        text-decoration: none;
-    }
+  &:visited {
+    text-decoration: none;
+  }
 }
 
 .cardTitle {
-    height: 52px;
-    font-size: 22px;
-    font-weight: 500;
-    line-height: 26px;
-    color: #009EE4;
-    margin-bottom: 10px;
-    margin-top: 20px;
-    overflow: hidden;
-    text-overflow: ellipsis;
+  height: 52px;
+  font-size: 22px;
+  font-weight: 500;
+  line-height: 26px;
+  color: #009ee4;
+  margin-bottom: 10px;
+  margin-top: 20px;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
-.cardPrice{
-    color: #000000;
-    font-size: 22px;
-    font-weight: 500;
-    line-height: 33px;
-    margin-bottom: 10px;
+.cardPrice {
+  color: #000000;
+  font-size: 22px;
+  font-weight: 500;
+  line-height: 33px;
+  margin-bottom: 10px;
 }
 
-.cardPlace{
-    margin-bottom: 4px;
-    font-size: 16px;
-    line-height: 21px;
-    color: #5F5F5F;
+.cardPlace {
+  margin-bottom: 4px;
+  font-size: 16px;
+  line-height: 21px;
+  color: #5f5f5f;
 }
 
-.cardDate{
-    font-size: 16px;
-    line-height: 21px;
-    color: #5F5F5F;
+.cardDate {
+  font-size: 16px;
+  line-height: 21px;
+  color: #5f5f5f;
 }

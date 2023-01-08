@@ -1,5 +1,5 @@
 import ContentCards from './ContentCards/ContentCards';
-import styles from './style.module.scss'
+import styles from './style.module.scss';
 
 const MainInfo = () => {
   return (
