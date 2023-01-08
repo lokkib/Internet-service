@@ -15,6 +15,11 @@ const ArticleRight = () => {
           classType="showPhone"
           text="Показать телефон"
         />
+        <div className={styles.articleButtonsBlock}>
+          <ButtonSearchSave classType="edit" text="Редактировать" />
+          <ButtonSearchSave classType="deleteAdv" text="Снять с публикации" />
+        </div>
+
         <ArticleAuthor />
       </div>
     </div>
