@@ -61,3 +61,8 @@
   line-height: 1;
   margin-bottom: 10px;
 }
+
+.showPhoneSellerProfile {
+  composes: showPhone;
+  margin-top: 20px;
+}

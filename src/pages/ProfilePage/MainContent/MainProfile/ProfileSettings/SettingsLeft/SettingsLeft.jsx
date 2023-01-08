@@ -1,16 +1,11 @@
 import styles from './style.module.scss';
+import Avatar from '../../../../../../components/Avatar/Avatar';
 
 const SettingsLeft = () => {
   return (
     <div className={styles.settingsWrapper}>
-      <div className={styles.settingsImg}>
-        <a href="http://localhost:3000/">
-          <img src="#" alt="profile" />
-        </a>
-      </div>
-      <a className={styles.settingsChangePhoto} href="http://localhost:3000/">
-        Заменить
-      </a>
+      <Avatar />
+      <a href="http://localhost:3000/">Заменить</a>
     </div>
   );
 };

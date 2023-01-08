@@ -2,7 +2,7 @@ import Header from '../../components/Header/Header';
 import styles from './style.module.scss';
 import Main from './Main/Main';
 
-const ArticleItem = () => {
+const SellerArticle = () => {
   return (
     <div className={styles.container}>
       <Header />
@@ -11,4 +11,4 @@ const ArticleItem = () => {
   );
 };
 
-export default ArticleItem;
+export default SellerArticle;
