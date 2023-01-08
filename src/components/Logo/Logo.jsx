@@ -11,7 +11,7 @@ const Logo = () => {
       />
       <mask
         id="mask0_7_86"
-        style={{maskType: 'alpha'}}
+        style={{ maskType: 'alpha' }}
         maskUnits="userSpaceOnUse"
         x="20"
         y="0"
@@ -50,5 +50,4 @@ const Logo = () => {
   );
 };
 
-
-export default Logo
+export default Logo;

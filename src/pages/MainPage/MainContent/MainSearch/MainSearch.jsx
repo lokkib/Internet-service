@@ -8,8 +8,8 @@ const MainSearch = () => {
     <div className={styles.mainSearch}>
       <Logo />
       <form className={styles.searchForm}>
-        <Input classType='searchInput' placeholder='Поиск по объявлениям' />
-        <ButtonSearchSave classType='search' text='Найти' />
+        <Input classType="searchInput" placeholder="Поиск по объявлениям" />
+        <ButtonSearchSave classType="search" text="Найти" />
       </form>
     </div>
   );

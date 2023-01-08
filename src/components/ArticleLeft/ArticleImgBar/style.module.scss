@@ -1,0 +1,22 @@
+.articleImgWrapper {
+  margin-top: 30px;
+  width: 490px;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+  flex-direction: row;
+  -webkit-box-align: center;
+  align-items: center;
+  justify-content: left;
+  overflow: hidden;
+  margin-left: -5px;
+}
+
+.articleImg {
+  width: 88px;
+  min-width: 88px;
+  height: 88px;
+  background-color: #f0f0f0;
+  border: 2px solid #f0f0f0;
+  margin: 0 5px;
+}

@@ -1,0 +1,25 @@
+.rightWrapper {
+  max-width: 621px;
+}
+
+.rightBlock {
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  flex-direction: column;
+}
+
+.heading {
+  margin-bottom: 10px;
+  font-size: 32px;
+  line-height: 46px;
+  font-weight: 500;
+  color: #000000;
+}
+
+.price {
+  font-size: 28px;
+  line-height: 39px;
+  font-weight: 700;
+  margin-bottom: 20px;
+}
