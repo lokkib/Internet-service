@@ -1,9 +1,9 @@
 // import ArticleItem from './pages/ArticleItem/ArticleItem';
 // import MainPage from './pages/MainPage/MainPage';
 // import ProfilePage from './pages/ProfilePage/ProfilePage';
-import SellerProfilePage from './pages/SellerProfilePage/SellerProfilePage';
+import SignUp from "./components/SignUp/SignUp";
 
 const App = () => {
-  return <SellerProfilePage />;
+  return <SignUp />;
 };
 export default App;
