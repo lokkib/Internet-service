@@ -1,9 +1,7 @@
 // import ArticleItem from './pages/ArticleItem/ArticleItem';
-// import MainPage from './pages/MainPage/MainPage';
-// import ProfilePage from './pages/ProfilePage/ProfilePage';
-import SignUp from "./components/SignUp/SignUp";
+import AdvSettings from "./components/AdvSettings/AdvSettings";
 
 const App = () => {
-  return <SignUp />;
+  return <AdvSettings />;
 };
 export default App;
