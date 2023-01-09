@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import styles from './style.module.scss';
 
-const FormNewArticleItem = ({placeholder, value}) => {
+const FormNewArticleItem = ({ placeholder, value }) => {
   const [inputValue, setInputValue] = useState(value);
   return (
     <div className={styles.formBlock}>

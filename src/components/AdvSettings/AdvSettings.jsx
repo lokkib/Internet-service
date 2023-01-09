@@ -1,4 +1,3 @@
-
 import styles from './style.module.scss';
 import ButtonClose from '../ButtonClose/ButtonClose';
 import FormNewArticleItem from '../FormNewArticleItem/FormNewArticleItem';
@@ -8,8 +7,6 @@ import ButtonSearchSave from '../ButtonSearchSave/ButtonSearchSave';
 import FormDescriptionItem from '../FormDescriptionItem/FormDescriptionItem';
 
 const AdvSettings = () => {
-
-
   return (
     <div className={styles.advSettingsWrapper}>
       <div className={styles.advSettingsContent}>
@@ -18,10 +15,9 @@ const AdvSettings = () => {
         <form className={styles.advSettingsForm} action="">
           <FormNewArticleItem />
           <FormDescriptionItem />
-            <FormNewArticlePhotos />
-            <FormArticlePrice />
-            <ButtonSearchSave classType="saveAdvSettings" text="Сохранить" />
-       
+          <FormNewArticlePhotos />
+          <FormArticlePrice />
+          <ButtonSearchSave classType="saveAdvSettings" text="Сохранить" />
         </form>
       </div>
     </div>

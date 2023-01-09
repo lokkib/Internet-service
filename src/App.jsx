@@ -1,6 +1,6 @@
-import NewAdv from "./components/NewAdv/NewAdv";
+import Reviews from './components/Reviews/Reviews';
 
 const App = () => {
-  return <NewAdv />;
+  return <Reviews />;
 };
 export default App;
