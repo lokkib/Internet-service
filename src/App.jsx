@@ -1,7 +1,6 @@
-// import ArticleItem from './pages/ArticleItem/ArticleItem';
-import AdvSettings from './components/AdvSettings/AdvSettings';
+import NewAdv from "./components/NewAdv/NewAdv";
 
 const App = () => {
-  return <AdvSettings />;
+  return <NewAdv />;
 };
 export default App;
