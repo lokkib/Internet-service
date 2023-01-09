@@ -1,8 +1,8 @@
 import { useState } from 'react';
 import styles from './style.module.scss';
 
-const FormNewArticleItem = () => {
-  const [inputValue, setInputValue] = useState('Ракетка для большого тенниса Triumph Pro STС Б/У');
+const FormNewArticleItem = ({placeholder, value}) => {
+  const [inputValue, setInputValue] = useState(value);
   return (
     <div className={styles.formBlock}>
       <label className={styles.label} htmlFor="name">
@@ -14,6 +14,7 @@ const FormNewArticleItem = () => {
         className={styles.input}
         id="name"
         type="text"
+        placeholder={placeholder}
       />
     </div>
   );
