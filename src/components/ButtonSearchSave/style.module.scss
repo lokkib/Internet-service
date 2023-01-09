@@ -70,10 +70,10 @@
 .signIn {
   composes: search;
   width: 278px;
-    height: 52px;
-    margin-top: 60px;
-    margin-bottom: 20px;
-    border: none;
+  height: 52px;
+  margin-top: 60px;
+  margin-bottom: 20px;
+  border: none;
 }
 
 .signUp {
@@ -81,20 +81,37 @@
   margin-top: 0;
   margin-bottom: 0;
   background-color: transparent;
-    border: 1px solid #D0CECE;
-    border-radius: 6px;
-    font-style: normal;
-    font-weight: 400;
-    font-size: 18px;
-    line-height: 24px;
-    letter-spacing: -0.05px;
-    color: #000000;
+  border: 1px solid #d0cece;
+  border-radius: 6px;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 24px;
+  letter-spacing: -0.05px;
+  color: #000000;
 }
 
-.signUpButton{
+.signUpButton {
   composes: signIn;
   height: 44px;
   margin-top: 30px;
   margin-bottom: 0;
   margin-left: 0;
+}
+
+.saveAdvSettings {
+  margin-top: 10px;
+  width: 141px;
+  height: 50px;
+  background: #d9d9d9;
+  border: 1px solid #d9d9d9;
+  border-radius: 6px;
+  font-size: 16px;
+  line-height: 24px;
+  color: #ffffff;
+  cursor: pointer;
+
+  &:hover {
+    background-color: #0080c1;
+  }
 }
