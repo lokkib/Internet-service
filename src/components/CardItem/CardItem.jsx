@@ -2,9 +2,9 @@ import CardImage from './CardImage/CardImage';
 import CardContent from './CardContent/CardContent';
 import styles from './style.module.scss';
 
-const CardItem = ({classTypeCardItem, classTypeImgMain}) => {
+const CardItem = ({ classTypeCardItem, classTypeImgMain }) => {
   return (
-    <div >
+    <div>
       <div className={styles[classTypeCardItem]}>
         <CardImage classTypeImgMain={classTypeImgMain} />
         <CardContent />

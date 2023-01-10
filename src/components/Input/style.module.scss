@@ -13,10 +13,9 @@
   line-height: 24px;
   color: #000000;
 
-  @media screen and (max-width: 590px)
- {
-  display: none;
- }
+  @media screen and (max-width: 590px) {
+    display: none;
+  }
 }
 
 .nameInput {
@@ -26,17 +25,15 @@
   padding: 13px 19px;
   width: 300px;
 
-  @media screen and (max-width: 620px)
-{
+  @media screen and (max-width: 620px) {
     border-radius: 30px;
     padding: 9px 17px;
     width: 100%;
-}
+  }
 }
 
 .lastNameInput {
   composes: nameInput;
-
 }
 
 .cityInput {
@@ -46,8 +43,7 @@
 .phoneInput {
   composes: nameInput;
   width: 614px;
-  @media screen and (max-width: 620px)
- {
+  @media screen and (max-width: 620px) {
     width: 100%;
-}
+  }
 }

@@ -13,10 +13,9 @@
     cursor: pointer;
   }
 
-  @media screen and (max-width: 590)
- {
+  @media screen and (max-width: 590) {
     display: none;
-}
+  }
 }
 
 .advertisement {
@@ -26,10 +25,9 @@
     background: rgba(255, 255, 255, 0.15);
     cursor: pointer;
   }
-  @media screen and (max-width: 620px)
-  {
-     display: none;
- }
+  @media screen and (max-width: 620px) {
+    display: none;
+  }
 }
 
 .account {
@@ -37,8 +35,7 @@
   margin-left: 10px;
   composes: advertisement;
 
-  @media screen and (max-width: 620px)
-  {
-     display: none;
- }
+  @media screen and (max-width: 620px) {
+    display: none;
+  }
 }

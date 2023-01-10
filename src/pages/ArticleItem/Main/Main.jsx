@@ -3,7 +3,7 @@ import MainMenu from '../../../components/MainMenu/MainMenu';
 import MainArticle from './MainArticle/MainArticle';
 import ArticleDescription from './ArticleDescription/ArticleDescription';
 
-const Main = ({onlyOneButton}) => {
+const Main = ({ onlyOneButton }) => {
   return (
     <main className={styles.main}>
       <div className={styles.mainContainer}>

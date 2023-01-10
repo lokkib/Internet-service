@@ -1,10 +1,9 @@
 .header {
   background-color: #009ee4;
 
-  @media screen and (max-width: 590px)
- {
+  @media screen and (max-width: 590px) {
     display: none;
-}
+  }
 }
 
 .headerNav {

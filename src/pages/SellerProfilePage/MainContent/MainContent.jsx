@@ -13,7 +13,11 @@ const MainContent = () => {
           <ProfileSellerInfo />
           <h3 className={styles.headerSellersGoods}>Товары продавца</h3>
         </div>
-        <ContentCards classTypeCardItem='cardItemMain'  classTypeImgMain='itemMainImg' classType='contentCardsMain'  />
+        <ContentCards
+          classTypeCardItem="cardItemMain"
+          classTypeImgMain="itemMainImg"
+          classType="contentCardsMain"
+        />
       </div>
     </main>
   );

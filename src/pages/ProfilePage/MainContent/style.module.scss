@@ -9,29 +9,25 @@
   margin: 0 auto;
   padding: 0px 10px 79px;
 
-  @media screen and (max-width: 890px)
- {
+  @media screen and (max-width: 890px) {
     padding: 85px 0px 84px;
+  }
+
+  @media screen and (max-width: 620px) {
+    padding: 85px 0px 84px;
+  }
 }
 
-@media screen and (max-width: 620px)
-{
-    padding: 85px 0px 84px;
-}
-}
-
-.centerBlock{
-  @media screen and (max-width: 890px)
- {
+.centerBlock {
+  @media screen and (max-width: 890px) {
     margin: 0 auto;
     padding: 0 20px;
-}
+  }
 
-@media screen and (max-width: 620px)
- {
+  @media screen and (max-width: 620px) {
     margin: 0 auto;
     padding: 0 20px;
-}
+  }
 }
 
 .heading {
@@ -43,13 +39,12 @@
   margin-bottom: 30px;
   font-family: 'Roboto', sans-serif;
 
-  @media screen and (max-width: 620px)
- {
+  @media screen and (max-width: 620px) {
     font-size: 24px;
     line-height: 29px;
     color: #000000;
     margin-bottom: 20px;
-}
+  }
 }
 
 .myGoodsHeading {
@@ -59,9 +54,8 @@
   color: #000000;
   margin-bottom: 20px;
 
-  @media screen and (max-width: 620px)
-{
+  @media screen and (max-width: 620px) {
     font-size: 18px;
     line-height: 1;
-}
+  }
 }

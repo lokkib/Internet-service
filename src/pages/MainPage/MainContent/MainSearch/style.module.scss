@@ -16,7 +16,7 @@
   @media screen and (max-width: 590px) {
     width: 100%;
     height: 55px;
-    background-color: #009EE4;
+    background-color: #009ee4;
     box-shadow: 0px 4px 25px rgb(0 0 0 / 5%);
     margin-bottom: 0px;
     padding: 11px 17px;
@@ -38,9 +38,7 @@
     width: 100%;
     display: flex;
   }
-
 }
-
 
 .linkLogo {
   @media screen and (max-width: 590px) {
@@ -48,29 +46,27 @@
   }
 }
 
-.aMob{
+.aMob {
   display: none;
-  @media screen and (max-width: 590px)
-{
+  @media screen and (max-width: 590px) {
     display: block;
     width: 32px;
     height: 32px;
-}
+  }
 }
 
-.inputMobile{
+.inputMobile {
   display: none;
-  @media screen and (max-width: 590px)
- {
+  @media screen and (max-width: 590px) {
     display: inline-block;
     width: 100%;
     height: 32px;
     border: none;
     border-radius: 30px;
-    background-color: #FFFFFF;
+    background-color: #ffffff;
     padding: 5px 17px;
     font-size: 14px;
     line-height: 21px;
     color: #000000;
-}
+  }
 }

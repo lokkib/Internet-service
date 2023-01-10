@@ -14,10 +14,9 @@
     cursor: pointer;
   }
 
-  @media screen and (max-width: 590px)
-{
+  @media screen and (max-width: 590px) {
     display: none;
-}
+  }
 }
 
 .goBack {
@@ -34,15 +33,14 @@
   width: 154px;
   margin: 10px 7px 0;
 
-  @media screen and (max-width: 620px)
- {
-  display: block;
+  @media screen and (max-width: 620px) {
+    display: block;
     font-size: 16px;
     line-height: 1;
     width: 100%;
     height: 46px;
     margin: 8px 0px 0;
-}
+  }
 }
 
 .showPhone {
