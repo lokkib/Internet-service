@@ -1,6 +1,12 @@
 .itemWrapper {
   display: inline-block;
   margin: 0 7px 20px;
+
+  @media screen and (max-width: 620px)
+ {
+    display: inline-block;
+    margin: 0 0px 18px;
+}
 }
 
 .label {
@@ -10,4 +16,12 @@
   color: #c4c4c4;
   margin-bottom: 4px;
   display: block;
+
+  @media screen and (max-width: 620px)
+ {
+    font-size: 14px;
+    line-height: 21px;
+    color: #C4C4C4;
+    margin-bottom: 6px;
+}
 }

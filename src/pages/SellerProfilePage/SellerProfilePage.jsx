@@ -5,7 +5,7 @@ import MainContent from './MainContent/MainContent';
 const SellerProfilePage = () => {
   return (
     <div className={styles.container}>
-      <Header />
+      <Header classType='sellerPageHeading' />
       <MainContent />
     </div>
   );

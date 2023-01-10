@@ -5,7 +5,7 @@ const SettingsLeft = () => {
   return (
     <div className={styles.settingsWrapper}>
       <Avatar />
-      <a href="http://localhost:3000/">Заменить</a>
+      <a href="http://localhost:3001/">Заменить</a>
     </div>
   );
 };

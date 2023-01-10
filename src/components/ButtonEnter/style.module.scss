@@ -12,6 +12,11 @@
     background-color: #0080c1;
     cursor: pointer;
   }
+
+  @media screen and (max-width: 590)
+ {
+    display: none;
+}
 }
 
 .advertisement {
@@ -21,10 +26,19 @@
     background: rgba(255, 255, 255, 0.15);
     cursor: pointer;
   }
+  @media screen and (max-width: 620px)
+  {
+     display: none;
+ }
 }
 
 .account {
   width: 173px;
   margin-left: 10px;
   composes: advertisement;
+
+  @media screen and (max-width: 620px)
+  {
+     display: none;
+ }
 }

@@ -1,5 +1,16 @@
 .profileSettings {
+  display: -webkit-box;
+    display: -ms-flexbox;
+    -webkit-box-align: top;
+    -ms-flex-align: top;
+    -ms-flex-pack: center;
   display: flex;
   -webkit-box-pack: center;
   justify-content: center;
+
+  @media screen and (max-width: 890px)
+ {
+    -ms-flex-wrap: wrap;
+    flex-wrap: wrap;
+}
 }

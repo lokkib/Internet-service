@@ -12,6 +12,19 @@
   max-width: 1178px;
   margin: 0 auto;
   padding: 31px 10px 0px;
+
+  @media screen and (max-width: 590px) {
+    width: 100%;
+    height: 55px;
+    background-color: #009EE4;
+    box-shadow: 0px 4px 25px rgb(0 0 0 / 5%);
+    margin-bottom: 0px;
+    padding: 11px 17px;
+    position: fixed;
+    left: 0;
+    top: 0;
+    z-index: 3;
+  }
 }
 
 .searchForm {
@@ -19,4 +32,45 @@
   max-width: 1044px;
   width: 100%;
   display: flex;
+  @media screen and (max-width: 590px) {
+    margin-left: 10px;
+    max-width: 1044px;
+    width: 100%;
+    display: flex;
+  }
+
+}
+
+
+.linkLogo {
+  @media screen and (max-width: 590px) {
+    display: none;
+  }
+}
+
+.aMob{
+  display: none;
+  @media screen and (max-width: 590px)
+{
+    display: block;
+    width: 32px;
+    height: 32px;
+}
+}
+
+.inputMobile{
+  display: none;
+  @media screen and (max-width: 590px)
+ {
+    display: inline-block;
+    width: 100%;
+    height: 32px;
+    border: none;
+    border-radius: 30px;
+    background-color: #FFFFFF;
+    padding: 5px 17px;
+    font-size: 14px;
+    line-height: 21px;
+    color: #000000;
+}
 }
