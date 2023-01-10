@@ -3,13 +3,13 @@ import MainMenu from '../../../components/MainMenu/MainMenu';
 import MainArticle from './MainArticle/MainArticle';
 import ArticleDescription from './ArticleDescription/ArticleDescription';
 
-const Main = () => {
+const Main = ({onlyOneButton}) => {
   return (
     <main className={styles.main}>
       <div className={styles.mainContainer}>
         <MainMenu />
       </div>
-      <MainArticle />
+      <MainArticle onlyOneButton={onlyOneButton} />
       <ArticleDescription />
     </main>
   );

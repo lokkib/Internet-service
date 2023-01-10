@@ -2,11 +2,11 @@ import CardImage from './CardImage/CardImage';
 import CardContent from './CardContent/CardContent';
 import styles from './style.module.scss';
 
-const CardItem = () => {
+const CardItem = ({classTypeCardItem, classTypeImgMain}) => {
   return (
-    <div className={styles.cardItemWrapper}>
-      <div className={styles.cardItem}>
-        <CardImage />
+    <div >
+      <div className={styles[classTypeCardItem]}>
+        <CardImage classTypeImgMain={classTypeImgMain} />
         <CardContent />
       </div>
     </div>

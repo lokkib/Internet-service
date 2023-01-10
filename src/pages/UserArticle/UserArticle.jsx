@@ -5,8 +5,8 @@ import styles from './style.module.scss';
 const UserArticle = () => {
   return (
     <div className={styles.container}>
-      <Header />
-      <Main />
+      <Header classType='sellerPageHeading' />
+      <Main onlyOneButton='false' />
     </div>
   );
 };

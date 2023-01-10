@@ -2,12 +2,12 @@ import styles from './style.module.scss';
 import ArticleLeft from '../../../../components/ArticleLeft/ArticleLeft';
 import ArticleRight from '../../../../components/ArticleRight/ArticleRight';
 
-const MainArticle = () => {
+const MainArticle = ({onlyOneButton}) => {
   return (
     <div className={styles.mainArticleWrapper}>
       <div className={styles.content}>
         <ArticleLeft />
-        <ArticleRight />
+        <ArticleRight onlyOneButton={onlyOneButton} />
       </div>
     </div>
   );

@@ -1,9 +1,9 @@
 import styles from './style.module.scss';
 
-const CardImage = () => {
+const CardImage = ({classTypeImgMain}) => {
   return (
-    <div className={styles.cardImage}>
-      <a href="http://localhost:3000/">
+    <div className={styles[classTypeImgMain]}>
+      <a href="http://localhost:3001/">
         <img src="" alt="card-item" />
       </a>
     </div>

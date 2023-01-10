@@ -6,7 +6,7 @@ const SellerArticle = () => {
   return (
     <div className={styles.container}>
       <Header />
-      <Main />
+      <Main onlyOneButton='true'  />
     </div>
   );
 };
