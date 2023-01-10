@@ -5,7 +5,11 @@ const MainInfo = () => {
   return (
     <div className={styles.mainInfoContainer}>
       <h2 className={styles.heading}>Объявления</h2>
-      <ContentCards classType='contentCardsMain' classTypeCardItem='cardItemMain'  classTypeImgMain='itemMainImg' />
+      <ContentCards
+        classType="contentCardsMain"
+        classTypeCardItem="cardItemMain"
+        classTypeImgMain="itemMainImg"
+      />
     </div>
   );
 };

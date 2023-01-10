@@ -1,14 +1,12 @@
 .cardItemWrapperMain {
   margin: 0;
 
-  @media screen and (max-width: 590px)
- {
+  @media screen and (max-width: 590px) {
     margin: 0;
     -webkit-box-shadow: 0px 4px 14px rgb(0 0 0 / 10%);
     box-shadow: 0px 4px 14px rgb(0 0 0 / 10%);
     border-radius: 6px;
-}
-
+  }
 }
 
 .cardItemMain {
@@ -19,14 +17,12 @@
   -webkit-box-orient: vertical;
   -webkit-box-direction: normal;
 
-
-  @media screen and (max-width: 590px)
-   {
-      width: 137px;
-      height: 293px;
-      display: flex;
-      -webkit-box-orient: vertical;
-      -webkit-box-direction: normal;
-      flex-direction: column;
-}
+  @media screen and (max-width: 590px) {
+    width: 137px;
+    height: 293px;
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    flex-direction: column;
+  }
 }

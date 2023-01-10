@@ -11,8 +11,7 @@
   align-items: center;
   margin-right: 43px;
 
-  @media screen and (max-width: 620px)
-{
+  @media screen and (max-width: 620px) {
     display: -webkit-box;
     display: -ms-flexbox;
     display: flex;
@@ -24,17 +23,17 @@
     -ms-flex-align: center;
     align-items: center;
     margin-right: 0;
-}
+  }
 }
 
 .settingsWrapper a {
   margin-top: 10px;
-    margin-bottom: 30px;
-    text-decoration: none;
-    font-size: 16px;
-    line-height: 24px;
-    color: #009EE4;
+  margin-bottom: 30px;
   text-decoration: none;
-    font-family: 'StratosSkyeng', sans-serif;
-    cursor: pointer;
+  font-size: 16px;
+  line-height: 24px;
+  color: #009ee4;
+  text-decoration: none;
+  font-family: 'StratosSkyeng', sans-serif;
+  cursor: pointer;
 }

@@ -3,10 +3,9 @@
   margin: 0 auto;
   padding: 52px 10px 37px;
 
-  @media screen and (max-width: 590px)
- {
+  @media screen and (max-width: 590px) {
     padding: 85px 10px 84px;
-}
+  }
 }
 
 .heading {
@@ -17,32 +16,30 @@
   color: #000000;
   margin-bottom: 30px;
 
-  @media screen and (max-width: 590px)
- {
+  @media screen and (max-width: 590px) {
     font-size: 24px;
     line-height: 29px;
     color: #000000;
     margin-bottom: 20px;
     text-align: center;
     position: relative;
- }
+  }
 
- @media screen and (max-width: 590px) {
-  &::before {
-    content: "";
-    display: block;
-    width: 12px;
-    height: 12px;
-    background-color: transparent;
-    border-top: 2px solid #000000;
-    border-left: 2px solid #000000;
-    -webkit-transform: rotate(-45deg);
-    transform: rotate(-45deg);
-    position: absolute;
-    top: 9px;
-    left: 13px;
-    cursor: pointer;
- }
-
- }
+  @media screen and (max-width: 590px) {
+    &::before {
+      content: '';
+      display: block;
+      width: 12px;
+      height: 12px;
+      background-color: transparent;
+      border-top: 2px solid #000000;
+      border-left: 2px solid #000000;
+      -webkit-transform: rotate(-45deg);
+      transform: rotate(-45deg);
+      position: absolute;
+      top: 9px;
+      left: 13px;
+      cursor: pointer;
+    }
+  }
 }

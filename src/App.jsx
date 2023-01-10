@@ -2,9 +2,10 @@
 // import MainPage from './pages/MainPage/MainPage';
 // import SellerProfilePage from './pages/SellerProfilePage/SellerProfilePage'
 // import UserArticle from './pages/UserArticle/UserArticle'
-import SellerArticle from './pages/ArticleItem/SellerArticle'
+// import SellerArticle from './pages/ArticleItem/SellerArticle'
+import AppRoutes from './routes/Approutes';
 
 const App = () => {
-  return <SellerArticle />;
+  return <AppRoutes />;
 };
 export default App;

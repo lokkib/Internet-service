@@ -15,7 +15,7 @@ const MainSearch = () => {
       </a>
       <form className={styles.searchForm}>
         <Input classType="searchInput" placeholder="Поиск по объявлениям" />
-        <input className={styles.inputMobile} placeholder="Поиск"  />
+        <input className={styles.inputMobile} placeholder="Поиск" />
         <ButtonSearchSave classType="search" text="Найти" />
       </form>
     </div>
