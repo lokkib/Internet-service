@@ -1,8 +1,8 @@
 import styles from './style.module.scss';
 
-const ButtonSearchSave = ({ text, classType, phoneNumber }) => {
+const ButtonSearchSave = ({ text, classType, phoneNumber, clickSignUp }) => {
   return (
-    <button className={styles[classType]}>
+    <button onClick={() => clickSignUp()} className={styles[classType]}>
       {text}
       <span>{phoneNumber}</span>
     </button>

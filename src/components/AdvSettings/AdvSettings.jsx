@@ -11,7 +11,7 @@ const AdvSettings = () => {
     <div className={styles.advSettingsWrapper}>
       <div className={styles.advSettingsContent}>
         <h3 className={styles.advSettingsHeader}>Редактировать объявление</h3>
-        <ButtonClose />
+        <ButtonClose classType="closeLine" />
         <form className={styles.advSettingsForm} action="">
           <FormNewArticleItem />
           <FormDescriptionItem />

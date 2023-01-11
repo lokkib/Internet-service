@@ -30,6 +30,22 @@
   background-color: #0080c1;
 }
 
+.miniCloseLine::before {
+  transform: rotate(45deg);
+  content: '';
+  position: absolute;
+  width: 18px;
+  height: 2px;
+  border-radius: 2px;
+  background-color: #d9d9d9;
+  top: 47%;
+  right: -4px;
+}
+
+.miniCloseLine:hover::before {
+  background-color: #0080c1;
+}
+
 .closeLine::after {
   transform: rotate(-45deg);
   content: '';
@@ -43,5 +59,21 @@
 }
 
 .closeLine:hover::after {
+  background-color: #0080c1;
+}
+
+.miniCloseLine::after {
+  transform: rotate(-45deg);
+  content: '';
+  position: absolute;
+  width: 18px;
+  height: 2px;
+  border-radius: 2px;
+  background-color: #d9d9d9;
+  top: 47%;
+  right: -4px;
+}
+
+.miniCloseLine:hover::after {
   background-color: #0080c1;
 }

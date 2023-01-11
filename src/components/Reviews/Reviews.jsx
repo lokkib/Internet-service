@@ -9,7 +9,7 @@ const Reviews = () => {
     <div className={styles.reviewsWrapper}>
       <div className={styles.reviewsContent}>
         <h3 className={styles.reviewsHeading}>Отзывы о товаре</h3>
-        <ButtonClose />
+        <ButtonClose classType="closeLine" />
         <div className={styles.reviewsScroll}>
           <form className={styles.advSettingsForm} action="">
             <FormDescriptionItem />
