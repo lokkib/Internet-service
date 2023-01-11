@@ -2,12 +2,19 @@ import AuthLogo from '../SignIn/AuthLogo/AuthLogo';
 import InputAuth from '../SignIn/InputAuth/InputAuth';
 import styles from './style.module.scss';
 import ButtonSearchSave from '../ButtonSearchSave/ButtonSearchSave';
+import ButtonClose from '../ButtonClose/ButtonClose';
 
-const SignUp = () => {
+const SignUp = ({ closeSignUpWindow, closeAuthWindow }) => {
   return (
     <div className={styles.signUpWrapper}>
+      <ButtonClose
+        closeAuthWindow={closeAuthWindow}
+        closeSignUpWindow={closeSignUpWindow}
+        classType="miniCloseLine"
+      />
       <form className={styles.formSignUp} action="">
         <AuthLogo />
+
         <InputAuth
           classType="loginSignUp"
           placeholder="email"
