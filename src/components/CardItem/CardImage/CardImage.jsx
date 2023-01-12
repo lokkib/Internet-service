@@ -1,11 +1,12 @@
+import { Link } from 'react-router-dom';
 import styles from './style.module.scss';
 
 const CardImage = ({ classTypeImgMain }) => {
   return (
     <div className={styles[classTypeImgMain]}>
-      <a href="http://localhost:3001/">
+      <Link to="item">
         <img src="" alt="card-item" />
-      </a>
+      </Link>
     </div>
   );
 };

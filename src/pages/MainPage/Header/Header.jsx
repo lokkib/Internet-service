@@ -5,11 +5,13 @@ const Header = ({ clickEnterAccount }) => {
   return (
     <header className={styles.header}>
       <nav className={styles.headerNav}>
-        <ButtonEnter
-          clickEnterAccount={clickEnterAccount}
-          classType="mainEnter"
-          text="Вход в личный кабинет"
-        />
+        <div onClickCapture={() => clickEnterAccount()}>
+          <ButtonEnter
+            // clickEnterAccount={clickEnterAccount}
+            classType="mainEnter"
+            text="Вход в личный кабинет"
+          />
+        </div>
       </nav>
     </header>
   );

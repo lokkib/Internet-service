@@ -6,12 +6,15 @@ import FormNewArticlePhotos from '../FormNewArticlePhotos/FormNewArticlePhotos';
 import FormArticlePrice from '../FormArticlePrice/FormArticlePrice';
 import ButtonSearchSave from '../ButtonSearchSave/ButtonSearchSave';
 
-const NewAdv = () => {
+const NewAdv = ({ closeModalNewAdv }) => {
   return (
     <div className={styles.newAdvWrapper}>
       <div className={styles.newAdvContent}>
         <h3 className={styles.advHeading}>Новое объявление</h3>
-        <ButtonClose classType="closeLine" />
+        <div onClickCapture={() => closeModalNewAdv()}>
+          <ButtonClose classType="closeLine" />
+        </div>
+
         <form className={styles.advSettingsForm} action="">
           <FormNewArticleItem value="Ракетка для тенниса" placeholder="Введите название" />
           <FormDescriptionItem />

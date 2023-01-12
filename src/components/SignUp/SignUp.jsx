@@ -4,7 +4,7 @@ import styles from './style.module.scss';
 import ButtonSearchSave from '../ButtonSearchSave/ButtonSearchSave';
 import ButtonClose from '../ButtonClose/ButtonClose';
 
-const SignUp = ({ closeSignUpWindow, closeAuthWindow }) => {
+const SignUp = ({ closeSignUpWindow, closeAuthWindow, clickSignUp }) => {
   return (
     <div className={styles.signUpWrapper}>
       <ButtonClose
@@ -57,7 +57,9 @@ const SignUp = ({ closeSignUpWindow, closeAuthWindow }) => {
           name="city"
           type="text"
         />
-        <ButtonSearchSave classType="signUpButton" text="Зарегистрироваться" />
+        <div onClickCapture={() => clickSignUp()}>
+          <ButtonSearchSave classType="signUpButton" text="Зарегистрироваться" />
+        </div>
       </form>
     </div>
   );

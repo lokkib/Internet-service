@@ -13,6 +13,10 @@
   line-height: 24px;
   color: #000000;
 
+  &:focus {
+    outline: 1px solid rgba(0, 158, 228);
+  }
+
   @media screen and (max-width: 590px) {
     display: none;
   }
@@ -24,6 +28,10 @@
   border-radius: 6px;
   padding: 13px 19px;
   width: 300px;
+
+  &:focus {
+    outline: 1px solid rgba(0, 158, 228);
+  }
 
   @media screen and (max-width: 620px) {
     border-radius: 30px;

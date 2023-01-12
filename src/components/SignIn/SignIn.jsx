@@ -23,7 +23,13 @@ const SignIn = ({ closeAuthWindow, clickSignUp, closeSignUpWindow }) => {
           type="password"
         />
         <ButtonSearchSave classType="signIn" text="Войти" />
-        <ButtonSearchSave clickSignUp={clickSignUp} classType="signUp" text="Зарегистрироваться" />
+        <div onClickCapture={() => clickSignUp()}>
+          <ButtonSearchSave
+            clickSignUp={clickSignUp}
+            classType="signUp"
+            text="Зарегистрироваться"
+          />
+        </div>
       </form>
     </div>
   );

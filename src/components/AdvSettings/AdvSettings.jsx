@@ -6,12 +6,15 @@ import FormArticlePrice from '../FormArticlePrice/FormArticlePrice';
 import ButtonSearchSave from '../ButtonSearchSave/ButtonSearchSave';
 import FormDescriptionItem from '../FormDescriptionItem/FormDescriptionItem';
 
-const AdvSettings = () => {
+const AdvSettings = ({ closeModalAdvEdi }) => {
   return (
     <div className={styles.advSettingsWrapper}>
       <div className={styles.advSettingsContent}>
         <h3 className={styles.advSettingsHeader}>Редактировать объявление</h3>
-        <ButtonClose classType="closeLine" />
+        <div onClickCapture={() => closeModalAdvEdi()}>
+          <ButtonClose classType="closeLine" />
+        </div>
+
         <form className={styles.advSettingsForm} action="">
           <FormNewArticleItem />
           <FormDescriptionItem />
