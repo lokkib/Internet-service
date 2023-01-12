@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom';
 import styles from './style.module.scss';
 import HomeIcon from './Icons/HomeIcon';
 import AuthIcon from './Icons/AuthIcon';
@@ -8,19 +9,19 @@ const MobFooter = ({ classType }) => {
     <footer className={styles[classType]}>
       <div className={styles.footerContainer}>
         <div className={styles.home}>
-          <a href="http://localhost:3000/">
+          <Link to="/">
             <HomeIcon />
-          </a>
+          </Link>
         </div>
         <div className={styles.newAdv}>
-          <a href="http://localhost:3000/">
+          <Link to="/">
             <NewAdvIcon />
-          </a>
+          </Link>
         </div>
         <div className={styles.auth}>
-          <a href="http://localhost:3000/">
+          <Link to="/">
             <AuthIcon />
-          </a>
+          </Link>
         </div>
       </div>
     </footer>
