@@ -1,10 +1,12 @@
 import { useState } from 'react';
+import { AnimatePresence, motion } from 'framer-motion';
 import Header from './Header/Header';
 import MainContent from './MainContent/MainContent';
 import MobFooter from '../../components/MobFooter/MobFooter';
 import SignIn from '../../components/SignIn/SignIn';
 import styles from './style.module.scss';
 import SignUp from '../../components/SignUp/SignUp';
+import backdrop from '../../components/constants/animationConfigure';
 
 const MainPage = () => {
   const [openSignInModal, setOpenSignInModal] = useState(false);
@@ -29,15 +31,21 @@ const MainPage = () => {
   };
 
   return (
-    <>
+    <motion.div
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      exit={{ opacity: 0 }}
+      transition={{ duration: 1 }}
+    >
+      <AnimatePresence>
       {openSignInModal && (
-        <div className={openSignInModal ? styles.modalBlock : styles.modalDisplayNone}>
+        <motion.div variants={backdrop} initial="hidden" animate="visible" exit="exit" className={openSignInModal ? styles.modalBlock : styles.modalDisplayNone}>
           <SignIn
             clickSignUp={clickSignUp}
             closeAuthWindow={closeAuthWindow}
             closeSignUpWindow={closeSignUpWindow}
           />
-        </div>
+        </motion.div>
       )}
       {openSignUpModal && (
         <div className={openSignUpModal ? styles.modalBlock : styles.modalDisplayNone}>
@@ -48,10 +56,15 @@ const MainPage = () => {
           />
         </div>
       )}
+      </AnimatePresence>
+     
+
+
+      
       <Header clickEnterAccount={clickEnterAccount} />
       <MainContent />
       <MobFooter classType="mainPageFooter" />
-    </>
+    </motion.div>
   );
 };
 
