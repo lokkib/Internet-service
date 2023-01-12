@@ -7,6 +7,7 @@
   border-radius: 6px;
   font-size: 16px;
   line-height: 24px;
+  font-weight: 400;
   color: #ffffff;
 
   &:hover {
@@ -89,6 +90,10 @@
   margin-top: 60px;
   margin-bottom: 20px;
   border: none;
+  font-style: normal;
+    font-weight: 400;
+    font-size: 18px;
+    letter-spacing: -0.05px;
 }
 
 .signUp {
