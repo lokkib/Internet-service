@@ -1,3 +1,4 @@
+import { motion } from 'framer-motion';
 import AuthLogo from '../SignIn/AuthLogo/AuthLogo';
 import InputAuth from '../SignIn/InputAuth/InputAuth';
 import styles from './style.module.scss';
@@ -6,7 +7,10 @@ import ButtonClose from '../ButtonClose/ButtonClose';
 
 const SignUp = ({ closeSignUpWindow, closeAuthWindow, clickSignUp }) => {
   return (
-    <div className={styles.signUpWrapper}>
+    <motion.div initial={{ opacity: 0 }}
+    animate={{ opacity: 1 }}
+    exit={{ opacity: 0 }}
+    transition={{ duration: 0.3 }} className={styles.signUpWrapper}>
       <ButtonClose
         closeAuthWindow={closeAuthWindow}
         closeSignUpWindow={closeSignUpWindow}
@@ -61,7 +65,7 @@ const SignUp = ({ closeSignUpWindow, closeAuthWindow, clickSignUp }) => {
           <ButtonSearchSave classType="signUpButton" text="Зарегистрироваться" />
         </div>
       </form>
-    </div>
+    </motion.div>
   );
 };
 
