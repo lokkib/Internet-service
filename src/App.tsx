@@ -3,9 +3,10 @@
 // import SellerProfilePage from './pages/SellerProfilePage/SellerProfilePage'
 // import UserArticle from './pages/UserArticle/UserArticle'
 // import SellerArticle from './pages/ArticleItem/SellerArticle'
+import React from 'react';
 import AppRoutes from './routes/Approutes';
 
-const App = () => {
+const App: React.FC = () => {
   return <AppRoutes />;
 };
 export default App;

@@ -3,7 +3,7 @@ import Header from '../../components/Header/Header';
 
 import Main from './Main/Main';
 
-const SellerArticle = () => {
+const SellerArticlePage = () => {
   return (
     <motion.div
       initial={{ opacity: 0 }}
@@ -17,4 +17,4 @@ const SellerArticle = () => {
   );
 };
 
-export default SellerArticle;
+export default SellerArticlePage;

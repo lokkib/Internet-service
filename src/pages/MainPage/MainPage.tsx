@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import React, { useState } from 'react';
 import { AnimatePresence, motion } from 'framer-motion';
 import Header from './Header/Header';
 import MainContent from './MainContent/MainContent';
@@ -8,7 +8,8 @@ import styles from './style.module.scss';
 import SignUp from '../../components/SignUp/SignUp';
 import backdrop from '../../components/constants/animationConfigure';
 
-const MainPage = () => {
+
+const MainPage: React.FC  = () => {
   const [openSignInModal, setOpenSignInModal] = useState(false);
   const [openSignUpModal, setOpenSignUpModal] = useState(false);
 
@@ -38,29 +39,32 @@ const MainPage = () => {
       transition={{ duration: 1 }}
     >
       <AnimatePresence>
-      {openSignInModal && (
-        <motion.div variants={backdrop} initial="hidden" animate="visible" exit="exit" className={openSignInModal ? styles.modalBlock : styles.modalDisplayNone}>
-          <SignIn
-            clickSignUp={clickSignUp}
-            closeAuthWindow={closeAuthWindow}
-            closeSignUpWindow={closeSignUpWindow}
-          />
-        </motion.div>
-      )}
-      {openSignUpModal && (
-        <div className={openSignUpModal ? styles.modalBlock : styles.modalDisplayNone}>
-          <SignUp
-            closeSignUpWindow={closeSignUpWindow}
-            clickSignUp={clickSignUp}
-            closeAuthWindow={closeAuthWindow}
-          />
-        </div>
-      )}
+        {openSignInModal && (
+          <motion.div
+            variants={backdrop}
+            initial="hidden"
+            animate="visible"
+            exit="exit"
+            className={openSignInModal ? styles.modalBlock : styles.modalDisplayNone}
+          >
+            <SignIn
+              clickSignUp={clickSignUp}
+              closeAuthWindow={closeAuthWindow}
+              closeSignUpWindow={closeSignUpWindow}
+            />
+          </motion.div>
+        )}
+        {openSignUpModal && (
+          <div className={openSignUpModal ? styles.modalBlock : styles.modalDisplayNone}>
+            <SignUp
+              closeSignUpWindow={closeSignUpWindow}
+              clickSignUp={clickSignUp}
+              closeAuthWindow={closeAuthWindow}
+            />
+          </div>
+        )}
       </AnimatePresence>
-     
 
-
-      
       <Header clickEnterAccount={clickEnterAccount} />
       <MainContent />
       <MobFooter classType="mainPageFooter" />

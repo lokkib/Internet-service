@@ -7,7 +7,6 @@ import AdvSettings from '../../components/AdvSettings/AdvSettings';
 import NewAdv from '../../components/NewAdv/NewAdv';
 import backdrop from '../../components/constants/animationConfigure';
 
-
 const UserArticle = () => {
   const [newAdv, setNewAdvOpen] = useState(false);
   const [AdvEdit, setAdvEditOpen] = useState(false);
@@ -36,18 +35,30 @@ const UserArticle = () => {
       transition={{ duration: 1 }}
     >
       <AnimatePresence>
-      {newAdv && (
-        <motion.div variants={backdrop} initial="hidden" animate="visible" exit="exit" className={newAdv ? styles.modalBlock : styles.modalDisplayNone}>
-          <NewAdv closeModalNewAdv={closeModalNewAdv} />
-        </motion.div>
-      )}
-      {AdvEdit && (
-        <motion.div variants={backdrop} initial="hidden" animate="visible" exit="exit" className={AdvEdit ? styles.modalBlock : styles.modalDisplayNone}>
-          <AdvSettings closeModalAdvEdi={closeModalAdvEdi} />
-        </motion.div>
-      )}
+        {newAdv && (
+          <motion.div
+            variants={backdrop}
+            initial="hidden"
+            animate="visible"
+            exit="exit"
+            className={newAdv ? styles.modalBlock : styles.modalDisplayNone}
+          >
+            <NewAdv closeModalNewAdv={closeModalNewAdv} />
+          </motion.div>
+        )}
+        {AdvEdit && (
+          <motion.div
+            variants={backdrop}
+            initial="hidden"
+            animate="visible"
+            exit="exit"
+            className={AdvEdit ? styles.modalBlock : styles.modalDisplayNone}
+          >
+            <AdvSettings closeModalAdvEdi={closeModalAdvEdi} />
+          </motion.div>
+        )}
       </AnimatePresence>
-    
+
       <Header openModalNewAdv={openModalNewAdv} classType="sellerPageHeading" />
       <Main openModalAdvEdit={openModalAdvEdit} onlyOneButton="false" />
     </motion.div>

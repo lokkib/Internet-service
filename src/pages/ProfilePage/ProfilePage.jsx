@@ -26,13 +26,19 @@ const ProfilePage = () => {
       transition={{ duration: 1 }}
     >
       <AnimatePresence>
-      {newAdv && (
-        <motion.div variants={backdrop} initial="hidden" animate="visible" exit="exit" className={newAdv ? styles.modalBlock : styles.modalDisplayNone}>
-          <NewAdv closeModalNewAdv={closeModalNewAdv} />
-        </motion.div>
-      )}
+        {newAdv && (
+          <motion.div
+            variants={backdrop}
+            initial="hidden"
+            animate="visible"
+            exit="exit"
+            className={newAdv ? styles.modalBlock : styles.modalDisplayNone}
+          >
+            <NewAdv closeModalNewAdv={closeModalNewAdv} />
+          </motion.div>
+        )}
       </AnimatePresence>
-     
+
       <Header openModalNewAdv={openModalNewAdv} classType="profileHeading" />
       <MainContent />
       <MobFooter classType="profileFooter" />
