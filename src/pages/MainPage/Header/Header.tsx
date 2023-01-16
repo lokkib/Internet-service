@@ -1,16 +1,14 @@
+import React from 'react';
 import styles from './style.module.scss';
 import ButtonEnter from '../../../components/ButtonEnter/ButtonEnter';
+import changingStateProp from '../../../@types/ChangingStateProps';
 
-const Header = ({ clickEnterAccount }) => {
+const Header: React.FC<changingStateProp> = ({ clickEnterAccount }) => {
   return (
     <header className={styles.header}>
       <nav className={styles.headerNav}>
-        <div onClickCapture={() => clickEnterAccount()}>
-          <ButtonEnter
-            // clickEnterAccount={clickEnterAccount}
-            classType="mainEnter"
-            text="Вход в личный кабинет"
-          />
+        <div onClickCapture={() => clickEnterAccount && clickEnterAccount()}>
+          <ButtonEnter classType="mainEnter" text="Вход в личный кабинет" />
         </div>
       </nav>
     </header>

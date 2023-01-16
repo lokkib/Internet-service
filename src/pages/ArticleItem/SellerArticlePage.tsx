@@ -1,9 +1,9 @@
 import { motion } from 'framer-motion';
+import React from 'react';
 import Header from '../../components/Header/Header';
-
 import Main from './Main/Main';
 
-const SellerArticlePage = () => {
+const SellerArticlePage: React.FC = () => {
   return (
     <motion.div
       initial={{ opacity: 0 }}

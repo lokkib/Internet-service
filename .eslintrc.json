@@ -8,8 +8,14 @@
     "browser": true,
     "es2021": true
   },
-  "extends": ["plugin:react/recommended", "airbnb", "prettier", "plugin:react/jsx-runtime",  "plugin:@typescript-eslint/eslint-recommended",
-  "plugin:@typescript-eslint/recommended"],
+  "extends": [
+    "plugin:react/recommended",
+    "airbnb",
+    "prettier",
+    "plugin:react/jsx-runtime",
+    "plugin:@typescript-eslint/eslint-recommended",
+    "plugin:@typescript-eslint/recommended"
+  ],
 
   "parserOptions": {
     "ecmaVersion": "latest",
@@ -17,19 +23,19 @@
       "jsx": true
     },
     "sourceType": "module"
-   
   },
   "plugins": ["@typescript-eslint"],
   "overrides": [
     {
-        "files": ["*.js", "*.jsx", "*.ts", "*.tsx"],
-        "rules": {
-            "@typescript-eslint/explicit-function-return-type": "off"
-        }
+      "files": ["*.js", "*.jsx", "*.ts", "*.tsx"],
+      "rules": {
+        "@typescript-eslint/explicit-function-return-type": "off"
+      }
     }
-],
-"parser": "@typescript-eslint/parser",
+  ],
+  "parser": "@typescript-eslint/parser",
   "rules": {
+    "react/require-default-props": "off",
     "import/extensions": [
       "error",
       "always",
@@ -43,7 +49,7 @@
     "no-unused-vars": "off",
     "@typescript-eslint/no-unused-vars": "error",
     "jsx-a11y/label-has-associated-control": "off",
-    "react/jsx-filename-extension": [1, { "extensions": [".js", ".jsx", ".ts",".tsx"] }],
+    "react/jsx-filename-extension": [1, { "extensions": [".js", ".jsx", ".ts", ".tsx"] }],
     "react/prop-types": 0,
     "react/destructuring-assignment": [0],
     "react/function-component-definition": [

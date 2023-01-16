@@ -8,8 +8,7 @@ import styles from './style.module.scss';
 import SignUp from '../../components/SignUp/SignUp';
 import backdrop from '../../components/constants/animationConfigure';
 
-
-const MainPage: React.FC  = () => {
+const MainPage: React.FC = () => {
   const [openSignInModal, setOpenSignInModal] = useState(false);
   const [openSignUpModal, setOpenSignUpModal] = useState(false);
 
