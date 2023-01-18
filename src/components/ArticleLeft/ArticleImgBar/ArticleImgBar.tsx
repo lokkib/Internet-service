@@ -1,6 +1,7 @@
+import React from 'react';
 import styles from './style.module.scss';
 
-const ArticleImgBar = () => {
+const ArticleImgBar: React.FC = () => {
   return (
     <div className={styles.articleImgWrapper}>
       <div className={styles.articleImg}>

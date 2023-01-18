@@ -7,14 +7,25 @@ const ContentCards: React.FC<ContentCardsProps> = ({
   classType,
   classTypeCardItem,
   classTypeImgMain,
+  data,
 }) => {
   return (
     <div className={styles.contentWrapper}>
       <div className={classType && styles[classType]}>
-        <CardItem classTypeImgMain={classTypeImgMain} classTypeCardItem={classTypeCardItem} />
-        <CardItem classTypeImgMain={classTypeImgMain} classTypeCardItem={classTypeCardItem} />
-        <CardItem classTypeImgMain={classTypeImgMain} classTypeCardItem={classTypeCardItem} />
-        <CardItem classTypeImgMain={classTypeImgMain} classTypeCardItem={classTypeCardItem} />
+        {data &&
+          data.map((item) => {
+            return (
+              <CardItem
+                createdOn={item.created_on}
+                city={item.user.city}
+                price={item.price}
+                title={item.title}
+                key={item.id}
+                classTypeImgMain={classTypeImgMain}
+                classTypeCardItem={classTypeCardItem}
+              />
+            );
+          })}
       </div>
     </div>
   );

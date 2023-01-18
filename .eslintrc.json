@@ -12,7 +12,6 @@
     "plugin:react/recommended",
     "airbnb",
     "prettier",
-    "plugin:react/jsx-runtime",
     "plugin:@typescript-eslint/eslint-recommended",
     "plugin:@typescript-eslint/recommended"
   ],
