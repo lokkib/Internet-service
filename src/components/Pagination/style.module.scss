@@ -1,0 +1,27 @@
+.root {
+  border-radius: 15px 15px 0 0;
+  background-color: #009ee4;
+  display: flex;
+  justify-content: center;
+  padding: 10px;
+  list-style: none;
+  gap: 10px;
+  li {
+    color: #fff;
+    font-weight: 500px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 30px;
+    height: 30px;
+    border: 2px solid #fff;
+    border-radius: 30px;
+    cursor: pointer;
+  }
+}
+
+.activeItem {
+  background-color: #fff;
+  color: #009ee4 !important;
+  border: 2px solid darkblue !important;
+}

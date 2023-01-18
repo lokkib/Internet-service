@@ -66,6 +66,7 @@ const MainPage: React.FC = () => {
 
       <Header clickEnterAccount={clickEnterAccount} />
       <MainContent />
+
       <MobFooter classType="mainPageFooter" />
     </motion.div>
   );
