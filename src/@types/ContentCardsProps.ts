@@ -32,7 +32,9 @@ interface ContentCardsProps {
   price?: number;
   city?: string;
   createdOn?: string;
-  image?: string;
+  imgLink?: string | undefined;
+  itemDetails?: Items;
+  id?: number;
 }
 
 export default ContentCardsProps;

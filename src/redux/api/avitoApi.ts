@@ -21,9 +21,21 @@ const avitoApi = createApi({
     fetchItems: build.query({
       query: (number) => `/ads?page=${number}`,
     }),
+    fetchAllItems: build.query({
+      query: () => `/ads`,
+    }),
+    goToConcreteItem: build.query({
+      query: (id) => `/ads/${id}`,
+    }),
   }),
 });
 
 export default avitoApi;
 
-export const { useLoginMutation, useSignupMutation, useFetchItemsQuery } = avitoApi;
+export const {
+  useLoginMutation,
+  useSignupMutation,
+  useFetchItemsQuery,
+  useFetchAllItemsQuery,
+  useGoToConcreteItemQuery,
+} = avitoApi;

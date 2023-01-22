@@ -21,3 +21,11 @@
   margin: 0 5px;
   cursor: pointer;
 }
+
+.articleImg img {
+  width: 100%;
+  height: auto;
+  display: block;
+  -o-object-fit: cover;
+  object-fit: cover;
+}

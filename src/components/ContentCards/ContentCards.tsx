@@ -16,6 +16,8 @@ const ContentCards: React.FC<ContentCardsProps> = ({
           data.map((item) => {
             return (
               <CardItem
+                id={item.id}
+                imgLink={item.images[0] ? item.images[0].url : ''}
                 createdOn={item.created_on}
                 city={item.user.city}
                 price={item.price}
