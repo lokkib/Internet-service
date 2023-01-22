@@ -17,7 +17,7 @@ const AppRoutes: React.FC = () => {
           <Route path="my-account" element={<ProfilePage />} />
           <Route path="my-item" element={<UserArticle />} />
           <Route path="ads/:id" element={<SellerArticle />} />
-          <Route path="seller-page" element={<SellerProfilePage />} />
+          <Route path="seller-page/:id" element={<SellerProfilePage />} />
         </Route>
       </Routes>
     </AnimatePresence>
