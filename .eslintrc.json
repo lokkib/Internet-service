@@ -34,6 +34,8 @@
   ],
   "parser": "@typescript-eslint/parser",
   "rules": {
+    "prefer-template": 0,
+    "no-param-reassign": "off",
     "react/require-default-props": "off",
     "import/extensions": [
       "error",

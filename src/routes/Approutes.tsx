@@ -16,7 +16,7 @@ const AppRoutes: React.FC = () => {
           <Route index element={<MainPage />} />
           <Route path="my-account" element={<ProfilePage />} />
           <Route path="my-item" element={<UserArticle />} />
-          <Route path="item" element={<SellerArticle />} />
+          <Route path="ads/:id" element={<SellerArticle />} />
           <Route path="seller-page" element={<SellerProfilePage />} />
         </Route>
       </Routes>

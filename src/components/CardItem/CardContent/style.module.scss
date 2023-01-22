@@ -17,6 +17,7 @@
   margin-top: 20px;
   overflow: hidden;
   text-overflow: ellipsis;
+  cursor: pointer;
 
   @media screen and (max-width: 620px) {
     height: 51px;

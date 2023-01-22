@@ -11,7 +11,7 @@ const SellerArticlePage: React.FC = () => {
       exit={{ opacity: 0 }}
       transition={{ duration: 1 }}
     >
-      <Header />
+      <Header classType="sellerPageHeading" />
       <Main onlyOneButton="true" />
     </motion.div>
   );
