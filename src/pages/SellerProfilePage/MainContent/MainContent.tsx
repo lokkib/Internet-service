@@ -1,4 +1,5 @@
 import React from 'react';
+
 import styles from './style.module.scss';
 import MainMenu from '../../../components/MainMenu/MainMenu';
 import ContentCards from '../../../components/ContentCards/ContentCards';
