@@ -5,14 +5,17 @@ import ArticleImgBar from './ArticleImgBar/ArticleImgBar';
 import ContentCardsProps from '../../@types/ContentCardsProps';
 
 const ArticleLeft: React.FC<ContentCardsProps> = ({ itemDetails }) => {
-  return (
-    <div className={styles.leftWrapper}>
-      <div className={styles.leftImg}>
-        <ArticleImg imgLinks={itemDetails && itemDetails.images} />
-        <ArticleImgBar imgLinks={itemDetails && itemDetails.images} />
+  if (itemDetails) {
+    return (
+      <div className={styles.leftWrapper}>
+        <div className={styles.leftImg}>
+          <ArticleImg imgLinks={itemDetails.images} />
+          <ArticleImgBar imgLinks={itemDetails.images} />
+        </div>
       </div>
-    </div>
-  );
+    );
+  }
+  return 0;
 };
 
 export default ArticleLeft;

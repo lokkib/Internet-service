@@ -11,6 +11,7 @@ const ButtonSearchSave: React.FC<ButtonSearchSaveProps> = ({
   phoneNumber,
   // showPhoneNumber,
   onClick,
+  disabled,
 }) => {
   // const inputValue = useSelector((state: RootState) => state.items.inputValue)
 
@@ -26,7 +27,12 @@ const ButtonSearchSave: React.FC<ButtonSearchSaveProps> = ({
   // }
 
   return (
-    <button type="button" onClick={() => onClick && onClick()} className={styles[classType]}>
+    <button
+      disabled={disabled}
+      type="button"
+      onClick={() => onClick && onClick()}
+      className={styles[classType]}
+    >
       {text}
       <span>{phoneNumber && phoneNumber}</span>
     </button>

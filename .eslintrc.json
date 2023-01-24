@@ -34,6 +34,7 @@
   ],
   "parser": "@typescript-eslint/parser",
   "rules": {
+    "camelcase": 0,
     "prefer-template": 0,
     "no-param-reassign": "off",
     "react/require-default-props": "off",

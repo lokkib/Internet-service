@@ -5,6 +5,7 @@ type generalFunction = {
   closeAuthWindow?: () => void;
   clickSignUp?: () => void;
   onChangePage?: (n: number) => void;
+  openSignInModalCloseSignUp?: () => void;
 };
 
 export default generalFunction;

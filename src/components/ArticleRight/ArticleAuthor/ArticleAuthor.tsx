@@ -1,11 +1,13 @@
 import React from 'react';
-import { useParams , Link } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import styles from './style.module.scss';
 import MainArticleProps from '../../../@types/MainArticleProps';
 import { Items } from '../../../@types/ContentCardsProps';
 
 const ArticleAuthor: React.FC<MainArticleProps> = ({ itemDetails }) => {
-  const { id } = useParams();
+  // const { id } = useParams();
+
+  const id = itemDetails?.user.id;
 
   const isUserAvatar = (p: Items | undefined) => {
     if (p) {

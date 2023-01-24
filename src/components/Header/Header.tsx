@@ -12,6 +12,14 @@ const Header: React.FC<HeaderProps> = ({ classType, openModalNewAdv }) => {
     navigate('/my-account');
   }
 
+  // const ifFunctionExists = () => {
+  //   if(openModalNewAdv) {
+  //     console.log('click')
+  //     return openModalNewAdv()
+  //   }
+  //   return undefined
+  // }
+
   return (
     <header className={classType && styles[classType]}>
       <nav className={styles.navHeader}>
@@ -21,9 +29,11 @@ const Header: React.FC<HeaderProps> = ({ classType, openModalNewAdv }) => {
           </Link>
         </div>
 
-        <div onClickCapture={() => openModalNewAdv && openModalNewAdv()}>
-          <ButtonEnter classType="advertisement" text="Разместить объявление" />
-        </div>
+        <ButtonEnter
+          onClick={openModalNewAdv}
+          classType="advertisement"
+          text="Разместить объявление"
+        />
 
         <div onClickCapture={goToMyAccount}>
           <ButtonEnter classType="account" text="Личный кабинет" />
