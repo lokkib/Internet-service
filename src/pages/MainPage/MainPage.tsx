@@ -16,6 +16,11 @@ const MainPage: React.FC = () => {
     setOpenSignInModal(true);
   };
 
+  const openSignInModalCloseSignUp = () => {
+    setOpenSignUpModal(false);
+    setOpenSignInModal(true);
+  };
+
   const closeAuthWindow = () => {
     setOpenSignInModal(false);
   };
@@ -56,6 +61,7 @@ const MainPage: React.FC = () => {
         {openSignUpModal && (
           <div className={openSignUpModal ? styles.modalBlock : styles.modalDisplayNone}>
             <SignUp
+              openSignInModalCloseSignUp={openSignInModalCloseSignUp}
               closeSignUpWindow={closeSignUpWindow}
               clickSignUp={clickSignUp}
               closeAuthWindow={closeAuthWindow}
@@ -67,7 +73,7 @@ const MainPage: React.FC = () => {
       <Header clickEnterAccount={clickEnterAccount} />
       <MainContent />
 
-      <MobFooter classType="mainPageFooter" />
+      <MobFooter value="" classType="mainPageFooter" />
     </motion.div>
   );
 };

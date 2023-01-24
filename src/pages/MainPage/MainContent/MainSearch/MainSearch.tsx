@@ -25,6 +25,7 @@ const MainSearch: React.FC = () => {
       </a>
       <form className={styles.searchForm}>
         <Input
+          value=""
           passInputValue={passInputValue}
           classType="searchInput"
           placeholder="Поиск по объявлениям"

@@ -1,11 +1,20 @@
 import React from 'react';
 
+import { useParams } from 'react-router-dom';
 import styles from './style.module.scss';
 import MainMenu from '../../../components/MainMenu/MainMenu';
 import ContentCards from '../../../components/ContentCards/ContentCards';
 import ProfileSellerInfo from './ProfileSellerInfo/ProfileSellerInfo';
+import { useGetItemsOfSellerQuery } from '../../../redux/api/avitoApi';
 
 const MainContent: React.FC = () => {
+  const { id } = useParams();
+  const { data, isLoading } = useGetItemsOfSellerQuery(id);
+
+  if (isLoading) {
+    return <p>Загрузка...</p>;
+  }
+
   return (
     <main className={styles.main}>
       <div className={styles.mainContainer}>
@@ -15,11 +24,14 @@ const MainContent: React.FC = () => {
           <ProfileSellerInfo />
           <h3 className={styles.headerSellersGoods}>Товары продавца</h3>
         </div>
-        <ContentCards
-          classTypeCardItem="cardItemMain"
-          classTypeImgMain="itemMainImg"
-          classType="contentCardsMain"
-        />
+        {data && (
+          <ContentCards
+            data={data}
+            classTypeCardItem="cardItemMain"
+            classTypeImgMain="itemMainImg"
+            classType="contentCardsMain"
+          />
+        )}
       </div>
     </main>
   );

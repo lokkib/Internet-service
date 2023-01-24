@@ -29,3 +29,8 @@
   -o-object-fit: cover;
   object-fit: cover;
 }
+
+.clickedImg {
+  composes: articleImg;
+  border: 2px solid #009ee4;
+}

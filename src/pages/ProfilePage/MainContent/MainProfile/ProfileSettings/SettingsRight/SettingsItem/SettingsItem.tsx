@@ -3,13 +3,23 @@ import Input from '../../../../../../../components/Input/Input';
 import styles from './style.module.scss';
 import SettingItemProps from '../../../../../../../@types/SettingItemProps';
 
-const SettingsItem: React.FC<SettingItemProps> = ({ labelText, labelFor, classType }) => {
+const SettingsItem: React.FC<SettingItemProps> = ({
+  labelText,
+  labelFor,
+  classType,
+  currentUserData,
+}) => {
   return (
     <div className={styles.itemWrapper}>
       <label className={styles.label} htmlFor={labelFor}>
         {labelText}
       </label>
-      <Input classType={classType} id={labelFor} />
+      <Input
+        value={currentUserData}
+        currentUserData={currentUserData}
+        classType={classType}
+        id={labelFor}
+      />
     </div>
   );
 };

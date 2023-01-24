@@ -1,7 +1,9 @@
 import { Items } from './ContentCardsProps';
+import CurrentUserData from './CurrentUserData';
 
-type sellerProfileData = {
+type SellerProfileDataProps = {
   sellerDate: Items;
+  currentUserData?: CurrentUserData;
 };
 
-export default sellerProfileData;
+export default SellerProfileDataProps;

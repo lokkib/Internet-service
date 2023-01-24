@@ -10,9 +10,9 @@ const InputAuth: React.FC<InputProps> = ({
   classType,
   value,
   onChange,
+  clearInput,
 }) => {
   const [inputPlaceholder, setInputPlaceholder] = useState(placeholder);
-  // const [inputText, setInputText] = useState('');
 
   return (
     <input
@@ -20,7 +20,7 @@ const InputAuth: React.FC<InputProps> = ({
       onChange={onChange}
       className={styles[classType]}
       placeholder={inputPlaceholder}
-      onFocus={() => setInputPlaceholder('')}
+      onFocus={() => [setInputPlaceholder(''), clearInput && clearInput(value)]}
       onBlur={() => setInputPlaceholder(placeholder)}
       name={name}
       type={type}

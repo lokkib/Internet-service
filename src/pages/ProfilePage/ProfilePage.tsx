@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { AnimatePresence, motion } from 'framer-motion';
+
 import Header from '../../components/Header/Header';
 import MainContent from './MainContent/MainContent';
 import MobFooter from '../../components/MobFooter/MobFooter';
@@ -41,7 +42,7 @@ const ProfilePage: React.FC = () => {
 
       <Header openModalNewAdv={openModalNewAdv} classType="profileHeading" />
       <MainContent />
-      <MobFooter classType="profileFooter" />
+      <MobFooter value="" classType="profileFooter" />
     </motion.div>
   );
 };
