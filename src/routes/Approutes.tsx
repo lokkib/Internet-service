@@ -18,21 +18,14 @@ const AppRoutes: React.FC = () => {
           <Route
             path="my-account"
             element={
-              <ProtectedRoute isLoggedIn={sessionStorage.getItem('isAuth')}>
+              <ProtectedRoute>
                 <ProfilePage />
               </ProtectedRoute>
             }
           />
           {/* <Route path="my-account" element={<ProfilePage />} /> */}
           <Route path="my-item" element={<UserArticle />} />
-          <Route
-            path="ads/:id"
-            element={
-              <ProtectedRoute isLoggedIn={sessionStorage.getItem('isAuth')}>
-                <SellerArticle />
-              </ProtectedRoute>
-            }
-          />
+          <Route path="ads/:id" element={<SellerArticle />} />
           {/* <Route path="ads/:id" element={<SellerArticle />} /> */}
           <Route path="seller-page/:id" element={<SellerProfilePage />} />
         </Route>

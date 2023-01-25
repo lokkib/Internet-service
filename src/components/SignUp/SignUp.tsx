@@ -5,10 +5,10 @@ import InputAuth from '../SignIn/InputAuth/InputAuth';
 import styles from './style.module.scss';
 import ButtonSearchSave from '../ButtonSearchSave/ButtonSearchSave';
 import ButtonClose from '../ButtonClose/ButtonClose';
-import generalFunction from '../../@types/ChangingStateProps';
+import GeneralFunction from '../../@types/ChangingStateProps';
 import { useSignupMutation } from '../../redux/api/avitoApi';
 
-const SignUp: React.FC<generalFunction> = ({
+const SignUp: React.FC<GeneralFunction> = ({
   closeSignUpWindow,
   closeAuthWindow,
   clickSignUp,

@@ -1,6 +1,6 @@
-type generalFunction = {
+type GeneralFunction = {
   clickEnterAccount?: () => void;
-  closeModalNewAdv?: () => void;
+  closeModalNewAdv: () => void;
   closeSignUpWindow?: () => void;
   closeAuthWindow?: () => void;
   clickSignUp?: () => void;
@@ -8,4 +8,4 @@ type generalFunction = {
   openSignInModalCloseSignUp?: () => void;
 };
 
-export default generalFunction;
+export default GeneralFunction;

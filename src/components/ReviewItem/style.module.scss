@@ -42,15 +42,18 @@
   color: #000000;
   margin-bottom: 12px;
   font-weight: 600;
+  cursor: pointer;
 }
 
 .reviewAuthor span {
   margin-left: 10px;
   color: #5f5f5f;
+  cursor: default;
 }
 
 .commentaryHeading {
   composes: reviewAuthor;
+  cursor: default;
   margin-bottom: 0;
 }
 

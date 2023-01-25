@@ -5,6 +5,7 @@ type ButtonSearchSaveProps = {
   passInputValue?: (e: React.ChangeEvent<HTMLInputElement>) => void;
   showPhoneNumber?: () => void;
   onClick?: () => void;
+  disabled?: boolean;
 };
 
 export default ButtonSearchSaveProps;

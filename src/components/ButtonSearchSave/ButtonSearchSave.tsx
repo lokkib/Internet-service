@@ -28,7 +28,7 @@ const ButtonSearchSave: React.FC<ButtonSearchSaveProps> = ({
 
   return (
     <button
-      disabled={disabled}
+      disabled={disabled && disabled}
       type="button"
       onClick={() => onClick && onClick()}
       className={styles[classType]}

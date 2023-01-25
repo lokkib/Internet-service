@@ -1,21 +1,23 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { setCookie } from 'cookies-next';
+import { useDispatch } from 'react-redux';
 import styles from './style.module.scss';
 import AuthLogo from './AuthLogo/AuthLogo';
 import InputAuth from './InputAuth/InputAuth';
 import ButtonSearchSave from '../ButtonSearchSave/ButtonSearchSave';
 import ButtonClose from '../ButtonClose/ButtonClose';
-import generalFunction from '../../@types/ChangingStateProps';
+import GeneralFunction from '../../@types/ChangingStateProps';
 import { useLoginMutation } from '../../redux/api/avitoApi';
+import { getSignInState, getSignUpState } from '../../redux/slices/checkModalsState';
 
-const SignIn: React.FC<generalFunction> = ({ closeAuthWindow, clickSignUp, closeSignUpWindow }) => {
+const SignIn: React.FC<GeneralFunction> = ({ clickSignUp, closeSignUpWindow }) => {
   const [inputLogin, setInputLogin] = useState('');
   const [inputPassword, setInputPassword] = useState('');
   const [inputPasswordType, setInputPasswordType] = useState('password');
   const [disabled, setDisabled] = useState(true);
   const navigate = useNavigate();
-
+  const dispatch = useDispatch();
   useEffect(() => {
     if (inputLogin && inputPassword) {
       setDisabled(false);
@@ -49,7 +51,6 @@ const SignIn: React.FC<generalFunction> = ({ closeAuthWindow, clickSignUp, close
         sessionStorage.setItem('isAuth', 'true');
         setCookie('refresh', response.refresh_token);
         setCookie('access', response.access_token);
-        if (closeAuthWindow) closeAuthWindow();
         navigate('/my-account');
       });
   };
@@ -66,12 +67,21 @@ const SignIn: React.FC<generalFunction> = ({ closeAuthWindow, clickSignUp, close
     }
   };
 
+  const closeSignInModal = () => {
+    dispatch(getSignInState(false));
+  };
+
+  const closeSignInOpenSignUp = () => {
+    dispatch(getSignInState(false));
+    dispatch(getSignUpState(true));
+  };
+
   return (
     <div className={styles.signInWrapper}>
       <ButtonClose
+        onClick={closeSignInModal}
         classType="miniCloseLine"
         closeSignUpWindow={closeSignUpWindow}
-        closeAuthWindow={closeAuthWindow}
       />
       <form className={styles.formLogin} action="">
         <AuthLogo />
@@ -97,7 +107,11 @@ const SignIn: React.FC<generalFunction> = ({ closeAuthWindow, clickSignUp, close
         />
         <ButtonSearchSave disabled={disabled} onClick={signIn} classType="signIn" text="Войти" />
         <div onClickCapture={() => clickSignUp && clickSignUp()}>
-          <ButtonSearchSave classType="signUp" text="Зарегистрироваться" />
+          <ButtonSearchSave
+            onClick={closeSignInOpenSignUp}
+            classType="signUp"
+            text="Зарегистрироваться"
+          />
         </div>
       </form>
     </div>

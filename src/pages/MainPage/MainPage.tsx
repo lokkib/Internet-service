@@ -8,12 +8,15 @@ import styles from './style.module.scss';
 import SignUp from '../../components/SignUp/SignUp';
 import backdrop from '../../components/constants/animationConfigure';
 
+
 const MainPage: React.FC = () => {
   const [openSignInModal, setOpenSignInModal] = useState(false);
   const [openSignUpModal, setOpenSignUpModal] = useState(false);
 
+
   const clickEnterAccount = () => {
     setOpenSignInModal(true);
+    // dispatch(getSignInState)(true)
   };
 
   const openSignInModalCloseSignUp = () => {
@@ -51,11 +54,7 @@ const MainPage: React.FC = () => {
             exit="exit"
             className={openSignInModal ? styles.modalBlock : styles.modalDisplayNone}
           >
-            <SignIn
-              clickSignUp={clickSignUp}
-              closeAuthWindow={closeAuthWindow}
-              closeSignUpWindow={closeSignUpWindow}
-            />
+            <SignIn clickSignUp={clickSignUp} closeSignUpWindow={closeSignUpWindow} />
           </motion.div>
         )}
         {openSignUpModal && (
