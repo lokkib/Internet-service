@@ -1,9 +1,9 @@
 import React from 'react';
 import ReactPaginate from 'react-paginate';
 import styles from './style.module.scss';
-import generalFunction from '../../@types/ChangingStateProps';
+import GeneralFunction from '../../@types/ChangingStateProps';
 
-const Pagination: React.FC<generalFunction> = ({ onChangePage }) => {
+const Pagination: React.FC<GeneralFunction> = ({ onChangePage }) => {
   return (
     <ReactPaginate
       containerClassName={styles.container}

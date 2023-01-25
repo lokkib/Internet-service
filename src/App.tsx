@@ -3,7 +3,7 @@
 // import SellerProfilePage from './pages/SellerProfilePage/SellerProfilePage'
 // import UserArticle from './pages/UserArticle/UserArticle'
 // import SellerArticle from './pages/ArticleItem/SellerArticle'
-import React, {useEffect} from 'react';
+import React, { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import { getCookie, setCookie } from 'cookies-next';
 import jwt_decode from 'jwt-decode';
@@ -14,8 +14,6 @@ import { checkToken } from './redux/slices/checkTokenSlice';
 
 const App: React.FC = () => {
   const dispatch = useDispatch();
-
-
 
   const [refreshToken] = useRefreshTokenMutation();
 

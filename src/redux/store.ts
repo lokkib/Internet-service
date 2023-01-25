@@ -4,6 +4,7 @@ import getAllTracksReducer from './slices/searchSlice';
 import hidePhoneReducer from './slices/hidePhoneSlice';
 import checkTokenReducer from './slices/checkTokenSlice';
 import setActiveImgReducer from './slices/openNewImg';
+import checkModalsStateReducer from './slices/checkModalsState';
 
 const store = configureStore({
   reducer: {
@@ -12,6 +13,7 @@ const store = configureStore({
     itemData: hidePhoneReducer,
     isTokenValid: checkTokenReducer,
     activeImg: setActiveImgReducer,
+    modalsState: checkModalsStateReducer,
   },
 
   middleware: (getDefaultMiddleWare) => getDefaultMiddleWare().concat(avitoApi.middleware),

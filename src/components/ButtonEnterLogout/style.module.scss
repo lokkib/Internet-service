@@ -39,3 +39,11 @@
     display: none;
   }
 }
+
+.logout {
+  composes: mainEnter;
+}
+
+.logoutHidden {
+  display: none;
+}

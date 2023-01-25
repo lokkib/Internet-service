@@ -57,6 +57,9 @@ const avitoApi = createApi({
     getItemsOfSeller: build.query({
       query: (id) => `/ads?user_id=${id}`,
     }),
+    getItemComments: build.query({
+      query: (item) => `/ads/${item}/comments`,
+    }),
   }),
 });
 
@@ -72,4 +75,5 @@ export const {
   useRefreshTokenMutation,
   useChangeCurrentUserDataMutation,
   useGetItemsOfSellerQuery,
+  useGetItemCommentsQuery,
 } = avitoApi;

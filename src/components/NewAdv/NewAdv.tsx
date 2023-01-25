@@ -6,16 +6,15 @@ import FormDescriptionItem from '../FormDescriptionItem/FormDescriptionItem';
 import FormNewArticlePhotos from '../FormNewArticlePhotos/FormNewArticlePhotos';
 import FormArticlePrice from '../FormArticlePrice/FormArticlePrice';
 import ButtonSearchSave from '../ButtonSearchSave/ButtonSearchSave';
-import generalFunction from '../../@types/ChangingStateProps';
+import GeneralFunction from '../../@types/ChangingStateProps';
 
-const NewAdv: React.FC<generalFunction> = ({ closeModalNewAdv }) => {
+const NewAdv: React.FC<GeneralFunction> = ({ closeModalNewAdv }) => {
   return (
     <div className={styles.newAdvWrapper}>
       <div className={styles.newAdvContent}>
         <h3 className={styles.advHeading}>Новое объявление</h3>
-        <div onClickCapture={() => closeModalNewAdv && closeModalNewAdv()}>
-          <ButtonClose classType="closeLine" />
-        </div>
+
+        <ButtonClose onClick={closeModalNewAdv} classType="closeLine" />
 
         <form className={styles.advSettingsForm} action="">
           <FormNewArticleItem value="Ракетка для тенниса" placeholder="Введите название" />

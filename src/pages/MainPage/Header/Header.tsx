@@ -1,7 +1,7 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import styles from './style.module.scss';
-import ButtonEnter from '../../../components/ButtonEnter/ButtonEnter';
+import ButtonEnterLogout from '../../../components/ButtonEnterLogout/ButtonEnterLogout';
 import changingStateProp from '../../../@types/ChangingStateProps';
 
 const Header: React.FC<changingStateProp> = ({ clickEnterAccount }) => {
@@ -18,21 +18,39 @@ const Header: React.FC<changingStateProp> = ({ clickEnterAccount }) => {
   const navigatingToMyAccount = () => {
     if (isAuth) {
       navigate('/my-account');
+      // console.log(isAuth);
     } else if (clickEnterAccount) {
       clickEnterAccount();
     }
   };
 
+  const isLogoutButtonVisible = () => {
+    if (!isAuth) {
+      return 'logoutHidden';
+    } 
+      return 'logout';
+    
+  };
+
+  const logout = () => {
+    sessionStorage.removeItem('isAuth');
+    navigate('/');
+  };
+
   return (
     <header className={styles.header}>
       <nav className={styles.headerNav}>
-        {/* <div onClickCapture={() => clickEnterAccount && clickEnterAccount()}> */}
-        <ButtonEnter
+        <ButtonEnterLogout
+          onClick={logout}
+          text="Выйти из личного кабинета"
+          classType={isLogoutButtonVisible()}
+        />
+
+        <ButtonEnterLogout
           onClick={navigatingToMyAccount}
-          classType="mainEnter"
+          classType={isAuth ? 'account' : 'mainEnter'}
           text={checkingIsAuth()}
         />
-        {/* </div> */}
       </nav>
     </header>
   );

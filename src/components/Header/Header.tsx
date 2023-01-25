@@ -1,24 +1,52 @@
 import { Link, useNavigate } from 'react-router-dom';
 import React from 'react';
-import ButtonEnter from '../ButtonEnter/ButtonEnter';
+import ButtonEnterLogout from '../ButtonEnterLogout/ButtonEnterLogout';
 import styles from './style.module.scss';
 import MobLogo from '../MobLogo/MobLogo';
 import HeaderProps from '../../@types/HeaderProps';
 
-const Header: React.FC<HeaderProps> = ({ classType, openModalNewAdv }) => {
+const Header: React.FC<HeaderProps> = ({ classType, openModalNewAdv, clickEnterAccount }) => {
   const navigate = useNavigate();
+  const isAuth = sessionStorage.getItem('isAuth');
 
-  function goToMyAccount() {
-    navigate('/my-account');
-  }
+  const navigatingToMyAccount = () => {
+    if (isAuth) {
+      navigate('/my-account');
+      // console.log(isAuth);
+    } else if (clickEnterAccount) {
+      clickEnterAccount();
+    }
+  };
 
-  // const ifFunctionExists = () => {
-  //   if(openModalNewAdv) {
-  //     console.log('click')
-  //     return openModalNewAdv()
-  //   }
-  //   return undefined
-  // }
+
+  const checkingIsAuth = () => {
+    if (isAuth) {
+      return 'Личный кабинет';
+    }
+    return 'Вход в личный кабинет';
+  };
+
+  const definingClassName = () => {
+    if (isAuth) {
+      return 'account';
+    } 
+      return 'mainEnter';
+    
+  };
+
+
+  const isLogoutButtonVisible = () => {
+    if (!isAuth) {
+      return 'logoutHidden';
+    } 
+      return 'logout';
+    
+  };
+
+  const logout = () => {
+    sessionStorage.removeItem('isAuth');
+    navigate('/');
+  };
 
   return (
     <header className={classType && styles[classType]}>
@@ -29,14 +57,19 @@ const Header: React.FC<HeaderProps> = ({ classType, openModalNewAdv }) => {
           </Link>
         </div>
 
-        <ButtonEnter
+        <ButtonEnterLogout
+          onClick={logout}
+          text="Выйти из личного кабинета"
+          classType={isLogoutButtonVisible()}
+        />
+        <ButtonEnterLogout
           onClick={openModalNewAdv}
           classType="advertisement"
           text="Разместить объявление"
         />
 
-        <div onClickCapture={goToMyAccount}>
-          <ButtonEnter classType="account" text="Личный кабинет" />
+        <div onClickCapture={navigatingToMyAccount}>
+          <ButtonEnterLogout classType={definingClassName()} text={checkingIsAuth()} />
         </div>
       </nav>
     </header>

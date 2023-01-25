@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { useSelector , useDispatch } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import ImagesInfo from '../../../@types/ImageLinksProps';
 import styles from './style.module.scss';
 import { sendActiveImg } from '../../../redux/slices/openNewImg';

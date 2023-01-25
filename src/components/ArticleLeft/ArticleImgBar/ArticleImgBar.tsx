@@ -19,9 +19,9 @@ const ArticleImgBar: React.FC<ImagesInfo> = ({ imgLinks }) => {
         imgLinks.slice(0).map((img) => {
           return (
             <div
-            tabIndex={0}
-            role='button'
-            onKeyDown={() => clickImg(img.id, img)}
+              tabIndex={0}
+              role="button"
+              onKeyDown={() => clickImg(img.id, img)}
               onClick={() => clickImg(img.id, img)}
               key={img.id}
               className={img.id === selected ? styles.clickedImg : styles.articleImg}

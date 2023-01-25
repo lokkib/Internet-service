@@ -10,3 +10,19 @@
 .modalDisplayNone {
   display: none;
 }
+
+.modalAdvBlock {
+  composes: modalBlock;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.modalAdvBlock div {
+  width: 300px;
+  height: 100px;
+  background-color: white;
+  text-align: center;
+  font-size: 18px;
+  font-weight: 500;
+}
