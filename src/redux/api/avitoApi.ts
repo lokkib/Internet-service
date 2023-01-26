@@ -1,6 +1,29 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
 import { getCookie } from 'cookies-next';
 import CurrentUserData from '../../@types/CurrentUserData';
+import { Items } from '../../@types/ContentCardsProps';
+
+type Comment = {
+  id: number;
+  text: string;
+  created_on: string;
+  author: {
+    id: number;
+    name: string;
+    email: string;
+    city: string;
+    avatar: string;
+    sells_from: string;
+    phone: string;
+  };
+};
+
+
+
+export type Comment3 = {
+  id: number;
+  text: string;
+};
 
 const avitoApi = createApi({
   reducerPath: 'avitoApi',
@@ -60,6 +83,34 @@ const avitoApi = createApi({
     getItemComments: build.query({
       query: (item) => `/ads/${item}/comments`,
     }),
+    publishNewAdv: build.mutation({
+      query: (body) => ({
+        url: `/adstext`,
+        body,
+        method: 'POST',
+        headers: {
+          Authorization: `Bearer ${getCookie('access')}`,
+        },
+      }),
+    }),
+    getCurrentUserAds: build.query<Items, void>({
+      query: () => ({
+        url: `/ads/me`,
+        headers: {
+          Authorization: `Bearer ${getCookie('access')}`,
+        },
+      }),
+    }),
+    createCommenttoTheAd: build.mutation<Comment, Comment3>({
+      query: (body) => ({
+        url: `/ads/${body.id as number}/comments`,
+        body,
+        method: 'POST',
+        headers: {
+          Authorization: `Bearer ${getCookie('access')}`,
+        },
+      }),
+    }),
   }),
 });
 
@@ -76,4 +127,7 @@ export const {
   useChangeCurrentUserDataMutation,
   useGetItemsOfSellerQuery,
   useGetItemCommentsQuery,
+  usePublishNewAdvMutation,
+  useGetCurrentUserAdsQuery,
+  useCreateCommenttoTheAdMutation,
 } = avitoApi;

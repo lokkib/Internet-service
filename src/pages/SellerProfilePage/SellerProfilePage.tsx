@@ -1,5 +1,5 @@
-import React, { useState , useEffect } from 'react';
-import { motion , AnimatePresence } from 'framer-motion';
+import React, { useState, useEffect } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
 import Header from '../../components/Header/Header';
 import MainContent from './MainContent/MainContent';
 import NewAdv from '../../components/NewAdv/NewAdv';

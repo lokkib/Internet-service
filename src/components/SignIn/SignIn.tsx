@@ -9,7 +9,7 @@ import ButtonSearchSave from '../ButtonSearchSave/ButtonSearchSave';
 import ButtonClose from '../ButtonClose/ButtonClose';
 import GeneralFunction from '../../@types/ChangingStateProps';
 import { useLoginMutation } from '../../redux/api/avitoApi';
-import { getSignInState, getSignUpState } from '../../redux/slices/checkModalsState';
+import { getSignInState, getSignUpState } from '../../redux/slices/checkModalsSlice';
 
 const SignIn: React.FC<GeneralFunction> = ({ clickSignUp, closeSignUpWindow }) => {
   const [inputLogin, setInputLogin] = useState('');
