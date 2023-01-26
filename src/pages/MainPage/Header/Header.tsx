@@ -27,9 +27,8 @@ const Header: React.FC<changingStateProp> = ({ clickEnterAccount }) => {
   const isLogoutButtonVisible = () => {
     if (!isAuth) {
       return 'logoutHidden';
-    } 
-      return 'logout';
-    
+    }
+    return 'logout';
   };
 
   const logout = () => {

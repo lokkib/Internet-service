@@ -1,17 +1,37 @@
 import React, { useEffect, useState } from 'react';
 import { AnimatePresence, motion } from 'framer-motion';
 import { useParams } from 'react-router-dom';
-import { useDispatch } from 'react-redux';
+import { useDispatch , useSelector } from 'react-redux';
 import styles from './style.module.scss';
 import ButtonClose from '../ButtonClose/ButtonClose';
 import FormDescriptionItem from '../FormDescriptionItem/FormDescriptionItem';
 import ButtonSearchSave from '../ButtonSearchSave/ButtonSearchSave';
 import ReviewItem from '../ReviewItem/ReviewItem';
-import { useGetItemCommentsQuery } from '../../redux/api/avitoApi';
-import { getReviewsState } from '../../redux/slices/checkModalsState';
-import  { reviewItemData } from '../../@types/ReviewItemProps';
+import { useGetItemCommentsQuery, useCreateCommenttoTheAdMutation  } from '../../redux/api/avitoApi';
+import { getReviewsState } from '../../redux/slices/checkModalsSlice';
+import { reviewItemData } from '../../@types/ReviewItemProps';
 import ProhibitingModalWindow from '../ProhibitingModalWindow/ProhibitingModalWindow';
 import backdrop from '../constants/animationConfigure';
+import { RootState } from '../../redux/store';
+
+// type Comment = {
+//   id: {id: number},
+//   body: {
+//     id: number,
+//     text: string,
+//     created_on: string,
+//     author: {
+//       id: number,
+//       name: string,
+//       email: string,
+//       city: string,
+//       avatar: string,
+//       sells_from: string,
+//       phone: string
+//     }
+//   }
+
+// }
 
 const Reviews: React.FC = () => {
   const isAuth = sessionStorage.getItem('isAuth');
@@ -20,15 +40,36 @@ const Reviews: React.FC = () => {
   const { id } = useParams();
   const { data, isLoading } = useGetItemCommentsQuery(id);
 
+  const newId = Number(id);
+
+  const commentText = useSelector((state: RootState) => state.comment.text);
+
+  const stringComment = commentText as string;
+
+  const [sendComment] = useCreateCommenttoTheAdMutation();
+
+
+
   const dispatch = useDispatch();
   const closeReviews = () => {
     dispatch(getReviewsState(false));
   };
 
-  const checkIfUserisAuth = () => {
+  const createComment = async () => {
     if (!isAuth) {
       setProhibitingMakingComment(true);
     }
+    await sendComment({
+      id: newId,
+      text: stringComment,
+    })
+      .unwrap()
+      .catch(() => {
+        throw new Error();
+      })
+      .then((response) => {
+        console.log(response);
+      });
   };
 
   useEffect(() => {
@@ -70,13 +111,9 @@ const Reviews: React.FC = () => {
           <h3 className={styles.reviewsHeading}>Отзывы о товаре</h3>
           <ButtonClose onClick={closeReviews} classType="closeLine" />
           <div className={styles.reviewsScroll}>
-            <form className={styles.advSettingsForm} action="">
+            <form className={styles.advSettingsForm}>
               <FormDescriptionItem />
-              <ButtonSearchSave
-                onClick={checkIfUserisAuth}
-                classType="publish"
-                text="Опубликовать"
-              />
+              <ButtonSearchSave onClick={createComment} classType="publish" text="Опубликовать" />
             </form>
             <div className={styles.reviews}>
               {data.map((comment: reviewItemData) => {

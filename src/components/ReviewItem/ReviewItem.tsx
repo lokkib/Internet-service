@@ -8,7 +8,7 @@ const ReviewItem: React.FC<ReviewItemProps> = ({ reviewItemData }) => {
   const commentedCreatedOn = () => {
     const data = reviewItemData.created_on;
     const day = data.slice(0, 10);
-    const time = data.slice(11, 19);
+    const time = data.slice(11, 16);
     return `${day} ${time}`;
   };
 

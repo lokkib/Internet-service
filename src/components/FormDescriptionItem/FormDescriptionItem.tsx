@@ -1,8 +1,20 @@
 import React, { useState } from 'react';
+import { useDispatch } from 'react-redux';
 import styles from './style.module.scss';
+import FormNewArticleProps from '../../@types/FormNewArticleProps';
+import { passItemDescription } from '../../redux/slices/passNewAdvParamsTextOnly';
+import { getComment } from '../../redux/slices/getCommentSlice';
 
-const FormDescriptionItem: React.FC = () => {
-  const [textArea, setTextArea] = useState('Lorem ipsum dolor sit amet');
+const FormDescriptionItem: React.FC<FormNewArticleProps> = ({ value }) => {
+  const [textArea, setTextArea] = useState(value);
+
+  const dispatch = useDispatch();
+
+  const passDescription = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
+    setTextArea(e.target.value);
+    dispatch(passItemDescription(e.target.value));
+    dispatch(getComment(e.target.value));
+  };
 
   return (
     <div className={styles.formBlock}>
@@ -11,7 +23,7 @@ const FormDescriptionItem: React.FC = () => {
       </label>
       <textarea
         value={textArea}
-        onChange={(e) => setTextArea(e.target.value)}
+        onChange={(e) => passDescription(e)}
         placeholder="Введите описание"
         id="text"
         className={styles.settingsDescription}

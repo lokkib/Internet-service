@@ -18,7 +18,6 @@ const Header: React.FC<HeaderProps> = ({ classType, openModalNewAdv, clickEnterA
     }
   };
 
-
   const checkingIsAuth = () => {
     if (isAuth) {
       return 'Личный кабинет';
@@ -29,18 +28,15 @@ const Header: React.FC<HeaderProps> = ({ classType, openModalNewAdv, clickEnterA
   const definingClassName = () => {
     if (isAuth) {
       return 'account';
-    } 
-      return 'mainEnter';
-    
+    }
+    return 'mainEnter';
   };
-
 
   const isLogoutButtonVisible = () => {
     if (!isAuth) {
       return 'logoutHidden';
-    } 
-      return 'logout';
-    
+    }
+    return 'logout';
   };
 
   const logout = () => {

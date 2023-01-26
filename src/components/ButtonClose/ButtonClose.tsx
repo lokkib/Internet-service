@@ -3,7 +3,6 @@ import React from 'react';
 import styles from './style.module.scss';
 import ButtonCloseProps from '../../@types/ButtonCloseProps';
 
-
 const ButtonClose: React.FC<ButtonCloseProps> = ({ classType, closeSignUpWindow, onClick }) => {
   return (
     <div className={styles.closeWrapper}>
