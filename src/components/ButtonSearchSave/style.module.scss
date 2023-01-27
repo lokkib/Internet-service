@@ -28,13 +28,22 @@
   max-width: 1044px;
 }
 
-.save {
+.activeSave {
+  composes: search;
+}
+
+.disabledSave {
   composes: search;
   background: #d9d9d9;
   border: 1px solid #d9d9d9;
   line-height: 1;
   width: 154px;
   margin: 10px 7px 0;
+
+  &:hover {
+    cursor: pointer;
+    background-color: #d9d9d9;
+  }
 
   @media screen and (max-width: 620px) {
     display: block;

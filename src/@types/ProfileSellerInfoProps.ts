@@ -2,7 +2,7 @@ import { Items } from './ContentCardsProps';
 import CurrentUserData from './CurrentUserData';
 
 type SellerProfileDataProps = {
-  sellerDate: Items;
+  sellerDate?: Items;
   currentUserData?: CurrentUserData;
 };
 

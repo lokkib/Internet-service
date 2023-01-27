@@ -5,19 +5,21 @@ import ContentCards from '../../../../components/ContentCards/ContentCards';
 import styles from './style.module.scss';
 import { useFetchItemsQuery } from '../../../../redux/api/avitoApi';
 import Pagination from '../../../../components/Pagination/Pagination';
-import { getAllItems } from '../../../../redux/slices/searchSlice';
+import { getAllItems , filteringItems  } from '../../../../redux/slices/searchSlice';
 import { Items } from '../../../../@types/ContentCardsProps';
 
 const MainInfo: React.FC = () => {
   const dispatch = useDispatch();
   const [currentPage, setCurrentPage] = useState(1);
   const [items, setItems] = useState<Items[]>([]);
-  const [renderedFilteredItems, setFilteredItems] = useState<Items[]>([]);
+  const [, setFilteredItems] = useState<Items[]>([]);
 
-  const allItems = useSelector((state: RootState) => state.items.allItems);
-  const filteredItemsEmpty = useSelector((state: RootState) => state.items.notFound);
+  
   const filteredItems = useSelector((state: RootState) => state.items.filteredItems);
+  const inputValue = useSelector((state: RootState) => state.items.inputValue)
   const { data, isLoading } = useFetchItemsQuery(currentPage);
+
+
 
   const goToAnotherPage = (page: number) => {
     setCurrentPage(page);
@@ -26,6 +28,7 @@ const MainInfo: React.FC = () => {
   useEffect(() => {
     if (data) {
       setItems(data);
+
       setFilteredItems([]);
     }
   }, [data]);
@@ -41,26 +44,40 @@ const MainInfo: React.FC = () => {
   }, []);
 
   useEffect(() => {
-    if (filteredItems.length) {
+    dispatch(filteringItems(inputValue))
+    if(inputValue) {
       setFilteredItems(filteredItems);
-      setItems([]);
     }
-  }, [filteredItems]);
+      console.log(filteredItems)
+      console.log(items)
 
-  useEffect(() => {
-    if (filteredItemsEmpty) {
-      setItems(allItems);
-      setFilteredItems([]);
-    }
-  }, [filteredItemsEmpty]);
+      if(!inputValue) {
+        dispatch(filteringItems(''))
+     
+      }
+      
+
+      console.log(window.location.pathname)
+  }, [inputValue]);
+
+
+
+
+  // useEffect(() => {
+  //   if (filteredItemsEmpty) {
+  //     setItems(allItems);
+  //     setFilteredItems([]);
+  //   }
+  // }, [filteredItemsEmpty]);
 
   if (isLoading) return <p>Загрузка...</p>;
 
   return (
     <div className={styles.mainInfoContainer}>
       <h2 className={styles.heading}>Объявления</h2>
+    
       <ContentCards
-        data={items.length ? items : renderedFilteredItems}
+        data={filteredItems.length ? filteredItems : items}
         classType="contentCardsMain"
         classTypeCardItem="cardItemMain"
         classTypeImgMain="itemMainImg"

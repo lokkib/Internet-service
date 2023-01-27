@@ -7,6 +7,7 @@ import setActiveImgReducer from './slices/openNewImg';
 import checkModalsStateReducer from './slices/checkModalsSlice';
 import passNewAdvReducer from './slices/passNewAdvParamsTextOnly';
 import getComentReducer from './slices/getCommentSlice';
+import detectUserChangeReducer from './slices/detectUserDataChangeSlice'
 
 const store = configureStore({
   reducer: {
@@ -18,6 +19,7 @@ const store = configureStore({
     modalsState: checkModalsStateReducer,
     newAdvParamsTextOnly: passNewAdvReducer,
     comment: getComentReducer,
+    currentUserData: detectUserChangeReducer
   },
 
   middleware: (getDefaultMiddleWare) => getDefaultMiddleWare().concat(avitoApi.middleware),

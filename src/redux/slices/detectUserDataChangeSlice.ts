@@ -1,38 +1,80 @@
 import { createSlice } from '@reduxjs/toolkit';
 import type { PayloadAction } from '@reduxjs/toolkit';
 
-type ItemData = {
-  userData: {
-    role: 'string';
-    email: 'user@example.com';
-    name: 'string';
-    surname: 'string';
-    phone: 'string';
-    city: 'string';
-  };
+
+export type CurrentUserDataMain = {
+  name: string;
+  surname: string;
+  phone: string;
+  city: string;
+}
+
+
+type currentUserDataState = {
+  currentUserData: {
+    name: string;
+    surname: string;
+    phone: string;
+    city: string;
+    avatar?: string
+  },
+  newCurrentUserData: {
+    name: string;
+    surname: string;
+    phone: string;
+    city: string;
+  },
+  isDataChanged: {
+    DataChanged: boolean
+  }
 };
 
-const initialState: ItemData = {
-  userData: {
-    role: 'string',
-    email: 'user@example.com',
-    name: 'string',
-    surname: 'string',
-    phone: 'string',
-    city: 'string',
+
+const initialState: currentUserDataState = {
+  currentUserData: {
+    name: '',
+    surname: '',
+    phone: '',
+    city: '',
+    avatar: ''
   },
+  newCurrentUserData: {
+    name: '',
+    surname: '',
+    phone: '',
+    city: '',
+  },
+  isDataChanged: {
+    DataChanged: false
+  }
 };
 
 const detectUserChangeSlice = createSlice({
-  name: 'checkToken',
+  name: 'currentUserData',
   initialState,
   reducers: {
-    detectUserDataChange: (state, action: PayloadAction<ItemData>) => {
-      state.userData = action.payload;
+    getCurrentUserData: (state, action: PayloadAction<CurrentUserDataMain>) => {
+      state.currentUserData = action.payload;
     },
+    getNewCurrentUserName: (state, action: PayloadAction<string>) => {
+      state.newCurrentUserData.name = action.payload;
+    },
+    getNewCurrentUserSurName: (state, action: PayloadAction<string>) => {
+      state.newCurrentUserData.surname = action.payload;
+    },
+    getNewCurrentUserPhone: (state, action: PayloadAction<string>) => {
+      state.newCurrentUserData.phone = action.payload;
+    },
+    getNewCurrentUserCity: (state, action: PayloadAction<string>) => {
+      state.newCurrentUserData.city = action.payload;
+    },
+    checkisDataChanged: (state, action: PayloadAction<boolean>) => {
+      state.isDataChanged.DataChanged = action.payload
+  }
   },
+  
 });
 
-export const { detectUserDataChange } = detectUserChangeSlice.actions;
+export const { getCurrentUserData, getNewCurrentUserName, getNewCurrentUserSurName, getNewCurrentUserPhone, getNewCurrentUserCity,  checkisDataChanged} = detectUserChangeSlice.actions;
 
 export default detectUserChangeSlice.reducer;

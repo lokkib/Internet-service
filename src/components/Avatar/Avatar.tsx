@@ -20,7 +20,7 @@ const Avatar: React.FC<SellerProfileDataProps> = ({ sellerDate, currentUserData 
   }
   return (
     <div className={styles.avatar}>
-      {sellerDate.user.avatar && (
+      {sellerDate && sellerDate.user.avatar && (
         <img src={(process.env.REACT_APP_API as string) + sellerDate.user.avatar} alt="profile" />
       )}
       {Boolean(!sellerDate.user.avatar) && false}

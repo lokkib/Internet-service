@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { AnimatePresence, motion } from 'framer-motion';
-import { useSelector } from 'react-redux';
+import { useSelector , useDispatch } from 'react-redux';
 import Header from '../../components/Header/Header';
 import Main from './Main/Main';
 import NewAdv from '../../components/NewAdv/NewAdv';
@@ -10,8 +10,11 @@ import Reviews from '../../components/Reviews/Reviews';
 import SignIn from '../../components/SignIn/SignIn';
 import SignUp from '../../components/SignUp/SignUp';
 import ProhibitingModalWindow from '../../components/ProhibitingModalWindow/ProhibitingModalWindow';
+import { getInputValue } from '../../redux/slices/searchSlice';
 
 const SellerArticlePage: React.FC = () => {
+
+  const dispatch = useDispatch()
   const [openSignInModal, setOpenSignInModal] = useState(false);
   const [openSignUpModal, setOpenSignUpModal] = useState(false);
 
@@ -61,6 +64,13 @@ const SellerArticlePage: React.FC = () => {
 
     return () => clearTimeout(timer);
   }, [newAdvIsClosed]);
+
+
+  useEffect(() => {     
+      dispatch(getInputValue(''))
+
+  },[])
+
 
   return (
     <motion.div

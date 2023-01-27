@@ -1,27 +1,31 @@
 import React, { useState } from 'react';
-
 import styles from './style.module.scss';
 import InputProps from '../../@types/InputProps';
 
+
+
 const Input: React.FC<InputProps> = ({
-  placeholder,
+  placeholderInput,
   id,
   classType,
-  passInputValue,
-  currentUserData,
-  // value,
+  currentUserDataProperty,
+  onChange,
+  value
 }) => {
-  const [inputValue, setInputValue] = useState<string>(currentUserData);
-  const [placeholderText, setPlaceholderText] = useState(placeholder);
+  const [inputValue, setInputValue] = useState<string>(value);
+  const [placeholderText, setPlaceholderText] = useState(placeholderInput);
 
-  if (currentUserData) {
+
+
+
+  if (currentUserDataProperty) {
     return (
       <input
-        onChange={(e) => [setInputValue(e.target.value), passInputValue && passInputValue(e)]}
+        onChange={(e) => [setInputValue(e.target.value), onChange(e)]}
         id={id}
         placeholder={placeholderText}
         onFocus={() => setPlaceholderText('')}
-        onBlur={() => setPlaceholderText('Поиск по объявлениям')}
+        onBlur={() => setPlaceholderText(placeholderInput)}
         className={styles[classType]}
         value={inputValue}
       />
@@ -30,11 +34,11 @@ const Input: React.FC<InputProps> = ({
 
   return (
     <input
-      onChange={(e) => [setInputValue(e.target.value), passInputValue && passInputValue(e)]}
+      onChange={(e) => [setInputValue(e.target.value), onChange(e)]}
       id={id}
       placeholder={placeholderText}
       onFocus={() => setPlaceholderText('')}
-      onBlur={() => setPlaceholderText('Поиск по объявлениям')}
+      onBlur={() => setPlaceholderText(placeholderInput)}
       className={styles[classType]}
       value={inputValue}
     />

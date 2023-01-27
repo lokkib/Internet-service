@@ -1,14 +1,54 @@
-import React, { useState } from 'react';
+import React, { useState ,useEffect} from 'react';
 import { AnimatePresence, motion } from 'framer-motion';
-
+import { useSelector , useDispatch } from 'react-redux';
 import Header from '../../components/Header/Header';
 import MainContent from './MainContent/MainContent';
 import MobFooter from '../../components/MobFooter/MobFooter';
 import NewAdv from '../../components/NewAdv/NewAdv';
 import styles from './style.module.scss';
 import backdrop from '../../components/constants/animationConfigure';
+import { RootState } from '../../redux/store';
+import { checkisDataChanged  } from '../../redux/slices/detectUserDataChangeSlice';
+import { getInputValue } from '../../redux/slices/searchSlice';
 
 const ProfilePage: React.FC = () => {
+
+
+  const currentData = useSelector((state:RootState) => state.currentUserData.currentUserData)
+
+  const newData = useSelector((state:RootState) => state.currentUserData.newCurrentUserData);
+
+
+  const dispatch = useDispatch()
+
+
+  const comparingCurrentAndNewUserData = (data, data2) => {
+      let isChanged;
+    const keys1 = Object.keys(data);
+
+  for (const key of keys1) {
+    if (data[key] !== data2[key]) {
+      isChanged = true;
+      dispatch(checkisDataChanged(isChanged))
+      break;
+    }
+    isChanged = false
+    dispatch(checkisDataChanged(isChanged))
+  }
+    return isChanged
+  }
+
+
+  useEffect(() => {     
+    dispatch(getInputValue(''))
+
+},[])
+
+  useEffect(() => {
+    comparingCurrentAndNewUserData(currentData, newData)
+  },[newData])
+
+
   const [newAdv, setNewAdvOpen] = useState(false);
 
   const openModalNewAdv = () => {
@@ -42,7 +82,7 @@ const ProfilePage: React.FC = () => {
 
       <Header openModalNewAdv={openModalNewAdv} classType="profileHeading" />
       <MainContent />
-      <MobFooter value="" classType="profileFooter" />
+      <MobFooter placeholder = '' placeholderInput='' value="" classType="profileFooter" />
     </motion.div>
   );
 };

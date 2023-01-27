@@ -2,6 +2,7 @@ import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
 import { getCookie } from 'cookies-next';
 import CurrentUserData from '../../@types/CurrentUserData';
 import { Items } from '../../@types/ContentCardsProps';
+import { CurrentUserDataMain } from '../slices/detectUserDataChangeSlice';
 
 type Comment = {
   id: number;
@@ -27,6 +28,7 @@ export type Comment3 = {
 
 const avitoApi = createApi({
   reducerPath: 'avitoApi',
+  tagTypes: ['Comments', 'Ads', 'UserSettings'],
   baseQuery: fetchBaseQuery({ baseUrl: process.env.REACT_APP_API }),
   endpoints: (build) => ({
     signup: build.mutation({
@@ -50,7 +52,7 @@ const avitoApi = createApi({
         body,
       }),
     }),
-    fetchItems: build.query({
+    fetchItems: build.query<Items[], number>({
       query: (number) => `/ads?page=${number}`,
     }),
     fetchAllItems: build.query({
@@ -66,8 +68,9 @@ const avitoApi = createApi({
           Authorization: `Bearer ${getCookie('access')}`,
         },
       }),
+      providesTags: ['UserSettings'],
     }),
-    changeCurrentUserData: build.mutation({
+    changeCurrentUserData: build.mutation<CurrentUserData, CurrentUserDataMain>({
       query: (body) => ({
         url: `/user`,
         body,
@@ -76,12 +79,14 @@ const avitoApi = createApi({
           Authorization: `Bearer ${getCookie('access')}`,
         },
       }),
+      invalidatesTags: ['UserSettings'],
     }),
     getItemsOfSeller: build.query({
       query: (id) => `/ads?user_id=${id}`,
     }),
     getItemComments: build.query({
       query: (item) => `/ads/${item}/comments`,
+      providesTags: ['Comments'],
     }),
     publishNewAdv: build.mutation({
       query: (body) => ({
@@ -110,6 +115,7 @@ const avitoApi = createApi({
           Authorization: `Bearer ${getCookie('access')}`,
         },
       }),
+      invalidatesTags: ['Comments'],
     }),
   }),
 });
