@@ -14,7 +14,7 @@ const MainPage: React.FC = () => {
 
   const clickEnterAccount = () => {
     setOpenSignInModal(true);
-    // dispatch(getSignInState)(true)
+
   };
 
   const openSignInModalCloseSignUp = () => {

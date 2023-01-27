@@ -4,6 +4,7 @@ import styles from './style.module.scss';
 import ImagesInfo from '../../../@types/ImageLinksProps';
 import { sendActiveImg } from '../../../redux/slices/openNewImg';
 
+
 const ArticleImgBar: React.FC<ImagesInfo> = ({ imgLinks }) => {
   const [selected, setSelected] = useState(null);
 

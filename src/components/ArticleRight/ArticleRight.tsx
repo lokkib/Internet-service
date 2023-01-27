@@ -14,13 +14,18 @@ const ArticleRight: React.FC<MainArticleProps> = ({
 }) => {
   const hidePhoneNumber = (i: Items | undefined) => {
     if (i) {
-      const phoneNumber = i.user.phone;
+        if(i.user.phone) {
+          const phoneNumber = i.user.phone;
 
-      const hiddenNumber = phoneNumber.replace(phoneNumber.slice(4), 'XXX XX XX');
-
-      return hiddenNumber;
+          const hiddenNumber = phoneNumber.replace(phoneNumber.slice(4), 'XXX XX XX');
+    
+          return hiddenNumber;
+        }
+      
     }
-    return undefined;
+      const phoneNumber = 'Телефон отсутствует'
+      return phoneNumber
+
   };
 
   const [phoneNumber, setPhone] = useState<string | undefined>(hidePhoneNumber(itemDetails));
@@ -28,6 +33,9 @@ const ArticleRight: React.FC<MainArticleProps> = ({
   const showPhoneNumber = () => {
     if (itemDetails) {
       setPhone(itemDetails.user.phone);
+    }
+    if(phoneNumber === 'Телефон отсутствует') {
+      setPhone('Телефон отсутствует')
     }
   };
 
@@ -42,7 +50,7 @@ const ArticleRight: React.FC<MainArticleProps> = ({
             onClick={showPhoneNumber}
             phoneNumber={phoneNumber}
             classType="showPhone"
-            text="Показать телефон"
+            text={phoneNumber === 'Телефон отсутствует' ? '' : 'Показать номер'}
           />
         </div>
 

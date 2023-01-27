@@ -1,4 +1,4 @@
-interface CurrentUserData {
+export interface CurrentUserData {
   id: number;
   name: string;
   email: string;
@@ -11,7 +11,8 @@ interface CurrentUserData {
 }
 
 export interface CurrentUserDataProps {
-  currentUserData: CurrentUserData;
+  currentUserData: CurrentUserData | unknown
+
 }
 
 export default CurrentUserData;

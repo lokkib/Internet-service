@@ -30,6 +30,10 @@ export const searchSlice = createSlice({
       state.filteredItems = state.allItems.filter((item) =>
         item.title.toLocaleLowerCase().startsWith(action.payload.toLocaleLowerCase())
       );
+
+      if(action.payload === '') {
+        state.filteredItems = []
+      }
     },
     searchResultEmptyRenderAllItems: (state, action: PayloadAction<boolean>) => {
       state.notFound = action.payload;

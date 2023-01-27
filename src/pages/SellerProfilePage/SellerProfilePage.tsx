@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
+import { useDispatch } from 'react-redux';
 import Header from '../../components/Header/Header';
 import MainContent from './MainContent/MainContent';
 import NewAdv from '../../components/NewAdv/NewAdv';
@@ -8,6 +9,7 @@ import SignIn from '../../components/SignIn/SignIn';
 import SignUp from '../../components/SignUp/SignUp';
 import backdrop from '../../components/constants/animationConfigure';
 import ProhibitingModalWindow from '../../components/ProhibitingModalWindow/ProhibitingModalWindow';
+import { getInputValue } from '../../redux/slices/searchSlice';
 
 const SellerProfilePage: React.FC = () => {
   const [newAdv, setNewAdvOpen] = useState(false);
@@ -15,6 +17,7 @@ const SellerProfilePage: React.FC = () => {
   const [openSignUpModal, setOpenSignUpModal] = useState(false);
   const [newAdvIsClosed, setNewAdvClosed] = useState(false);
 
+  const dispatch = useDispatch()
   const isAuth = sessionStorage.getItem('isAuth');
 
   useEffect(() => {
@@ -24,6 +27,12 @@ const SellerProfilePage: React.FC = () => {
 
     return () => clearTimeout(timer);
   }, [newAdvIsClosed]);
+
+
+  useEffect(() => {     
+    dispatch(getInputValue(''))
+
+},[])
 
   const clickEnterAccount = () => {
     setOpenSignInModal(true);
