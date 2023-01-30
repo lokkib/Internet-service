@@ -1,14 +1,12 @@
 import { createSlice } from '@reduxjs/toolkit';
 import type { PayloadAction } from '@reduxjs/toolkit';
 
-
 export type CurrentUserDataMain = {
   name: string;
   surname: string;
   phone: string;
   city: string;
-}
-
+};
 
 type currentUserDataState = {
   currentUserData: {
@@ -16,19 +14,18 @@ type currentUserDataState = {
     surname: string;
     phone: string;
     city: string;
-    avatar?: string
-  },
+    avatar?: string;
+  };
   newCurrentUserData: {
     name: string;
     surname: string;
     phone: string;
     city: string;
-  },
+  };
   isDataChanged: {
-    DataChanged: boolean
-  }
+    DataChanged: boolean;
+  };
 };
-
 
 const initialState: currentUserDataState = {
   currentUserData: {
@@ -36,7 +33,7 @@ const initialState: currentUserDataState = {
     surname: '',
     phone: '',
     city: '',
-    avatar: ''
+    avatar: '',
   },
   newCurrentUserData: {
     name: '',
@@ -45,8 +42,8 @@ const initialState: currentUserDataState = {
     city: '',
   },
   isDataChanged: {
-    DataChanged: false
-  }
+    DataChanged: false,
+  },
 };
 
 const detectUserChangeSlice = createSlice({
@@ -69,12 +66,18 @@ const detectUserChangeSlice = createSlice({
       state.newCurrentUserData.city = action.payload;
     },
     checkisDataChanged: (state, action: PayloadAction<boolean>) => {
-      state.isDataChanged.DataChanged = action.payload
-  }
+      state.isDataChanged.DataChanged = action.payload;
+    },
   },
-  
 });
 
-export const { getCurrentUserData, getNewCurrentUserName, getNewCurrentUserSurName, getNewCurrentUserPhone, getNewCurrentUserCity,  checkisDataChanged} = detectUserChangeSlice.actions;
+export const {
+  getCurrentUserData,
+  getNewCurrentUserName,
+  getNewCurrentUserSurName,
+  getNewCurrentUserPhone,
+  getNewCurrentUserCity,
+  checkisDataChanged,
+} = detectUserChangeSlice.actions;
 
 export default detectUserChangeSlice.reducer;

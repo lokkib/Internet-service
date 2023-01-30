@@ -7,7 +7,6 @@ type SettingItemProps = {
   currentUserData?: CurrentUserData;
   currentUserDataProperty: string;
   onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
-
 };
 
 export default SettingItemProps;

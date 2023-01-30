@@ -10,3 +10,11 @@
 .modalDisplayNone {
   display: none;
 }
+
+.modalReviewsBlock {
+  composes: modalBlock;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 10;
+}

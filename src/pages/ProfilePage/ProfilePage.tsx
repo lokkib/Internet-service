@@ -1,6 +1,6 @@
-import React, { useState ,useEffect} from 'react';
+import React, { useState, useEffect } from 'react';
 import { AnimatePresence, motion } from 'framer-motion';
-import { useSelector , useDispatch } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import Header from '../../components/Header/Header';
 import MainContent from './MainContent/MainContent';
 import MobFooter from '../../components/MobFooter/MobFooter';
@@ -8,46 +8,42 @@ import NewAdv from '../../components/NewAdv/NewAdv';
 import styles from './style.module.scss';
 import backdrop from '../../components/constants/animationConfigure';
 import { RootState } from '../../redux/store';
-import { checkisDataChanged  } from '../../redux/slices/detectUserDataChangeSlice';
+import { checkisDataChanged } from '../../redux/slices/detectUserDataChangeSlice';
 import { getInputValue } from '../../redux/slices/searchSlice';
+import ProhibitingModalWindow from '../../components/ProhibitingModalWindow/ProhibitingModalWindow';
+import { successAdPublicationNotify } from '../../redux/slices/notificationsSlice';
 
 const ProfilePage: React.FC = () => {
+  const currentData = useSelector((state: RootState) => state.currentUserData.currentUserData);
 
+  const newData = useSelector((state: RootState) => state.currentUserData.newCurrentUserData);
+  const UsersAdPublished = useSelector((state: RootState) => state.notifications.AdPublished);
 
-  const currentData = useSelector((state:RootState) => state.currentUserData.currentUserData)
-
-  const newData = useSelector((state:RootState) => state.currentUserData.newCurrentUserData);
-
-
-  const dispatch = useDispatch()
-
+  const dispatch = useDispatch();
 
   const comparingCurrentAndNewUserData = (data, data2) => {
-      let isChanged;
+    let isChanged;
     const keys1 = Object.keys(data);
 
-  for (const key of keys1) {
-    if (data[key] !== data2[key]) {
-      isChanged = true;
-      dispatch(checkisDataChanged(isChanged))
-      break;
+    for (const key of keys1) {
+      if (data[key] !== data2[key]) {
+        isChanged = true;
+        dispatch(checkisDataChanged(isChanged));
+        break;
+      }
+      isChanged = false;
+      dispatch(checkisDataChanged(isChanged));
     }
-    isChanged = false
-    dispatch(checkisDataChanged(isChanged))
-  }
-    return isChanged
-  }
-
-
-  useEffect(() => {     
-    dispatch(getInputValue(''))
-
-},[])
+    return isChanged;
+  };
 
   useEffect(() => {
-    comparingCurrentAndNewUserData(currentData, newData)
-  },[newData])
+    dispatch(getInputValue(''));
+  }, []);
 
+  useEffect(() => {
+    comparingCurrentAndNewUserData(currentData, newData);
+  }, [newData]);
 
   const [newAdv, setNewAdvOpen] = useState(false);
 
@@ -59,6 +55,17 @@ const ProfilePage: React.FC = () => {
     setNewAdvOpen(false);
   };
 
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      if (UsersAdPublished) {
+        closeModalNewAdv();
+        dispatch(successAdPublicationNotify(false));
+      }
+    }, 1500);
+
+    return () => clearTimeout(timer);
+  }, [UsersAdPublished]);
+
   return (
     <motion.div
       initial={{ opacity: 0 }}
@@ -67,6 +74,17 @@ const ProfilePage: React.FC = () => {
       transition={{ duration: 1 }}
     >
       <AnimatePresence>
+        {UsersAdPublished && (
+          <motion.div
+            variants={backdrop}
+            initial="hidden"
+            animate="visible"
+            exit="exit"
+            className={UsersAdPublished ? styles.modalReviewsBlock : styles.modalDisplayNone}
+          >
+            <ProhibitingModalWindow checkMark prohibitingText="Объявление успешно размещено." />
+          </motion.div>
+        )}
         {newAdv && (
           <motion.div
             variants={backdrop}
@@ -82,7 +100,7 @@ const ProfilePage: React.FC = () => {
 
       <Header openModalNewAdv={openModalNewAdv} classType="profileHeading" />
       <MainContent />
-      <MobFooter placeholder = '' placeholderInput='' value="" classType="profileFooter" />
+      <MobFooter placeholder="" placeholderInput="" value="" classType="profileFooter" />
     </motion.div>
   );
 };

@@ -8,8 +8,7 @@ const SettingsItem: React.FC<SettingItemProps> = ({
   labelFor,
   classType,
   currentUserDataProperty,
-  onChange, 
-
+  onChange,
 }) => {
   return (
     <div className={styles.itemWrapper}>
@@ -17,10 +16,10 @@ const SettingsItem: React.FC<SettingItemProps> = ({
         {labelText}
       </label>
       <Input
-      placeholder = ''
-      value={currentUserDataProperty}
-      placeholderInput={labelText}
-      onChange={onChange}
+        placeholder=""
+        value={currentUserDataProperty}
+        placeholderInput={labelText}
+        onChange={onChange}
         // value={currentUserDataProperty}
         // currentUserDataProperty={currentUserDataProperty}
         classType={classType}

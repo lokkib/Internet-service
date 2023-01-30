@@ -1,31 +1,65 @@
-import React, { useState } from 'react';
+import React, { useState , useEffect } from 'react';
+import { useParams , useNavigate } from 'react-router-dom';
+import { useDispatch , useSelector } from 'react-redux';
 import ArticleInfo from './ArticleInfo/ArticleInfo';
 import ButtonSearchSave from '../ButtonSearchSave/ButtonSearchSave';
 import ArticleAuthor from './ArticleAuthor/ArticleAuthor';
 import styles from './style.module.scss';
 import MainArticleProps from '../../@types/MainArticleProps';
-
+import { useDeleteAdMutation } from '../../redux/api/avitoApi';
 import { Items } from '../../@types/ContentCardsProps';
+import { successDeletionNotify } from '../../redux/slices/notificationsSlice';
+import { RootState } from '../../redux/store';
 
 const ArticleRight: React.FC<MainArticleProps> = ({
   onlyOneButton,
   openModalAdvEdit,
   itemDetails,
 }) => {
+  const { id } = useParams();
+  const [deleteAd] = useDeleteAdMutation();
+
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
+  const successDeletionNotification = useSelector(
+    (state: RootState) => state.notifications.AdDeletionSuccess
+  );
+  const deleteAdOnClick = async () => {
+    await deleteAd({
+      id: id as string,
+    })
+      .unwrap()
+      .catch(() => {
+        throw new Error();
+      })
+      .then((response) => {
+        console.log(response);
+        dispatch(successDeletionNotify(true));
+        // navigate('/my-account')
+      });
+  };
+
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      if (successDeletionNotification) navigate('/my-account');
+      dispatch(successDeletionNotify(false));
+    }, 1500);
+
+    return () => clearTimeout(timer);
+  }, [successDeletionNotification]);
+
   const hidePhoneNumber = (i: Items | undefined) => {
     if (i) {
-        if(i.user.phone) {
-          const phoneNumber = i.user.phone;
+      if (i.user.phone) {
+        const phoneNumber = i.user.phone;
 
-          const hiddenNumber = phoneNumber.replace(phoneNumber.slice(4), 'XXX XX XX');
-    
-          return hiddenNumber;
-        }
-      
+        const hiddenNumber = phoneNumber.replace(phoneNumber.slice(4), 'XXX XX XX');
+
+        return hiddenNumber;
+      }
     }
-      const phoneNumber = 'Телефон отсутствует'
-      return phoneNumber
-
+    const phoneNumber = 'Телефон отсутствует';
+    return phoneNumber;
   };
 
   const [phoneNumber, setPhone] = useState<string | undefined>(hidePhoneNumber(itemDetails));
@@ -34,8 +68,8 @@ const ArticleRight: React.FC<MainArticleProps> = ({
     if (itemDetails) {
       setPhone(itemDetails.user.phone);
     }
-    if(phoneNumber === 'Телефон отсутствует') {
-      setPhone('Телефон отсутствует')
+    if (phoneNumber === 'Телефон отсутствует') {
+      setPhone('Телефон отсутствует');
     }
   };
 
@@ -58,11 +92,12 @@ const ArticleRight: React.FC<MainArticleProps> = ({
           style={{ display: onlyOneButton === 'false' ? 'block' : 'none' }}
           className={styles.articleButtonsBlock}
         >
-          <div onClickCapture={() => openModalAdvEdit && openModalAdvEdit()}>
-            <ButtonSearchSave classType="edit" text="Редактировать" />
-          </div>
-
-          <ButtonSearchSave classType="deleteAdv" text="Снять с публикации" />
+          <ButtonSearchSave onClick={openModalAdvEdit} classType="edit" text="Редактировать" />
+          <ButtonSearchSave
+            onClick={deleteAdOnClick}
+            classType="deleteAdv"
+            text="Снять с публикации"
+          />
         </div>
 
         <ArticleAuthor itemDetails={itemDetails} />

@@ -17,13 +17,22 @@ const CardItem: React.FC<ContentCardsProps> = ({
 }) => {
   const navigate = useNavigate();
 
+  const navigatingToAd = () => {
+    const currentLocation = window.location.pathname;
+    if (currentLocation === '/my-account') {
+      navigate(`/my-ads/${id}`);
+    } else {
+      navigate(`/ads/${id}`);
+    }
+  };
+
   return (
     <div>
       <div
         tabIndex={0}
         role="button"
-        onKeyDown={() => navigate(`/ads/${id}`)}
-        onClick={() => navigate(`/ads/${id}`)}
+        onKeyDown={navigatingToAd}
+        onClick={navigatingToAd}
         className={classTypeCardItem && styles[classTypeCardItem]}
       >
         <CardImage imgLink={imgLink} classTypeImgMain={classTypeImgMain} />

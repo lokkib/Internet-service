@@ -6,8 +6,8 @@ import { passItemDescription } from '../../redux/slices/passNewAdvParamsTextOnly
 import { getComment } from '../../redux/slices/getCommentSlice';
 
 const FormDescriptionItem: React.FC<FormNewArticleProps> = ({ value }) => {
-  const [textArea, setTextArea] = useState(value);
-
+  const [textArea, setTextArea] = useState(value || '');
+  const [textAreaPlaceholder, setTextAreaPlaceholder] = useState('Введите описание');
   const dispatch = useDispatch();
 
   const passDescription = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
@@ -23,8 +23,10 @@ const FormDescriptionItem: React.FC<FormNewArticleProps> = ({ value }) => {
       </label>
       <textarea
         value={textArea}
+        onFocus={() => setTextAreaPlaceholder('')}
+        onBlur={() => setTextAreaPlaceholder('Введите описание')}
         onChange={(e) => passDescription(e)}
-        placeholder="Введите описание"
+        placeholder={textAreaPlaceholder}
         id="text"
         className={styles.settingsDescription}
         name="text"

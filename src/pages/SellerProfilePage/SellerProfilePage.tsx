@@ -17,7 +17,7 @@ const SellerProfilePage: React.FC = () => {
   const [openSignUpModal, setOpenSignUpModal] = useState(false);
   const [newAdvIsClosed, setNewAdvClosed] = useState(false);
 
-  const dispatch = useDispatch()
+  const dispatch = useDispatch();
   const isAuth = sessionStorage.getItem('isAuth');
 
   useEffect(() => {
@@ -28,11 +28,9 @@ const SellerProfilePage: React.FC = () => {
     return () => clearTimeout(timer);
   }, [newAdvIsClosed]);
 
-
-  useEffect(() => {     
-    dispatch(getInputValue(''))
-
-},[])
+  useEffect(() => {
+    dispatch(getInputValue(''));
+  }, []);
 
   const clickEnterAccount = () => {
     setOpenSignInModal(true);

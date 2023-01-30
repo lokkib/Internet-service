@@ -19,11 +19,13 @@ type Comment = {
   };
 };
 
-
-
 export type Comment3 = {
   id: number;
   text: string;
+};
+
+type IdFrDeleting = {
+  id: string;
 };
 
 const avitoApi = createApi({
@@ -60,6 +62,7 @@ const avitoApi = createApi({
     }),
     goToConcreteItem: build.query({
       query: (id) => `/ads/${id}`,
+      providesTags: ['Ads'],
     }),
     getCurrentUserData: build.query<CurrentUserData, void>({
       query: () => ({
@@ -97,14 +100,16 @@ const avitoApi = createApi({
           Authorization: `Bearer ${getCookie('access')}`,
         },
       }),
+      invalidatesTags: ['Ads'],
     }),
-    getCurrentUserAds: build.query<Items, void>({
+    getCurrentUserAds: build.query<Items[], void>({
       query: () => ({
         url: `/ads/me`,
         headers: {
           Authorization: `Bearer ${getCookie('access')}`,
         },
       }),
+      providesTags: ['Ads'],
     }),
     createCommenttoTheAd: build.mutation<Comment, Comment3>({
       query: (body) => ({
@@ -116,6 +121,28 @@ const avitoApi = createApi({
         },
       }),
       invalidatesTags: ['Comments'],
+    }),
+    deleteAd: build.mutation<string, IdFrDeleting>({
+      query: (body) => ({
+        url: `/ads/${body.id}`,
+        method: 'DELETE',
+        body,
+        headers: {
+          Authorization: `Bearer ${getCookie('access')}`,
+        },
+      }),
+      invalidatesTags: ['Ads'],
+    }),
+    editAd: build.mutation({
+      query: (body) => ({
+        url: `/ads/${body.id}`,
+        method: 'PATCH',
+        body,
+        headers: {
+          Authorization: `Bearer ${getCookie('access')}`,
+        },
+      }),
+      invalidatesTags: ['Ads'],
     }),
   }),
 });
@@ -136,4 +163,6 @@ export const {
   usePublishNewAdvMutation,
   useGetCurrentUserAdsQuery,
   useCreateCommenttoTheAdMutation,
+  useDeleteAdMutation,
+  useEditAdMutation,
 } = avitoApi;
