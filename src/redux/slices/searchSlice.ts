@@ -31,8 +31,8 @@ export const searchSlice = createSlice({
         item.title.toLocaleLowerCase().startsWith(action.payload.toLocaleLowerCase())
       );
 
-      if(action.payload === '') {
-        state.filteredItems = []
+      if (action.payload === '') {
+        state.filteredItems = [];
       }
     },
     searchResultEmptyRenderAllItems: (state, action: PayloadAction<boolean>) => {

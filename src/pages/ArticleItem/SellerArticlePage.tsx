@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { AnimatePresence, motion } from 'framer-motion';
-import { useSelector , useDispatch } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import Header from '../../components/Header/Header';
 import Main from './Main/Main';
 import NewAdv from '../../components/NewAdv/NewAdv';
@@ -11,10 +11,10 @@ import SignIn from '../../components/SignIn/SignIn';
 import SignUp from '../../components/SignUp/SignUp';
 import ProhibitingModalWindow from '../../components/ProhibitingModalWindow/ProhibitingModalWindow';
 import { getInputValue } from '../../redux/slices/searchSlice';
+import { RootState } from '../../redux/store';
 
 const SellerArticlePage: React.FC = () => {
-
-  const dispatch = useDispatch()
+  const dispatch = useDispatch();
   const [openSignInModal, setOpenSignInModal] = useState(false);
   const [openSignUpModal, setOpenSignUpModal] = useState(false);
 
@@ -24,7 +24,7 @@ const SellerArticlePage: React.FC = () => {
   const [newAdv, setNewAdvOpen] = useState(false);
   const [newAdvIsClosed, setNewAdvClosed] = useState(false);
 
-  const isReviewsOpen = useSelector((state) => state.modalsState.reviews);
+  const isReviewsOpen = useSelector((state: RootState) => state.modalsState.reviews);
   const isAuth = sessionStorage.getItem('isAuth');
 
   const openModalNewAdv = () => {
@@ -65,12 +65,9 @@ const SellerArticlePage: React.FC = () => {
     return () => clearTimeout(timer);
   }, [newAdvIsClosed]);
 
-
-  useEffect(() => {     
-      dispatch(getInputValue(''))
-
-  },[])
-
+  useEffect(() => {
+    dispatch(getInputValue(''));
+  }, []);
 
   return (
     <motion.div

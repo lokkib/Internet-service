@@ -1,5 +1,5 @@
 import React from 'react';
-import { useSelector } from 'react-redux';
+import { useSelector , useDispatch } from 'react-redux';
 import styles from './style.module.scss';
 import ButtonClose from '../ButtonClose/ButtonClose';
 import FormNewArticleItem from '../FormNewArticleItem/FormNewArticleItem';
@@ -10,6 +10,7 @@ import ButtonSearchSave from '../ButtonSearchSave/ButtonSearchSave';
 import GeneralFunction from '../../@types/ChangingStateProps';
 import { usePublishNewAdvMutation } from '../../redux/api/avitoApi';
 import { RootState } from '../../redux/store';
+import { successAdPublicationNotify } from '../../redux/slices/notificationsSlice';
 
 const NewAdv: React.FC<GeneralFunction> = ({ closeModalNewAdv }) => {
   const newAdvParamsTitle = useSelector((state: RootState) => state.newAdvParamsTextOnly.title);
@@ -18,7 +19,20 @@ const NewAdv: React.FC<GeneralFunction> = ({ closeModalNewAdv }) => {
     (state: RootState) => state.newAdvParamsTextOnly.description
   );
 
+
+  const dispatch = useDispatch();
   const [publishNewAdTextOnly] = usePublishNewAdvMutation();
+
+  // useEffect(() => {
+  //   const timer = setTimeout(() => {
+  //     if(adPublished) {
+  //       closeModalNewAdv();
+  //     }
+
+  //   }, 1500);
+
+  //   return () => clearTimeout(timer);
+  // }, [adPublished]);
 
   const publishNewAd = async () => {
     await publishNewAdTextOnly({
@@ -32,6 +46,7 @@ const NewAdv: React.FC<GeneralFunction> = ({ closeModalNewAdv }) => {
       })
       .then(() => {
         closeModalNewAdv();
+        dispatch(successAdPublicationNotify(true));
       });
   };
 

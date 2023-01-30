@@ -3,7 +3,7 @@ import CurrentUserData from './CurrentUserData';
 type InputProps = {
   text?: string;
   placeholderInput: string;
-  placeholder: string
+  placeholder: string;
   id?: string;
   classType: string;
   type?: string;
@@ -13,7 +13,7 @@ type InputProps = {
   passInputValue?: (e: React.ChangeEvent<HTMLInputElement>) => void;
   clearInput?: (value: string) => void;
   currentUserData?: CurrentUserData;
-  currentUserDataProperty?: string
+  currentUserDataProperty?: string;
 };
 
 export default InputProps;

@@ -13,22 +13,21 @@ const ProfileSettings: React.FC = () => {
   const dispatch = useDispatch();
 
   const checkingProperties = (data2: CurrentUserData) => {
-    const newData = {}
+    const newData = {};
     for (const key in data2) {
       if (!data2[key]) {
-        newData[key] = ''
-      }
-      else {
-        newData[key] = data2[key]
+        newData[key] = '';
+      } else {
+        newData[key] = data2[key];
       }
     }
-    return newData
+    return newData;
   };
 
   useEffect(() => {
     if (data) {
       console.log(data);
-     console.log(checkingProperties(data)) 
+      console.log(checkingProperties(data));
 
       dispatch(
         getCurrentUserData({
@@ -36,7 +35,7 @@ const ProfileSettings: React.FC = () => {
           surname:
             data.surname === null ? String(data.surname).replace(/[a-zа-яё]/gi, '') : data.surname,
           phone: data.phone === null ? String(data.phone).replace(/[a-zа-яё]/gi, '') : data.phone,
-          city: data.city
+          city: data.city,
         })
       );
     }
@@ -48,8 +47,8 @@ const ProfileSettings: React.FC = () => {
 
   return (
     <div className={styles.profileSettings}>
-      <SettingsLeft currentUserData ={checkingProperties(data)} />
-      <SettingsRight currentUserData ={checkingProperties(data)} />
+      <SettingsLeft currentUserData={checkingProperties(data)} />
+      <SettingsRight currentUserData={checkingProperties(data)} />
     </div>
   );
 };

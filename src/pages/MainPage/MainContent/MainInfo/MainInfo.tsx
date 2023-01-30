@@ -5,7 +5,7 @@ import ContentCards from '../../../../components/ContentCards/ContentCards';
 import styles from './style.module.scss';
 import { useFetchItemsQuery } from '../../../../redux/api/avitoApi';
 import Pagination from '../../../../components/Pagination/Pagination';
-import { getAllItems , filteringItems  } from '../../../../redux/slices/searchSlice';
+import { getAllItems, filteringItems } from '../../../../redux/slices/searchSlice';
 import { Items } from '../../../../@types/ContentCardsProps';
 
 const MainInfo: React.FC = () => {
@@ -14,12 +14,9 @@ const MainInfo: React.FC = () => {
   const [items, setItems] = useState<Items[]>([]);
   const [, setFilteredItems] = useState<Items[]>([]);
 
-  
   const filteredItems = useSelector((state: RootState) => state.items.filteredItems);
-  const inputValue = useSelector((state: RootState) => state.items.inputValue)
+  const inputValue = useSelector((state: RootState) => state.items.inputValue);
   const { data, isLoading } = useFetchItemsQuery(currentPage);
-
-
 
   const goToAnotherPage = (page: number) => {
     setCurrentPage(page);
@@ -44,24 +41,19 @@ const MainInfo: React.FC = () => {
   }, []);
 
   useEffect(() => {
-    dispatch(filteringItems(inputValue))
-    if(inputValue) {
+    dispatch(filteringItems(inputValue));
+    if (inputValue) {
       setFilteredItems(filteredItems);
     }
-      console.log(filteredItems)
-      console.log(items)
+    console.log(filteredItems);
+    console.log(items);
 
-      if(!inputValue) {
-        dispatch(filteringItems(''))
-     
-      }
-      
+    if (!inputValue) {
+      dispatch(filteringItems(''));
+    }
 
-      console.log(window.location.pathname)
+    console.log(window.location.pathname);
   }, [inputValue]);
-
-
-
 
   // useEffect(() => {
   //   if (filteredItemsEmpty) {
@@ -75,7 +67,7 @@ const MainInfo: React.FC = () => {
   return (
     <div className={styles.mainInfoContainer}>
       <h2 className={styles.heading}>Объявления</h2>
-    
+
       <ContentCards
         data={filteredItems.length ? filteredItems : items}
         classType="contentCardsMain"

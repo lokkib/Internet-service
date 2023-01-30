@@ -4,8 +4,8 @@ import styles from './style.module.scss';
 import { passItemPrice } from '../../redux/slices/passNewAdvParamsTextOnly';
 import FormNewArticleProps from '../../@types/FormNewArticleProps';
 
-const FormArticlePrice: React.FC<FormNewArticleProps> = () => {
-  const [valueInput, setValueInput] = useState('');
+const FormArticlePrice: React.FC<FormNewArticleProps> = ({ price }) => {
+  const [valueInput, setValueInput] = useState(price || '');
 
   const dispatch = useDispatch();
 

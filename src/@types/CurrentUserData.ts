@@ -11,8 +11,7 @@ export interface CurrentUserData {
 }
 
 export interface CurrentUserDataProps {
-  currentUserData: CurrentUserData | unknown
-
+  currentUserData: CurrentUserData | unknown;
 }
 
 export default CurrentUserData;

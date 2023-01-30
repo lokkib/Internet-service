@@ -1,13 +1,13 @@
 import React, { useEffect, useState } from 'react';
 import { AnimatePresence, motion } from 'framer-motion';
 import { useParams } from 'react-router-dom';
-import { useDispatch , useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import styles from './style.module.scss';
 import ButtonClose from '../ButtonClose/ButtonClose';
 import FormDescriptionItem from '../FormDescriptionItem/FormDescriptionItem';
 import ButtonSearchSave from '../ButtonSearchSave/ButtonSearchSave';
 import ReviewItem from '../ReviewItem/ReviewItem';
-import { useGetItemCommentsQuery, useCreateCommenttoTheAdMutation  } from '../../redux/api/avitoApi';
+import { useGetItemCommentsQuery, useCreateCommenttoTheAdMutation } from '../../redux/api/avitoApi';
 import { getReviewsState } from '../../redux/slices/checkModalsSlice';
 import { reviewItemData } from '../../@types/ReviewItemProps';
 import ProhibitingModalWindow from '../ProhibitingModalWindow/ProhibitingModalWindow';
@@ -47,8 +47,6 @@ const Reviews: React.FC = () => {
   const stringComment = commentText as string;
 
   const [sendComment] = useCreateCommenttoTheAdMutation();
-
-
 
   const dispatch = useDispatch();
   const closeReviews = () => {

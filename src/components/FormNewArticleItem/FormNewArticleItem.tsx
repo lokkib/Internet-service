@@ -5,7 +5,7 @@ import FormNewArticleProps from '../../@types/FormNewArticleProps';
 import { passItemTitle } from '../../redux/slices/passNewAdvParamsTextOnly';
 
 const FormNewArticleItem: React.FC<FormNewArticleProps> = ({ placeholder, value }) => {
-  const [inputValue, setInputValue] = useState(value);
+  const [inputValue, setInputValue] = useState(value || '');
 
   const dispatch = useDispatch();
 

@@ -5,7 +5,7 @@ import SellerArticle from '../pages/ArticleItem/SellerArticlePage';
 import MainPage from '../pages/MainPage/MainPage';
 import ProfilePage from '../pages/ProfilePage/ProfilePage';
 import SellerProfilePage from '../pages/SellerProfilePage/SellerProfilePage';
-import UserArticle from '../pages/UserArticle/UserArticle';
+import UserArticlePage from '../pages/UserArticle/UserArticlePage';
 import Layout from '../components/layouts/Layout';
 import ProtectedRoute from './ProtectedRoute';
 
@@ -24,7 +24,7 @@ const AppRoutes: React.FC = () => {
             }
           />
           {/* <Route path="my-account" element={<ProfilePage />} /> */}
-          <Route path="my-item" element={<UserArticle />} />
+          <Route path="my-ads/:id" element={<UserArticlePage />} />
           <Route path="ads/:id" element={<SellerArticle />} />
           {/* <Route path="ads/:id" element={<SellerArticle />} /> */}
           <Route path="seller-page/:id" element={<SellerProfilePage />} />
