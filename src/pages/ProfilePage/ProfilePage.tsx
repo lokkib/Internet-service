@@ -68,6 +68,7 @@ const ProfilePage: React.FC = () => {
 
   return (
     <motion.div
+      key={0}
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       exit={{ opacity: 0 }}
@@ -76,6 +77,7 @@ const ProfilePage: React.FC = () => {
       <AnimatePresence>
         {UsersAdPublished && (
           <motion.div
+            key={1}
             variants={backdrop}
             initial="hidden"
             animate="visible"
@@ -87,6 +89,7 @@ const ProfilePage: React.FC = () => {
         )}
         {newAdv && (
           <motion.div
+            key={2}
             variants={backdrop}
             initial="hidden"
             animate="visible"

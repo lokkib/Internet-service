@@ -1,6 +1,6 @@
-import React, { useState , useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import { AnimatePresence, motion } from 'framer-motion';
-import { useSelector , useDispatch } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 
 import Header from '../../components/Header/Header';
 import Main from '../ArticleItem/Main/Main';
@@ -13,13 +13,13 @@ import { RootState } from '../../redux/store';
 import ProhibitingModalWindow from '../../components/ProhibitingModalWindow/ProhibitingModalWindow';
 import {
   editingAdSuccessNotify,
-   } from '../../redux/slices/notificationsSlice';
-
+  successAdPublicationNotify,
+} from '../../redux/slices/notificationsSlice';
 
 const UserArticlePage: React.FC = () => {
   const [newAdv, setNewAdvOpen] = useState(false);
   const [AdvEdit, setAdvEditOpen] = useState(false);
-
+  const UsersAdPublished = useSelector((state: RootState) => state.notifications.AdPublished);
   const isReviewsOpen = useSelector((state: RootState) => state.modalsState.reviews);
   const UsersAdEdited = useSelector((state: RootState) => state.notifications.AdEdited);
   const successDeletionNotification = useSelector(
@@ -54,6 +54,17 @@ const UserArticlePage: React.FC = () => {
     return () => clearTimeout(timer);
   }, [UsersAdEdited]);
 
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      if (UsersAdPublished) {
+        closeModalNewAdv();
+        dispatch(successAdPublicationNotify(false));
+      }
+    }, 1500);
+
+    return () => clearTimeout(timer);
+  }, [UsersAdPublished]);
+
   return (
     <motion.div
       initial={{ opacity: 0 }}
@@ -62,9 +73,21 @@ const UserArticlePage: React.FC = () => {
       transition={{ duration: 1 }}
     >
       <AnimatePresence>
-        {UsersAdEdited && (
+        {UsersAdPublished && (
           <motion.div
             key={1}
+            variants={backdrop}
+            initial="hidden"
+            animate="visible"
+            exit="exit"
+            className={UsersAdPublished ? styles.modalReviewsBlock : styles.modalDisplayNone}
+          >
+            <ProhibitingModalWindow checkMark prohibitingText="Объявление успешно размещено." />
+          </motion.div>
+        )}
+        {UsersAdEdited && (
+          <motion.div
+            key={2}
             variants={backdrop}
             initial="hidden"
             animate="visible"
@@ -79,7 +102,7 @@ const UserArticlePage: React.FC = () => {
         )}
         {newAdv && (
           <motion.div
-            key={2}
+            key={4}
             variants={backdrop}
             initial="hidden"
             animate="visible"
@@ -91,7 +114,7 @@ const UserArticlePage: React.FC = () => {
         )}
         {isReviewsOpen && (
           <motion.div
-            key={3}
+            key={5}
             variants={backdrop}
             initial="hidden"
             animate="visible"
@@ -103,7 +126,7 @@ const UserArticlePage: React.FC = () => {
         )}
         {AdvEdit && (
           <motion.div
-            key={4}
+            key={6}
             variants={backdrop}
             initial="hidden"
             animate="visible"

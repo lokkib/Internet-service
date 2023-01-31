@@ -1,6 +1,6 @@
-import React, { useState , useEffect } from 'react';
-import { useParams , useNavigate } from 'react-router-dom';
-import { useDispatch , useSelector } from 'react-redux';
+import React, { useState, useEffect } from 'react';
+import { useParams, useNavigate } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
 import ArticleInfo from './ArticleInfo/ArticleInfo';
 import ButtonSearchSave from '../ButtonSearchSave/ButtonSearchSave';
 import ArticleAuthor from './ArticleAuthor/ArticleAuthor';

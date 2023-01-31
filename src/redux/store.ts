@@ -9,6 +9,7 @@ import passNewAdvReducer from './slices/passNewAdvParamsTextOnly';
 import getComentReducer from './slices/getCommentSlice';
 import detectUserChangeReducer from './slices/detectUserDataChangeSlice';
 import notificationsReducer from './slices/notificationsSlice';
+import editingAdWithImgSlice from './slices/editingAdWithImg';
 
 const store = configureStore({
   reducer: {
@@ -22,6 +23,7 @@ const store = configureStore({
     comment: getComentReducer,
     currentUserData: detectUserChangeReducer,
     notifications: notificationsReducer,
+    editedAd: editingAdWithImgSlice,
   },
 
   middleware: (getDefaultMiddleWare) => getDefaultMiddleWare().concat(avitoApi.middleware),

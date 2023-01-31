@@ -23,10 +23,17 @@ const AppRoutes: React.FC = () => {
               </ProtectedRoute>
             }
           />
-          {/* <Route path="my-account" element={<ProfilePage />} /> */}
-          <Route path="my-ads/:id" element={<UserArticlePage />} />
+
+          <Route
+            path="my-ads/:id"
+            element={
+              <ProtectedRoute>
+                <UserArticlePage />
+              </ProtectedRoute>
+            }
+          />
           <Route path="ads/:id" element={<SellerArticle />} />
-          {/* <Route path="ads/:id" element={<SellerArticle />} /> */}
+
           <Route path="seller-page/:id" element={<SellerProfilePage />} />
         </Route>
       </Routes>

@@ -28,9 +28,22 @@ type IdFrDeleting = {
   id: string;
 };
 
+// , prepareHeaders: (headers) => {
+//   if (!headers.has("Content-Type")) {
+//     headers.set("Content-type", "multipart/form-data")
+
+//   }
+
+//   if(!headers.has("Authorization"))  {
+//     headers.set("Authorization", `Bearer ${getCookie('access')}`)
+//   }
+
+// return headers;
+// },
+
 const avitoApi = createApi({
   reducerPath: 'avitoApi',
-  tagTypes: ['Comments', 'Ads', 'UserSettings'],
+  tagTypes: ['Comments', 'Ads', 'UserSettings', 'Images'],
   baseQuery: fetchBaseQuery({ baseUrl: process.env.REACT_APP_API }),
   endpoints: (build) => ({
     signup: build.mutation({
@@ -57,7 +70,7 @@ const avitoApi = createApi({
     fetchItems: build.query<Items[], number>({
       query: (number) => `/ads?page=${number}`,
     }),
-    fetchAllItems: build.query({
+    fetchAllItems: build.query<Items[], void>({
       query: () => `/ads`,
     }),
     goToConcreteItem: build.query({
@@ -90,6 +103,21 @@ const avitoApi = createApi({
     getItemComments: build.query({
       query: (item) => `/ads/${item}/comments`,
       providesTags: ['Comments'],
+    }),
+    publishNewAdWithImg: build.mutation({
+      query: (body) => {
+        const { data, formdata } = body;
+        return {
+          url: `/ads`,
+          formdata,
+          params: data,
+          method: 'POST',
+          headers: {
+            Authorization: `Bearer ${getCookie('access')}`,
+          },
+        };
+      },
+      invalidatesTags: ['Ads'],
     }),
     publishNewAdv: build.mutation({
       query: (body) => ({
@@ -144,6 +172,30 @@ const avitoApi = createApi({
       }),
       invalidatesTags: ['Ads'],
     }),
+    addImageToAd: build.mutation({
+      query: (body) => {
+        return {
+          url: `/ads/${getCookie('id')}/image`,
+          method: 'POST',
+          body,
+          headers: {
+            Authorization: `Bearer ${getCookie('access')}`,
+          },
+        };
+      },
+      invalidatesTags: ['Ads'],
+    }),
+    loadAvatar: build.mutation({
+      query: (body) => ({
+        url: `/user/avatar`,
+        method: 'POST',
+        body,
+        headers: {
+          authorization: `Bearer ${getCookie('access')}`,
+        },
+      }),
+      invalidatesTags: ['UserSettings'],
+    }),
   }),
 });
 
@@ -165,4 +217,7 @@ export const {
   useCreateCommenttoTheAdMutation,
   useDeleteAdMutation,
   useEditAdMutation,
+  useLoadAvatarMutation,
+  useAddImageToAdMutation,
+  usePublishNewAdWithImgMutation,
 } = avitoApi;

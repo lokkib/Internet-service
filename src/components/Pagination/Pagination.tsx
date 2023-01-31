@@ -2,21 +2,26 @@ import React from 'react';
 import ReactPaginate from 'react-paginate';
 import styles from './style.module.scss';
 import GeneralFunction from '../../@types/ChangingStateProps';
+import { useFetchAllItemsQuery } from '../../redux/api/avitoApi';
 
 const Pagination: React.FC<GeneralFunction> = ({ onChangePage }) => {
-  return (
-    <ReactPaginate
-      containerClassName={styles.container}
-      className={styles.root}
-      activeClassName={styles.activeItem}
-      breakLabel="..."
-      nextLabel=">"
-      onPageChange={(e) => onChangePage && onChangePage(e.selected + 1)}
-      pageRangeDisplayed={2}
-      pageCount={3}
-      previousLabel="<"
-    />
-  );
+  const { data } = useFetchAllItemsQuery();
+  if (data) {
+    return (
+      <ReactPaginate
+        containerClassName={styles.container}
+        className={styles.root}
+        activeClassName={styles.activeItem}
+        breakLabel="..."
+        nextLabel=">"
+        onPageChange={(e) => onChangePage && onChangePage(e.selected + 1)}
+        pageRangeDisplayed={2}
+        pageCount={data.length / 4}
+        previousLabel="<"
+      />
+    );
+  }
+  return false
 };
 
 export default Pagination;
