@@ -11,6 +11,7 @@ const InputAuth: React.FC<InputProps> = ({
   value,
   onChange,
   clearInput,
+  removerError
 }) => {
   const [inputPlaceholder, setInputPlaceholder] = useState(placeholder);
 
@@ -20,7 +21,7 @@ const InputAuth: React.FC<InputProps> = ({
       onChange={onChange}
       className={styles[classType]}
       placeholder={inputPlaceholder}
-      onFocus={() => [setInputPlaceholder(''), clearInput && clearInput(value)]}
+      onFocus={() => [setInputPlaceholder(''), clearInput && clearInput(value), removerError && removerError()]}
       onBlur={() => setInputPlaceholder(placeholder)}
       name={name}
       type={type}

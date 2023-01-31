@@ -14,6 +14,7 @@ type InputProps = {
   clearInput?: (value: string) => void;
   currentUserData?: CurrentUserData;
   currentUserDataProperty?: string;
+  removerError?: () => void
 };
 
 export default InputProps;

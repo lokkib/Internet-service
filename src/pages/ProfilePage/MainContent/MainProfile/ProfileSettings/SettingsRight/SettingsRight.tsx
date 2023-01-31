@@ -37,9 +37,7 @@ const SettingsRight: React.FC<CurrentUserDataProps> = ({ currentUserData }) => {
 
   const dispatch = useDispatch();
 
-  // useEffect(() => {
-  //   dispatch(getCurrentUserData({ currentUserData: {name: currentUserData.name, surname: currentUserData.surname, phone: currentUserData.phone, city: currentUserData.city}} ))
-  // },[])
+
 
   useEffect(() => {
     dispatch(getNewCurrentUserName((currentUserData as CurrentUserData).name));
