@@ -14,6 +14,9 @@ const SignUp: React.FC<GeneralFunction> = ({
   clickSignUp,
   openSignInModalCloseSignUp,
 }) => {
+
+  const [inputErrorMail, setInputErrorMail] = useState(false);
+  const [inputErrorPassword, setInputErrorPassword] = useState(false);
   const [inputLogin, setInputLogin] = useState('');
   const [inputPassword, setInputPassword] = useState('');
   const [inputPasswordRepeat, setInputPasswordRepeat] = useState('');
@@ -35,28 +38,27 @@ const SignUp: React.FC<GeneralFunction> = ({
     })
       .unwrap()
       .catch((error) => {
-        // console.log(error);
         if (
           error.status === 422 &&
           error.data.detail[0].msg === 'value is not a valid email address'
         ) {
+          setInputErrorMail(true)
           setInputLogin('Адрес должен содержать "@" и и имя домена');
+          throw new Error
         }
-        // if(inputPassword !== inputPasswordRepeat) {
-        //   setInputPasswordType('text')
-        //   setInputPassword('Пароли должны совпадать.')
-        //   setInputPasswordRepeat('Пароли должны совпадать.')
-        // }
-
-        // if(!inputPassword && !inputPasswordRepeat) {
-        //   setInputPasswordType('text')
-        //   setInputPassword('Поле обязательно для заполнения.')
-        //   setInputPasswordRepeat('Поле обязательно для заполнения.')
-        // }
+       else if (
+        error.status === 422 &&
+        error.data.detail[0].loc[1] === "password" && error.data.detail[0].msg === "field required"
+       ) {
+        setInputPasswordType('text');
+        setInputErrorPassword(true)
+        setInputPassword('Поле обязательно для заполнения.');
+        setInputPasswordRepeat('Поле обязательно для заполнения.');
+       }
       })
 
       .then(() => {
-        // console.log(response);
+
         if (openSignInModalCloseSignUp) openSignInModalCloseSignUp();
       });
   };
@@ -73,21 +75,23 @@ const SignUp: React.FC<GeneralFunction> = ({
   };
 
   const preventingFormSubmission = (e: React.FormEvent<HTMLFormElement>) => {
-    // console.log(inputPassword);
+
     if (inputPassword !== inputPasswordRepeat) {
       e.preventDefault();
       setInputPasswordType('text');
+      setInputErrorPassword(true)
       setInputPassword('Пароли должны совпадать.');
       setInputPasswordRepeat('Пароли должны совпадать.');
-      // return false;
+
     }
 
     if (!inputPassword && !inputPasswordRepeat) {
       e.preventDefault();
       setInputPasswordType('text');
+      setInputErrorPassword(true)
       setInputPassword('Поле обязательно для заполнения.');
       setInputPasswordRepeat('Поле обязательно для заполнения.');
-      // return false;
+
     }
   };
 
@@ -100,8 +104,8 @@ const SignUp: React.FC<GeneralFunction> = ({
       className={styles.signUpWrapper}
     >
       <ButtonClose
+      onClick={closeSignUpWindow as () => void}
         closeAuthWindow={closeAuthWindow}
-        closeSignUpWindow={closeSignUpWindow}
         classType="miniCloseLine"
       />
 
@@ -113,36 +117,43 @@ const SignUp: React.FC<GeneralFunction> = ({
       >
         <AuthLogo />
         <InputAuth
+        removerError={() => setInputErrorMail(false)}
+        placeholderInput=''
           clearInput={clearInput}
           onChange={(e) => setInputLogin(e.target.value)}
           value={inputLogin}
-          classType="loginSignUp"
+          classType={inputErrorMail ? 'error' : 'loginSignUp'}
           placeholder="email"
           id="loginReg"
           name="login"
           type="text"
         />
         <InputAuth
+          removerError={() => setInputErrorPassword(false)}
+          placeholderInput=''
           clearInput={clearInput}
           onChange={(e) => setInputPassword(e.target.value)}
           value={inputPassword}
-          classType="passwordSignUp"
+          classType={inputErrorPassword ? 'error' :   'passwordSignUp'}
           placeholder="Пароль"
           id="passwordFirst"
           name="password"
           type={inputPasswordType}
         />
         <InputAuth
+          removerError={() => setInputErrorPassword(false)}
+          placeholderInput=''
           clearInput={clearInput}
           value={inputPasswordRepeat}
           onChange={(e) => setInputPasswordRepeat(e.target.value)}
-          classType="passwordSignUp"
+          classType={inputErrorPassword ? 'error' :   'passwordSignUp'}
           placeholder="Повторите пароль"
           id="passwordSecond"
           name="password"
           type={inputPasswordType}
         />
         <InputAuth
+          placeholderInput=''
           value={inputName}
           onChange={(e) => setInputName(e.target.value)}
           classType="passwordSignUp"
@@ -152,6 +163,8 @@ const SignUp: React.FC<GeneralFunction> = ({
           type="text"
         />
         <InputAuth
+
+          placeholderInput=''
           value={inputLastName}
           onChange={(e) => setInputLastName(e.target.value)}
           classType="passwordSignUp"
@@ -162,6 +175,7 @@ const SignUp: React.FC<GeneralFunction> = ({
         />
 
         <InputAuth
+          placeholderInput=''
           value=""
           onChange={(e) => setInputCity(e.target.value)}
           classType="passwordSignUp"

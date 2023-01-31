@@ -25,6 +25,11 @@
   margin-bottom: 0;
 }
 
+.error {
+  composes: login;
+  color: red
+}
+
 .loginSignUp {
   composes: login;
   margin-bottom: 38px;

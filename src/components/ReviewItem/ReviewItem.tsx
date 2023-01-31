@@ -2,6 +2,7 @@ import React from 'react';
 import styles from './style.module.scss';
 import ReviewItemProps from '../../@types/ReviewItemProps';
 
+
 const ReviewItem: React.FC<ReviewItemProps> = ({ reviewItemData }) => {
   const url = process.env.REACT_APP_API as string;
 
@@ -24,10 +25,13 @@ const ReviewItem: React.FC<ReviewItemProps> = ({ reviewItemData }) => {
           </div>
         </div>
         <div className={styles.reviewRight}>
+         
           <p className={styles.reviewAuthor}>
             {reviewItemData.author.name}
             <span>{commentedCreatedOn()}</span>
           </p>
+   
+          
           <h5 className={styles.commentaryHeading}>Комментарий</h5>
           <p className={styles.commentary}>{reviewItemData.text}</p>
         </div>

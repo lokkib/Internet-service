@@ -12,6 +12,8 @@ import { useLoginMutation } from '../../redux/api/avitoApi';
 import { getSignInState, getSignUpState } from '../../redux/slices/checkModalsSlice';
 
 const SignIn: React.FC<GeneralFunction> = ({ clickSignUp, closeSignUpWindow }) => {
+  const [inputErrorLogin, setInputErrorLogin] = useState(false);
+  const [inputErrorPassword, setInputErrorPassword] = useState(false);
   const [inputLogin, setInputLogin] = useState('');
   const [inputPassword, setInputPassword] = useState('');
   const [inputPasswordType, setInputPasswordType] = useState('password');
@@ -19,13 +21,18 @@ const SignIn: React.FC<GeneralFunction> = ({ clickSignUp, closeSignUpWindow }) =
   const navigate = useNavigate();
   const dispatch = useDispatch();
   useEffect(() => {
-    if (inputLogin && inputPassword) {
+    if (inputLogin || inputPassword) {
       setDisabled(false);
+    }
+    else {
+      setDisabled(true);
     }
   }, [inputLogin, inputPassword]);
 
+
   const [signingIn] = useLoginMutation();
   const signIn = async () => {
+    
     await signingIn({
       email: inputLogin,
       password: inputPassword,
@@ -33,21 +40,23 @@ const SignIn: React.FC<GeneralFunction> = ({ clickSignUp, closeSignUpWindow }) =
       .unwrap()
       .catch((error) => {
         setInputPasswordType('text');
-        // console.log(error);
         if (!inputLogin) {
           setInputLogin('Поле обязательно для входа.');
+          setInputErrorLogin(true)
         }
         if (!inputPassword) {
           setInputPassword('Поле обязательно для входа.');
+          setInputErrorPassword(true)
         } else {
           setInputLogin('Пользователя с таким логином не существует.');
           setInputPassword('Введен неправильный пароль.');
+          setInputErrorPassword(true)
+          setInputErrorLogin(true)
         }
 
         throw new Error(error);
       })
       .then((response) => {
-        // console.log(response);
         sessionStorage.setItem('isAuth', 'true');
         setCookie('refresh', response.refresh_token);
         setCookie('access', response.access_token);
@@ -86,26 +95,30 @@ const SignIn: React.FC<GeneralFunction> = ({ clickSignUp, closeSignUpWindow }) =
       <form className={styles.formLogin} action="">
         <AuthLogo />
         <InputAuth
+         removerError={() => setInputErrorLogin(false)}
+        placeholderInput = ''
           clearInput={clearInput}
           value={inputLogin}
           onChange={(e) => setInputLogin(e.target.value)}
-          classType="login"
+          classType={inputErrorLogin ? 'error' : 'login'}
           placeholder="email"
           id="formlogin"
           name="login"
           type="text"
         />
         <InputAuth
+        removerError  ={() => setInputErrorPassword(false)}
+          placeholderInput = ''
           clearInput={clearInput}
           value={inputPassword}
           onChange={(e) => setInputPassword(e.target.value)}
-          classType="password"
+          classType={inputErrorPassword ? 'error' : 'password'}
           placeholder="Пароль"
           id="formpassword"
           name="password"
           type={inputPasswordType}
         />
-        <ButtonSearchSave disabled={disabled} onClick={signIn} classType="signIn" text="Войти" />
+        <ButtonSearchSave disabled={disabled} onClick={signIn} classType={ disabled?  'disabledSignIn' : 'signIn'} text="Войти" />
         <div onClickCapture={() => clickSignUp && clickSignUp()}>
           <ButtonSearchSave
             onClick={closeSignInOpenSignUp}

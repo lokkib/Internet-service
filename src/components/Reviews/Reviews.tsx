@@ -14,24 +14,7 @@ import ProhibitingModalWindow from '../ProhibitingModalWindow/ProhibitingModalWi
 import backdrop from '../constants/animationConfigure';
 import { RootState } from '../../redux/store';
 
-// type Comment = {
-//   id: {id: number},
-//   body: {
-//     id: number,
-//     text: string,
-//     created_on: string,
-//     author: {
-//       id: number,
-//       name: string,
-//       email: string,
-//       city: string,
-//       avatar: string,
-//       sells_from: string,
-//       phone: string
-//     }
-//   }
 
-// }
 
 const Reviews: React.FC = () => {
   const isAuth = sessionStorage.getItem('isAuth');
@@ -66,7 +49,7 @@ const Reviews: React.FC = () => {
         throw new Error();
       })
       .then((response) => {
-        console.log(response);
+        console.log(response)
       });
   };
 

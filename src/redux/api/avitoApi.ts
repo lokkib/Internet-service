@@ -28,18 +28,6 @@ type IdFrDeleting = {
   id: string;
 };
 
-// , prepareHeaders: (headers) => {
-//   if (!headers.has("Content-Type")) {
-//     headers.set("Content-type", "multipart/form-data")
-
-//   }
-
-//   if(!headers.has("Authorization"))  {
-//     headers.set("Authorization", `Bearer ${getCookie('access')}`)
-//   }
-
-// return headers;
-// },
 
 const avitoApi = createApi({
   reducerPath: 'avitoApi',
