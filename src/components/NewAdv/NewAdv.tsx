@@ -1,5 +1,5 @@
-import React from 'react';
-import { useSelector , useDispatch } from 'react-redux';
+import React, { useState } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
 import styles from './style.module.scss';
 import ButtonClose from '../ButtonClose/ButtonClose';
 import FormNewArticleItem from '../FormNewArticleItem/FormNewArticleItem';
@@ -8,9 +8,10 @@ import FormNewArticlePhotos from '../FormNewArticlePhotos/FormNewArticlePhotos';
 import FormArticlePrice from '../FormArticlePrice/FormArticlePrice';
 import ButtonSearchSave from '../ButtonSearchSave/ButtonSearchSave';
 import GeneralFunction from '../../@types/ChangingStateProps';
-import { usePublishNewAdvMutation } from '../../redux/api/avitoApi';
+import { usePublishNewAdvMutation , usePublishNewAdWithImgMutation , useGetCurrentUserAdsQuery } from '../../redux/api/avitoApi';
 import { RootState } from '../../redux/store';
 import { successAdPublicationNotify } from '../../redux/slices/notificationsSlice';
+import {  passImg , passInfoOnPublishingWithImg } from '../../redux/slices/editingAdWithImg';
 
 const NewAdv: React.FC<GeneralFunction> = ({ closeModalNewAdv }) => {
   const newAdvParamsTitle = useSelector((state: RootState) => state.newAdvParamsTextOnly.title);
@@ -18,36 +19,70 @@ const NewAdv: React.FC<GeneralFunction> = ({ closeModalNewAdv }) => {
   const newAdvParamsDescription = useSelector(
     (state: RootState) => state.newAdvParamsTextOnly.description
   );
+  const [image, setImage] = useState<File>();
 
+  const [publishAdWithImg] = usePublishNewAdWithImgMutation();
 
   const dispatch = useDispatch();
   const [publishNewAdTextOnly] = usePublishNewAdvMutation();
 
-  // useEffect(() => {
-  //   const timer = setTimeout(() => {
-  //     if(adPublished) {
-  //       closeModalNewAdv();
-  //     }
+  const AdEditedWithImg = useSelector((state: RootState) => state.editedAd.ImgArray);
+  const adPublishedWithImgBoolean = useSelector(
+    (state: RootState) => state.editedAd.publishingWithImg
+  );
 
-  //   }, 1500);
+  const { data: currentUserAds } = useGetCurrentUserAdsQuery();
 
-  //   return () => clearTimeout(timer);
-  // }, [adPublished]);
+  const loadImageToAd = (e: React.ChangeEvent<HTMLInputElement>) => {
+    dispatch(passInfoOnPublishingWithImg(true));
+    if (e.target.files) {
+      setImage(e.target.files[0]);
+      dispatch(passImg(e.target.files[0].name));
+      console.log(e.target.files[0]);
+    }
+  };
 
-  const publishNewAd = async () => {
-    await publishNewAdTextOnly({
+  const publishNewAdOnClick = async () => {
+    const data = {
       title: newAdvParamsTitle,
       description: newAdvParamsDescription,
       price: newAdvParamsPrice,
-    })
-      .unwrap()
-      .catch(() => {
-        throw new Error();
+    };
+    if (AdEditedWithImg.length && adPublishedWithImgBoolean) {
+      const formData = new FormData();
+      formData.append('files', image);
+
+      const finalData = {
+        data,
+        formData,
+      };
+
+      await publishAdWithImg(finalData)
+        .unwrap()
+        .catch(() => {
+          throw new Error();
+        })
+        .then(() => {
+          console.log(currentUserAds);
+          closeModalNewAdv();
+          dispatch(passInfoOnPublishingWithImg(false));
+          dispatch(successAdPublicationNotify(true));
+        });
+    } else {
+      await publishNewAdTextOnly({
+        title: newAdvParamsTitle,
+        description: newAdvParamsDescription,
+        price: newAdvParamsPrice,
       })
-      .then(() => {
-        closeModalNewAdv();
-        dispatch(successAdPublicationNotify(true));
-      });
+        .unwrap()
+        .catch(() => {
+          throw new Error();
+        })
+        .then(() => {
+          closeModalNewAdv();
+          dispatch(successAdPublicationNotify(true));
+        });
+    }
   };
 
   return (
@@ -60,9 +95,9 @@ const NewAdv: React.FC<GeneralFunction> = ({ closeModalNewAdv }) => {
         <form className={styles.advSettingsForm} action="">
           <FormNewArticleItem value="" placeholder="Введите название" />
           <FormDescriptionItem value="" />
-          <FormNewArticlePhotos />
+          <FormNewArticlePhotos loadImageToAd={loadImageToAd} />
           <FormArticlePrice value="" />
-          <ButtonSearchSave onClick={publishNewAd} classType="publish" text="Опубликовать" />
+          <ButtonSearchSave onClick={publishNewAdOnClick} classType="publish" text="Опубликовать" />
         </form>
       </div>
     </div>

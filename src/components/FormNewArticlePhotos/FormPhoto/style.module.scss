@@ -7,6 +7,12 @@
   cursor: pointer;
 }
 
+.photoBlock input {
+  height: 100%;
+  width: 100%;
+  opacity: 0;
+}
+
 .photoCover {
   position: absolute;
   width: 100%;

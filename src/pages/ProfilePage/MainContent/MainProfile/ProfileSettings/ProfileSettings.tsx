@@ -26,9 +26,6 @@ const ProfileSettings: React.FC = () => {
 
   useEffect(() => {
     if (data) {
-      console.log(data);
-      console.log(checkingProperties(data));
-
       dispatch(
         getCurrentUserData({
           name: data.name,

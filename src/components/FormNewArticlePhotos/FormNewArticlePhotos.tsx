@@ -2,7 +2,7 @@ import React from 'react';
 import FormPhoto from './FormPhoto/FormPhoto';
 import styles from './style.module.scss';
 
-const FormNewArticlePhotos: React.FC = () => {
+const FormNewArticlePhotos: React.FC = ({ loadImageToAd }) => {
   return (
     <div className={styles.formNewArticleWrapper}>
       <p className={styles.formNewArticleParagraph}>
@@ -10,11 +10,11 @@ const FormNewArticlePhotos: React.FC = () => {
         <span>не более 5 фотографий</span>
       </p>
       <div className={styles.formNewArticlePhotoBlock}>
-        <FormPhoto />
-        <FormPhoto />
-        <FormPhoto />
-        <FormPhoto />
-        <FormPhoto />
+        <FormPhoto loadImageToAd={loadImageToAd} />
+        <FormPhoto loadImageToAd={loadImageToAd} />
+        <FormPhoto loadImageToAd={loadImageToAd} />
+        <FormPhoto loadImageToAd={loadImageToAd} />
+        <FormPhoto loadImageToAd={loadImageToAd} />
       </div>
     </div>
   );

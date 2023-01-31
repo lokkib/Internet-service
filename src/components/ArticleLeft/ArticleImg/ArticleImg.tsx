@@ -3,11 +3,12 @@ import { useSelector, useDispatch } from 'react-redux';
 import ImagesInfo from '../../../@types/ImageLinksProps';
 import styles from './style.module.scss';
 import { sendActiveImg } from '../../../redux/slices/openNewImg';
+import { RootState } from '../../../redux/store';
 
 const ArticleImg: React.FC<ImagesInfo> = ({ imgLinks }) => {
   const [defaultImg, setDefaultImg] = useState(imgLinks.length ? imgLinks[0].url : '');
   const [mainImageUrl, setMainImageUrl] = useState('');
-  const imageSelected = useSelector((state) => state.activeImg.imageId);
+  const imageSelected = useSelector((state: RootState) => state.activeImg.imageId);
 
   const dispatch = useDispatch();
   useEffect(() => {

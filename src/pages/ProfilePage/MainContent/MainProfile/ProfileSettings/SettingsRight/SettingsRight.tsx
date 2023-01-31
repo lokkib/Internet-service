@@ -21,8 +21,6 @@ const SettingsRight: React.FC<CurrentUserDataProps> = ({ currentUserData }) => {
   );
   const newDataUser = useSelector((state: RootState) => state.currentUserData.newCurrentUserData);
 
-  console.log({ ...newDataUser });
-
   const saveUserNewData = async () => {
     await sendNewData({
       ...newDataUser,
