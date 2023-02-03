@@ -4,13 +4,31 @@
   margin-right: 10px;
   position: relative;
   z-index: 0;
-  cursor: pointer;
+
 }
 
-.photoBlock input {
+
+.input {
   height: 100%;
   width: 100%;
   opacity: 0;
+
+  cursor: pointer;
+}
+
+.inputHidden{
+  opacity: 0;
+  cursor: pointer;
+
+}
+
+.photoBlock img {
+  position: relative;
+    bottom: 21px;
+  display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
 }
 
 .photoCover {
@@ -45,3 +63,5 @@
     right: calc(50% - (30px / 2));
   }
 }
+
+

@@ -31,7 +31,10 @@ const SellerArticlePage: React.FC = () => {
     if (isAuth) {
       setNewAdvOpen(true);
     }
-    setNewAdvClosed(true);
+    else {
+      setNewAdvClosed(true);
+    }
+   
   };
 
   const closeModalNewAdv = () => {
@@ -60,6 +63,8 @@ const SellerArticlePage: React.FC = () => {
   useEffect(() => {
     const timer = setTimeout(() => {
       setNewAdvClosed(false);
+   
+    
     }, 1500);
 
     return () => clearTimeout(timer);
@@ -79,6 +84,7 @@ const SellerArticlePage: React.FC = () => {
       <AnimatePresence>
         {newAdv && (
           <motion.div
+          key={0}
             variants={backdrop}
             initial="hidden"
             animate="visible"
@@ -90,6 +96,7 @@ const SellerArticlePage: React.FC = () => {
         )}
         {newAdvIsClosed && (
           <motion.div
+          key={1}
             variants={backdrop}
             initial="hidden"
             animate="visible"
@@ -101,6 +108,7 @@ const SellerArticlePage: React.FC = () => {
         )}
         {isReviewsOpen && (
           <motion.div
+          key={2}
             variants={backdrop}
             initial="hidden"
             animate="visible"
@@ -112,6 +120,7 @@ const SellerArticlePage: React.FC = () => {
         )}
         {openSignInModal && (
           <motion.div
+          key={3}
             variants={backdrop}
             initial="hidden"
             animate="visible"

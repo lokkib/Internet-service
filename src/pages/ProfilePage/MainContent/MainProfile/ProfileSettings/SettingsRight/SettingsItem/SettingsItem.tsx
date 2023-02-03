@@ -20,8 +20,6 @@ const SettingsItem: React.FC<SettingItemProps> = ({
         value={currentUserDataProperty}
         placeholderInput={labelText}
         onChange={onChange}
-        // value={currentUserDataProperty}
-        // currentUserDataProperty={currentUserDataProperty}
         classType={classType}
         id={labelFor}
       />

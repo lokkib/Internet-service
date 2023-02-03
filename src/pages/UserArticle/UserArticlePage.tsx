@@ -19,9 +19,11 @@ import {
 const UserArticlePage: React.FC = () => {
   const [newAdv, setNewAdvOpen] = useState(false);
   const [AdvEdit, setAdvEditOpen] = useState(false);
+  const [, setNewAdvClosed] = useState(false);
   const UsersAdPublished = useSelector((state: RootState) => state.notifications.AdPublished);
   const isReviewsOpen = useSelector((state: RootState) => state.modalsState.reviews);
   const UsersAdEdited = useSelector((state: RootState) => state.notifications.AdEdited);
+  const isAuth = sessionStorage.getItem('isAuth');
   const successDeletionNotification = useSelector(
     (state: RootState) => state.notifications.AdDeletionSuccess
   );
@@ -35,8 +37,12 @@ const UserArticlePage: React.FC = () => {
   };
 
   const openModalNewAdv = () => {
-    setNewAdvOpen(true);
+    if (isAuth) {
+      setNewAdvOpen(true);
+    }
+    setNewAdvClosed(true);
   };
+
 
   const closeModalNewAdv = () => {
     setNewAdvOpen(false);
@@ -55,9 +61,10 @@ const UserArticlePage: React.FC = () => {
   }, [UsersAdEdited]);
 
   useEffect(() => {
+    closeModalNewAdv();
     const timer = setTimeout(() => {
       if (UsersAdPublished) {
-        closeModalNewAdv();
+       
         dispatch(successAdPublicationNotify(false));
       }
     }, 1500);
@@ -138,7 +145,7 @@ const UserArticlePage: React.FC = () => {
         )}
         {successDeletionNotification && (
           <motion.div
-            key={5}
+            key={7}
             variants={backdrop}
             initial="hidden"
             animate="visible"

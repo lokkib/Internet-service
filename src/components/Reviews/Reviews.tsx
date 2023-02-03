@@ -13,8 +13,8 @@ import { reviewItemData } from '../../@types/ReviewItemProps';
 import ProhibitingModalWindow from '../ProhibitingModalWindow/ProhibitingModalWindow';
 import backdrop from '../constants/animationConfigure';
 import { RootState } from '../../redux/store';
-
-
+import { getComment } from '../../redux/slices/getCommentSlice';
+import { passItemDescription } from '../../redux/slices/passNewAdvParamsTextOnly';
 
 const Reviews: React.FC = () => {
   const isAuth = sessionStorage.getItem('isAuth');
@@ -50,6 +50,8 @@ const Reviews: React.FC = () => {
       })
       .then((response) => {
         console.log(response)
+        dispatch(getComment(''))
+        dispatch(passItemDescription(''));
       });
   };
 
@@ -93,7 +95,7 @@ const Reviews: React.FC = () => {
           <ButtonClose onClick={closeReviews} classType="closeLine" />
           <div className={styles.reviewsScroll}>
             <form className={styles.advSettingsForm}>
-              <FormDescriptionItem />
+              <FormDescriptionItem value={stringComment} />
               <ButtonSearchSave onClick={createComment} classType="publish" text="Опубликовать" />
             </form>
             <div className={styles.reviews}>

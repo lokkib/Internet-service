@@ -16,12 +16,12 @@ const Pagination: React.FC<GeneralFunction> = ({ onChangePage }) => {
         nextLabel=">"
         onPageChange={(e) => onChangePage && onChangePage(e.selected + 1)}
         pageRangeDisplayed={2}
-        pageCount={data.length / 4}
+        pageCount={Math.ceil(data.length / 4)}
         previousLabel="<"
       />
     );
   }
-  return false
+  return null
 };
 
 export default Pagination;

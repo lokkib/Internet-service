@@ -12,7 +12,6 @@ const Header: React.FC<HeaderProps> = ({ classType, openModalNewAdv, clickEnterA
   const navigatingToMyAccount = () => {
     if (isAuth) {
       navigate('/my-account');
-      // console.log(isAuth);
     } else if (clickEnterAccount) {
       clickEnterAccount();
     }

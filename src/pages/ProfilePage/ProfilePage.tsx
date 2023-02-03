@@ -12,6 +12,7 @@ import { checkisDataChanged } from '../../redux/slices/detectUserDataChangeSlice
 import { getInputValue } from '../../redux/slices/searchSlice';
 import ProhibitingModalWindow from '../../components/ProhibitingModalWindow/ProhibitingModalWindow';
 import { successAdPublicationNotify } from '../../redux/slices/notificationsSlice';
+import currentData2, { newEditedData } from '../../@types/CurrentUsersData';
 
 const ProfilePage: React.FC = () => {
   const currentData = useSelector((state: RootState) => state.currentUserData.currentUserData);
@@ -21,12 +22,12 @@ const ProfilePage: React.FC = () => {
 
   const dispatch = useDispatch();
 
-  const comparingCurrentAndNewUserData = (data, data2) => {
+  const comparingCurrentAndNewUserData = (data: currentData2, data2: newEditedData) => {
     let isChanged;
     const keys1 = Object.keys(data);
 
     for (const key of keys1) {
-      if (data[key] !== data2[key]) {
+      if (data[key as keyof currentData2 ] !== data2[key as keyof newEditedData]) {
         isChanged = true;
         dispatch(checkisDataChanged(isChanged));
         break;

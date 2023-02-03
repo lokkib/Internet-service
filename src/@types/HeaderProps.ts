@@ -1,6 +1,7 @@
 type HeaderProps = {
   classType?: string;
-  openModalNewAdv?: () => void;
+  openModalNewAdv: () => void;
+  clickEnterAccount?: () => void;
 };
 
 export default HeaderProps;

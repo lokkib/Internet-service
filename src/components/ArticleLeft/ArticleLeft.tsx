@@ -5,7 +5,10 @@ import ArticleImgBar from './ArticleImgBar/ArticleImgBar';
 import ContentCardsProps from '../../@types/ContentCardsProps';
 
 const ArticleLeft: React.FC<ContentCardsProps> = ({ itemDetails }) => {
+
+  
   if (itemDetails) {
+    console.log(itemDetails)
     return (
       <div className={styles.leftWrapper}>
         <div className={styles.leftImg}>
@@ -15,7 +18,7 @@ const ArticleLeft: React.FC<ContentCardsProps> = ({ itemDetails }) => {
       </div>
     );
   }
-  return 0;
+  return null;
 };
 
 export default ArticleLeft;

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState ,useEffect} from 'react';
 import { motion } from 'framer-motion';
 import AuthLogo from '../SignIn/AuthLogo/AuthLogo';
 import InputAuth from '../SignIn/InputAuth/InputAuth';
@@ -23,10 +23,22 @@ const SignUp: React.FC<GeneralFunction> = ({
   const [inputName, setInputName] = useState('');
   const [inputLastName, setInputLastName] = useState('');
   const [inputCity, setInputCity] = useState('');
-
+  const [disabled, setDisabled] = useState(true);
   const [inputPasswordType, setInputPasswordType] = useState('password');
 
   const [signUp] = useSignupMutation();
+
+
+  useEffect(() => {
+    if (inputLogin && inputPassword) {
+      setDisabled(false);
+    }
+    else {
+      setDisabled(true);
+    }
+  }, [inputLogin, inputPassword]);
+
+
 
   const handleSigngUp = async () => {
     await signUp({
@@ -185,7 +197,7 @@ const SignUp: React.FC<GeneralFunction> = ({
           type="text"
         />
         <div onClickCapture={() => [clickSignUp && clickSignUp(), handleSigngUp()]}>
-          <ButtonSearchSave classType="signUpButton" text="Зарегистрироваться" />
+          <ButtonSearchSave disabled={disabled} classType={disabled?  'disabledSignIn' : 'signUpButton'} text="Зарегистрироваться" />
         </div>
       </form>
     </motion.div>

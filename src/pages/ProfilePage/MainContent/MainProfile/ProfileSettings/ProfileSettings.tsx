@@ -13,12 +13,12 @@ const ProfileSettings: React.FC = () => {
   const dispatch = useDispatch();
 
   const checkingProperties = (data2: CurrentUserData) => {
-    const newData = {};
+    const newData = {...data2};
     for (const key in data2) {
-      if (!data2[key]) {
+      if (!data2[key as keyof CurrentUserData]) {
         newData[key] = '';
       } else {
-        newData[key] = data2[key];
+        newData[key as keyof CurrentUserData] = data2[key as keyof CurrentUserData];
       }
     }
     return newData;
