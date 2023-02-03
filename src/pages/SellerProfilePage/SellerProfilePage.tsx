@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { useDispatch } from 'react-redux';
+import { useDispatch , useSelector } from 'react-redux';
 import Header from '../../components/Header/Header';
 import MainContent from './MainContent/MainContent';
 import NewAdv from '../../components/NewAdv/NewAdv';
@@ -10,23 +10,18 @@ import SignUp from '../../components/SignUp/SignUp';
 import backdrop from '../../components/constants/animationConfigure';
 import ProhibitingModalWindow from '../../components/ProhibitingModalWindow/ProhibitingModalWindow';
 import { getInputValue } from '../../redux/slices/searchSlice';
+import { RootState } from '../../redux/store';
 
 const SellerProfilePage: React.FC = () => {
   const [newAdv, setNewAdvOpen] = useState(false);
   const [openSignInModal, setOpenSignInModal] = useState(false);
   const [openSignUpModal, setOpenSignUpModal] = useState(false);
   const [newAdvIsClosed, setNewAdvClosed] = useState(false);
-
+  const UsersAdPublished = useSelector((state: RootState) => state.notifications.AdPublished);
   const dispatch = useDispatch();
   const isAuth = sessionStorage.getItem('isAuth');
 
-  useEffect(() => {
-    const timer = setTimeout(() => {
-      setNewAdvClosed(false);
-    }, 1500);
 
-    return () => clearTimeout(timer);
-  }, [newAdvIsClosed]);
 
   useEffect(() => {
     dispatch(getInputValue(''));
@@ -59,12 +54,25 @@ const SellerProfilePage: React.FC = () => {
     if (isAuth) {
       setNewAdvOpen(true);
     }
-    setNewAdvClosed(true);
+    else {
+      setNewAdvClosed(true);
+    }
+   
   };
 
   const closeModalNewAdv = () => {
     setNewAdvOpen(false);
   };
+
+
+  useEffect(() => {
+    closeModalNewAdv()
+    const timer = setTimeout(() => {
+      setNewAdvClosed(false)
+    }, 1500);
+
+    return () => clearTimeout(timer);
+  }, [newAdvIsClosed]);
 
   return (
     <motion.div
@@ -74,6 +82,18 @@ const SellerProfilePage: React.FC = () => {
       transition={{ duration: 1 }}
     >
       <AnimatePresence>
+      {UsersAdPublished && (
+          <motion.div
+            key={1}
+            variants={backdrop}
+            initial="hidden"
+            animate="visible"
+            exit="exit"
+            className={UsersAdPublished ? styles.modalReviewsBlock : styles.modalDisplayNone}
+          >
+            <ProhibitingModalWindow checkMark prohibitingText="Объявление успешно размещено." />
+          </motion.div>
+        )}
         {newAdvIsClosed && (
           <motion.div
             variants={backdrop}

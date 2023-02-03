@@ -19,10 +19,8 @@ const MainArticle: React.FC<MainArticleProps> = ({ onlyOneButton, openModalAdvEd
   useEffect(() => {
     if (data) {
       setItemDetails(data);
-      // if(!data.user.phone) {
       dispatch(getPhone('Телефон отсутствует'));
-      // }
-      // dispatch(getPhone(data.user.phone));
+     
     }
   }, [data]);
 

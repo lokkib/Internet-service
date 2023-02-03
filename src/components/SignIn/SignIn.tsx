@@ -21,7 +21,7 @@ const SignIn: React.FC<GeneralFunction> = ({ clickSignUp, closeSignUpWindow }) =
   const navigate = useNavigate();
   const dispatch = useDispatch();
   useEffect(() => {
-    if (inputLogin || inputPassword) {
+    if (inputLogin && inputPassword) {
       setDisabled(false);
     }
     else {

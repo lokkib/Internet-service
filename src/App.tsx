@@ -20,12 +20,12 @@ const App: React.FC = () => {
   useEffect(() => {
     const timer = setInterval(() => {
       if (sessionStorage.getItem('isAuth')) {
-        // console.log(sessionStorage.getItem);
+
         const token = getCookie('access');
         const decodedToken = jwt_decode<MyToken>(token as string);
         const dateNow = new Date();
         if (decodedToken.exp * 1000 < dateNow.getTime()) {
-          // console.log('токен истек');
+     
           dispatch(checkToken(false));
           const getNewToken = async () => {
             await refreshToken({

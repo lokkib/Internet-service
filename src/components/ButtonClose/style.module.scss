@@ -30,6 +30,59 @@
   background-color: #0080c1;
 }
 
+.closeLine::after {
+  transform: rotate(-45deg);
+  content: '';
+  position: absolute;
+  width: 30px;
+  height: 2px;
+  border-radius: 2px;
+  background-color: #d9d9d9;
+  top: 47%;
+  right: -4px;
+}
+
+.closeLine:hover::after {
+  background-color: #0080c1;
+}
+
+.deleteImg {
+  composes: closeLine;
+  top: 20px;
+    right: 20px;
+}
+
+.deleteImg::before {
+  transform: rotate(45deg);
+  content: '';
+  position: absolute;
+  width: 15px;
+  height: 2px;
+  border-radius: 2px;
+  background-color: #0080c1;
+  top: 47%;
+  right: -4px;
+}
+
+
+
+
+.deleteImg::after {
+  transform: rotate(-45deg);
+  content: '';
+  position: absolute;
+  width: 15px;
+  height: 2px;
+  border-radius: 2px;
+  background-color: #0080c1;
+  top: 47%;
+  right: -4px;
+}
+
+
+
+
+
 .miniCloseLine::before {
   transform: rotate(45deg);
   content: '';
@@ -46,21 +99,7 @@
   background-color: #0080c1;
 }
 
-.closeLine::after {
-  transform: rotate(-45deg);
-  content: '';
-  position: absolute;
-  width: 30px;
-  height: 2px;
-  border-radius: 2px;
-  background-color: #d9d9d9;
-  top: 47%;
-  right: -4px;
-}
 
-.closeLine:hover::after {
-  background-color: #0080c1;
-}
 
 .miniCloseLine::after {
   transform: rotate(-45deg);

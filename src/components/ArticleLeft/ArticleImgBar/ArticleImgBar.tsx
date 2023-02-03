@@ -1,14 +1,14 @@
 import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import styles from './style.module.scss';
-import ImagesInfo from '../../../@types/ImageLinksProps';
+import ImagesInfo, { ImgLink } from '../../../@types/ImageLinksProps';
 import { sendActiveImg } from '../../../redux/slices/openNewImg';
 
 const ArticleImgBar: React.FC<ImagesInfo> = ({ imgLinks }) => {
-  const [selected, setSelected] = useState(null);
+  const [selected, setSelected] = useState<number>();
 
   const dispatch = useDispatch();
-  const clickImg = (id, elem) => {
+  const clickImg = (id: number, elem: ImgLink) => {
     dispatch(sendActiveImg(elem));
     setSelected(id);
   };

@@ -8,7 +8,7 @@ import FormNewArticlePhotos from '../FormNewArticlePhotos/FormNewArticlePhotos';
 import FormArticlePrice from '../FormArticlePrice/FormArticlePrice';
 import ButtonSearchSave from '../ButtonSearchSave/ButtonSearchSave';
 import GeneralFunction from '../../@types/ChangingStateProps';
-import { usePublishNewAdvMutation , usePublishNewAdWithImgMutation , useGetCurrentUserAdsQuery } from '../../redux/api/avitoApi';
+import { usePublishNewAdvMutation , usePublishNewAdWithImgMutation  } from '../../redux/api/avitoApi';
 import { RootState } from '../../redux/store';
 import { successAdPublicationNotify } from '../../redux/slices/notificationsSlice';
 import {  passImg , passInfoOnPublishingWithImg } from '../../redux/slices/editingAdWithImg';
@@ -19,7 +19,7 @@ const NewAdv: React.FC<GeneralFunction> = ({ closeModalNewAdv }) => {
   const newAdvParamsDescription = useSelector(
     (state: RootState) => state.newAdvParamsTextOnly.description
   );
-  const [image, setImage] = useState<File>();
+  const [file, setFile] = useState<Blob>();
 
   const [publishAdWithImg] = usePublishNewAdWithImgMutation();
 
@@ -31,14 +31,13 @@ const NewAdv: React.FC<GeneralFunction> = ({ closeModalNewAdv }) => {
     (state: RootState) => state.editedAd.publishingWithImg
   );
 
-  const { data: currentUserAds } = useGetCurrentUserAdsQuery();
 
   const loadImageToAd = (e: React.ChangeEvent<HTMLInputElement>) => {
     dispatch(passInfoOnPublishingWithImg(true));
     if (e.target.files) {
-      setImage(e.target.files[0]);
-      dispatch(passImg(e.target.files[0].name));
-      console.log(e.target.files[0]);
+      setFile(e.target.files[0]);
+      const objectUrl = URL.createObjectURL(e.target.files[0]);
+      dispatch(passImg(objectUrl));
     }
   };
 
@@ -50,7 +49,10 @@ const NewAdv: React.FC<GeneralFunction> = ({ closeModalNewAdv }) => {
     };
     if (AdEditedWithImg.length && adPublishedWithImgBoolean) {
       const formData = new FormData();
-      formData.append('files', image);
+      if(file) {
+        formData.append('files', file);
+      }
+    
 
       const finalData = {
         data,
@@ -63,8 +65,10 @@ const NewAdv: React.FC<GeneralFunction> = ({ closeModalNewAdv }) => {
           throw new Error();
         })
         .then(() => {
-          console.log(currentUserAds);
-          closeModalNewAdv();
+          if(closeModalNewAdv) {
+            closeModalNewAdv();
+          }
+         
           dispatch(passInfoOnPublishingWithImg(false));
           dispatch(successAdPublicationNotify(true));
         });
@@ -79,7 +83,10 @@ const NewAdv: React.FC<GeneralFunction> = ({ closeModalNewAdv }) => {
           throw new Error();
         })
         .then(() => {
-          closeModalNewAdv();
+          if( closeModalNewAdv) {
+            closeModalNewAdv();
+          }
+     
           dispatch(successAdPublicationNotify(true));
         });
     }
@@ -90,7 +97,7 @@ const NewAdv: React.FC<GeneralFunction> = ({ closeModalNewAdv }) => {
       <div className={styles.newAdvContent}>
         <h3 className={styles.advHeading}>Новое объявление</h3>
 
-        <ButtonClose onClick={closeModalNewAdv} classType="closeLine" />
+        <ButtonClose onClick={closeModalNewAdv as () => void} classType="closeLine" />
 
         <form className={styles.advSettingsForm} action="">
           <FormNewArticleItem value="" placeholder="Введите название" />
