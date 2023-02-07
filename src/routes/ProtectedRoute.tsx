@@ -1,6 +1,6 @@
 import { Navigate } from 'react-router-dom';
 import React from 'react';
-import ProtectedRouteProps from '../@types/PtotectedRouteProps';
+import ProtectedRouteProps from '../@types/props/PtotectedRouteProps';
 
 const ProtectedRoute: React.FC<ProtectedRouteProps> = ({ children }) => {
   const isLoggedIn = sessionStorage.getItem('isAuth');

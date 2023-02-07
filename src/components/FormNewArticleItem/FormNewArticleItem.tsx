@@ -2,12 +2,10 @@ import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
 
 import styles from './style.module.scss';
-import FormNewArticleProps from '../../@types/FormNewArticleProps';
-import { passItemTitle } from '../../redux/slices/passNewAdvParamsTextOnly';
-
+import FormNewArticleProps from '../../@types/props/FormNewArticleProps';
+import { passItemTitle } from '../../redux/slices/passNewAdParamsTextOnly';
 
 const FormNewArticleItem: React.FC<FormNewArticleProps> = ({ placeholder, value }) => {
-
   const [inputValue, setInputValue] = useState(value || '');
 
   const dispatch = useDispatch();

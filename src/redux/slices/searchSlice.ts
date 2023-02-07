@@ -1,15 +1,9 @@
 import { createSlice } from '@reduxjs/toolkit';
 import type { PayloadAction } from '@reduxjs/toolkit';
-import { Items } from '../../@types/ContentCardsProps';
+import { Items } from '../../@types/props/ContentCardsProps';
+import FilteredAds from '../../@types/slices/FilteredAds';
 
-type SearchState = {
-  allItems: Items[];
-  inputValue: string;
-  filteredItems: Items[];
-  notFound: boolean;
-};
-
-const initialState: SearchState = {
+const initialState: FilteredAds = {
   allItems: [],
   inputValue: '',
   filteredItems: [],

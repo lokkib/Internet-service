@@ -1,8 +1,7 @@
 import React from 'react';
 
 import styles from './style.module.scss';
-import ButtonSearchSaveProps from '../../@types/ButtonSearchSaveProps';
-
+import ButtonSearchSaveProps from '../../@types/props/ButtonSearchSaveProps';
 
 const ButtonSearchSave: React.FC<ButtonSearchSaveProps> = ({
   text,
@@ -11,8 +10,6 @@ const ButtonSearchSave: React.FC<ButtonSearchSaveProps> = ({
   onClick,
   disabled,
 }) => {
- 
-
   return (
     <button
       disabled={disabled && disabled}

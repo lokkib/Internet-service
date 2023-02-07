@@ -9,25 +9,24 @@ import ButtonSearchSave from '../ButtonSearchSave/ButtonSearchSave';
 import ReviewItem from '../ReviewItem/ReviewItem';
 import { useGetItemCommentsQuery, useCreateCommenttoTheAdMutation } from '../../redux/api/avitoApi';
 import { getReviewsState } from '../../redux/slices/checkModalsSlice';
-import { reviewItemData } from '../../@types/ReviewItemProps';
-import ProhibitingModalWindow from '../ProhibitingModalWindow/ProhibitingModalWindow';
-import backdrop from '../constants/animationConfigure';
+import { reviewItemData } from '../../@types/props/ReviewItemProps';
+import ProhibitingModalWindow from '../NotifyingModalWindow/NotifyingModalWindow';
+import backdrop from '../../constants/animationConfigure';
 import { RootState } from '../../redux/store';
 import { getComment } from '../../redux/slices/getCommentSlice';
-import { passItemDescription } from '../../redux/slices/passNewAdvParamsTextOnly';
+import { passItemDescription } from '../../redux/slices/passNewAdParamsTextOnly';
 
 const Reviews: React.FC = () => {
-  const isAuth = sessionStorage.getItem('isAuth');
-
-  const [prohibitingMakingComment, setProhibitingMakingComment] = useState(false);
-  const { id } = useParams();
-  const { data, isLoading } = useGetItemCommentsQuery(id);
-
-  const newId = Number(id);
-
+  const isLoggedIn = sessionStorage.getItem('isAuth');
   const commentText = useSelector((state: RootState) => state.comment.text);
 
   const stringComment = commentText as string;
+  const [prohibitingMakingComment, setProhibitingMakingComment] = useState(false);
+  const { id } = useParams();
+  const { data, isLoading } = useGetItemCommentsQuery(id);
+  const [comment, setComment] = useState<string>(stringComment);
+
+  const newId = Number(id);
 
   const [sendComment] = useCreateCommenttoTheAdMutation();
 
@@ -37,22 +36,26 @@ const Reviews: React.FC = () => {
   };
 
   const createComment = async () => {
-    if (!isAuth) {
+    if (!isLoggedIn) {
       setProhibitingMakingComment(true);
-    }
-    await sendComment({
-      id: newId,
-      text: stringComment,
-    })
-      .unwrap()
-      .catch(() => {
-        throw new Error();
+    } else {
+      await sendComment({
+        id: newId,
+        text: stringComment,
       })
-      .then((response) => {
-        console.log(response)
-        dispatch(getComment(''))
-        dispatch(passItemDescription(''));
-      });
+        .unwrap()
+        .catch(() => {
+          throw new Error();
+        })
+        .then((response) => {
+          console.log(response);
+          dispatch(getComment(''));
+          dispatch(passItemDescription(''));
+          setComment(() => {
+            return '';
+          });
+        });
+    }
   };
 
   useEffect(() => {
@@ -64,7 +67,11 @@ const Reviews: React.FC = () => {
   }, [prohibitingMakingComment]);
 
   if (isLoading) {
-    return <>Загрузка...</>;
+    return (
+      <div className={styles.loadingSpinnerWrapper}>
+        <div className={styles.loadingSpinner} />
+      </div>
+    );
   }
 
   return (
@@ -85,7 +92,7 @@ const Reviews: React.FC = () => {
               prohibitingMakingComment ? styles.modalReviewsBlock : styles.modalDisplayNone
             }
           >
-            <ProhibitingModalWindow prohibitingText="Только авторизованные пользователи могут оставлять комментарии." />
+            <ProhibitingModalWindow notifyingText="Только авторизованные пользователи могут оставлять комментарии." />
           </motion.div>
         )}
       </AnimatePresence>
@@ -95,12 +102,12 @@ const Reviews: React.FC = () => {
           <ButtonClose onClick={closeReviews} classType="closeLine" />
           <div className={styles.reviewsScroll}>
             <form className={styles.advSettingsForm}>
-              <FormDescriptionItem value={stringComment} />
+              <FormDescriptionItem value={comment} />
               <ButtonSearchSave onClick={createComment} classType="publish" text="Опубликовать" />
             </form>
             <div className={styles.reviews}>
-              {data.map((comment: reviewItemData) => {
-                return <ReviewItem reviewItemData={comment} key={comment.id} />;
+              {data.map((userComment: reviewItemData) => {
+                return <ReviewItem reviewItemData={userComment} key={userComment.id} />;
               })}
             </div>
           </div>

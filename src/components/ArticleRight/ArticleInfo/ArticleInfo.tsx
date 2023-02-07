@@ -1,12 +1,11 @@
 import React from 'react';
 import { useDispatch } from 'react-redux';
 import styles from './style.module.scss';
-import MainArticleProps from '../../../@types/MainArticleProps';
+import MainArticleProps from '../../../@types/props/MainArticleProps';
 import { getReviewsState } from '../../../redux/slices/checkModalsSlice';
 
 const ArticleInfo: React.FC<MainArticleProps> = ({ itemDetails }) => {
   const dispatch = useDispatch();
-  // const {data} = useGetItemCommentsQuery(item)
 
   const openReviews = () => {
     dispatch(getReviewsState(true));

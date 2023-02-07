@@ -1,13 +1,8 @@
 import { createSlice } from '@reduxjs/toolkit';
 import type { PayloadAction } from '@reduxjs/toolkit';
+import ModalsState from '../../@types/slices/ModalState';
 
-type ModalState = {
-  reviews: boolean;
-  signIn: boolean;
-  signup: boolean;
-};
-
-const initialState: ModalState = {
+const initialState: ModalsState = {
   reviews: false,
   signIn: false,
   signup: false,

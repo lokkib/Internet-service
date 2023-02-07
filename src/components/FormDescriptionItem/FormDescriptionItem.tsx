@@ -1,11 +1,14 @@
 import React, { useState } from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import styles from './style.module.scss';
-import FormNewArticleProps from '../../@types/FormNewArticleProps';
-import { passItemDescription } from '../../redux/slices/passNewAdvParamsTextOnly';
+import FormNewArticleProps from '../../@types/props/FormNewArticleProps';
+import { passItemDescription } from '../../redux/slices/passNewAdParamsTextOnly';
 import { getComment } from '../../redux/slices/getCommentSlice';
 
+import { RootState } from '../../redux/store';
+
 const FormDescriptionItem: React.FC<FormNewArticleProps> = ({ value }) => {
+  const commentText = useSelector((state: RootState) => state.comment.text);
   const [textArea, setTextArea] = useState(value || '');
   const [textAreaPlaceholder, setTextAreaPlaceholder] = useState('Введите описание');
   const dispatch = useDispatch();
@@ -22,7 +25,7 @@ const FormDescriptionItem: React.FC<FormNewArticleProps> = ({ value }) => {
         Описание
       </label>
       <textarea
-        value={textArea}
+        value={textArea && commentText}
         onFocus={() => setTextAreaPlaceholder('')}
         onBlur={() => setTextAreaPlaceholder('Введите описание')}
         onChange={(e) => passDescription(e)}

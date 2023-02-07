@@ -1,6 +1,5 @@
 type ProtectedRouteProps = {
-  children: Element;
-  isLoggedIn: string | null;
+  children: JSX.Element;
 };
 
 export default ProtectedRouteProps;

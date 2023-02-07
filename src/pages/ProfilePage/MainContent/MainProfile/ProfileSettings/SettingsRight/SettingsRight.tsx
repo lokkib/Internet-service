@@ -3,7 +3,10 @@ import { useDispatch, useSelector } from 'react-redux';
 import styles from './style.module.scss';
 import ButtonSearchSave from '../../../../../../components/ButtonSearchSave/ButtonSearchSave';
 import SettingsItem from './SettingsItem/SettingsItem';
-import { CurrentUserDataProps, CurrentUserData } from '../../../../../../@types/CurrentUserData';
+import {
+  CurrentUserDataProps,
+  CurrentUserData,
+} from '../../../../../../@types/props/CurrentUserDataProps';
 import {
   getNewCurrentUserName,
   getNewCurrentUserSurName,
@@ -12,6 +15,7 @@ import {
 } from '../../../../../../redux/slices/detectUserDataChangeSlice';
 import { RootState } from '../../../../../../redux/store';
 import { useChangeCurrentUserDataMutation } from '../../../../../../redux/api/avitoApi';
+import api from '../../../../../../constants/api';
 
 const SettingsRight: React.FC<CurrentUserDataProps> = ({ currentUserData }) => {
   const [sendNewData] = useChangeCurrentUserDataMutation();
@@ -36,8 +40,6 @@ const SettingsRight: React.FC<CurrentUserDataProps> = ({ currentUserData }) => {
   const currentData = useSelector((state: RootState) => state.currentUserData.currentUserData);
 
   const dispatch = useDispatch();
-
-
 
   useEffect(() => {
     dispatch(getNewCurrentUserName((currentUserData as CurrentUserData).name));
@@ -66,7 +68,7 @@ const SettingsRight: React.FC<CurrentUserDataProps> = ({ currentUserData }) => {
 
   return (
     <div className={styles.settingsWrapper}>
-      <form className={styles.form} action={process.env.REACT_APP_API as string}>
+      <form className={styles.form} action={api}>
         <SettingsItem
           onChange={passUserNewName}
           currentUserDataProperty={(currentUserData as CurrentUserData).name}

@@ -1,36 +1,38 @@
 import React, { useState } from 'react';
 import styles from './style.module.scss';
 import Avatar from '../../../../../../components/Avatar/Avatar';
-import { CurrentUserDataProps, CurrentUserData } from '../../../../../../@types/CurrentUserData';
+import {
+  CurrentUserDataProps,
+  CurrentUserData,
+} from '../../../../../../@types/props/CurrentUserDataProps';
 import { useLoadAvatarMutation } from '../../../../../../redux/api/avitoApi';
 
 const SettingsLeft: React.FC<CurrentUserDataProps> = ({ currentUserData }) => {
-  const [image, setImage] = useState('');
+  const [file, setFile] = useState<Blob>();
   const [loadAvatar] = useLoadAvatarMutation();
 
-  const loadAvatarOnClick = (e) => {
-    setImage(e.target.files[0]);
-    console.log(e.target.files[0]);
+  const loadAvatarOnClick = (e: React.ChangeEvent<HTMLInputElement>) => {
+    if (e.target.files) {
+      setFile(e.target.files[0]);
+    }
   };
 
   const load = async () => {
     const formData = new FormData();
-    formData.append('file', image);
+    if (file) {
+      formData.append('file', file);
+    }
 
     await loadAvatar(formData)
       .unwrap()
       .catch(() => {
         throw new Error();
-      })
-      .then((response) => {
-        console.log(response);
-        console.log(formData.get('file'));
       });
   };
 
   return (
     <div className={styles.settingsWrapper}>
-      <Avatar avatar={image} currentUserData={currentUserData as CurrentUserData} />
+      <Avatar avatar={file} currentUserData={currentUserData as CurrentUserData} />
 
       <button onClick={load}>Заменить</button>
       <input

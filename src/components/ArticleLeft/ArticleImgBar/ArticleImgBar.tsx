@@ -1,8 +1,9 @@
 import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import styles from './style.module.scss';
-import ImagesInfo, { ImgLink } from '../../../@types/ImageLinksProps';
+import ImagesInfo, { ImgLink } from '../../../@types/props/ImageLinksProps';
 import { sendActiveImg } from '../../../redux/slices/openNewImg';
+import api from '../../../constants/api';
 
 const ArticleImgBar: React.FC<ImagesInfo> = ({ imgLinks }) => {
   const [selected, setSelected] = useState<number>();
@@ -26,7 +27,7 @@ const ArticleImgBar: React.FC<ImagesInfo> = ({ imgLinks }) => {
               key={img.id}
               className={img.id === selected ? styles.clickedImg : styles.articleImg}
             >
-              <img src={(process.env.REACT_APP_API as string) + img.url} alt="article-img" />
+              <img src={api + img.url} alt="article-img" />
             </div>
           );
         })}

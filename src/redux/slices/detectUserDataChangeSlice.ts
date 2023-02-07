@@ -1,31 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit';
 import type { PayloadAction } from '@reduxjs/toolkit';
-
-export type CurrentUserDataMain = {
-  name: string;
-  surname: string;
-  phone: string;
-  city: string;
-};
-
-type currentUserDataState = {
-  currentUserData: {
-    name: string;
-    surname: string;
-    phone: string;
-    city: string;
-    avatar?: string;
-  };
-  newCurrentUserData: {
-    name: string;
-    surname: string;
-    phone: string;
-    city: string;
-  };
-  isDataChanged: {
-    DataChanged: boolean;
-  };
-};
+import CurrentUserDataMain, { currentUserDataState } from '../../@types/slices/CurrentUserData';
 
 const initialState: currentUserDataState = {
   currentUserData: {

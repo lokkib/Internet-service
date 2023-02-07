@@ -3,13 +3,13 @@ import { AnimatePresence, motion } from 'framer-motion';
 import { useSelector, useDispatch } from 'react-redux';
 import Header from '../../components/Header/Header';
 import Main from './Main/Main';
-import NewAdv from '../../components/NewAdv/NewAdv';
-import backdrop from '../../components/constants/animationConfigure';
+import NewAdv from '../../components/NewAd/NewAd';
+import backdrop from '../../constants/animationConfigure';
 import styles from './style.module.scss';
 import Reviews from '../../components/Reviews/Reviews';
 import SignIn from '../../components/SignIn/SignIn';
 import SignUp from '../../components/SignUp/SignUp';
-import ProhibitingModalWindow from '../../components/ProhibitingModalWindow/ProhibitingModalWindow';
+import NotifyingModalWindow from '../../components/NotifyingModalWindow/NotifyingModalWindow';
 import { getInputValue } from '../../redux/slices/searchSlice';
 import { RootState } from '../../redux/store';
 
@@ -18,6 +18,8 @@ const SellerArticlePage: React.FC = () => {
   const [openSignInModal, setOpenSignInModal] = useState(false);
   const [openSignUpModal, setOpenSignUpModal] = useState(false);
 
+  const isLoggedIn = sessionStorage.getItem('isAuth');
+
   const clickEnterAccount = () => {
     setOpenSignInModal(true);
   };
@@ -25,16 +27,13 @@ const SellerArticlePage: React.FC = () => {
   const [newAdvIsClosed, setNewAdvClosed] = useState(false);
 
   const isReviewsOpen = useSelector((state: RootState) => state.modalsState.reviews);
-  const isAuth = sessionStorage.getItem('isAuth');
 
   const openModalNewAdv = () => {
-    if (isAuth) {
+    if (isLoggedIn) {
       setNewAdvOpen(true);
-    }
-    else {
+    } else {
       setNewAdvClosed(true);
     }
-   
   };
 
   const closeModalNewAdv = () => {
@@ -63,8 +62,6 @@ const SellerArticlePage: React.FC = () => {
   useEffect(() => {
     const timer = setTimeout(() => {
       setNewAdvClosed(false);
-   
-    
     }, 1500);
 
     return () => clearTimeout(timer);
@@ -84,7 +81,7 @@ const SellerArticlePage: React.FC = () => {
       <AnimatePresence>
         {newAdv && (
           <motion.div
-          key={0}
+            key={0}
             variants={backdrop}
             initial="hidden"
             animate="visible"
@@ -96,19 +93,19 @@ const SellerArticlePage: React.FC = () => {
         )}
         {newAdvIsClosed && (
           <motion.div
-          key={1}
+            key={1}
             variants={backdrop}
             initial="hidden"
             animate="visible"
             exit="exit"
             className={newAdvIsClosed ? styles.modalAdvBlock : styles.modalDisplayNone}
           >
-            <ProhibitingModalWindow prohibitingText="Только авторизованные пользователи могут размещать объявление" />
+            <NotifyingModalWindow notifyingText="Только авторизованные пользователи могут размещать объявление" />
           </motion.div>
         )}
         {isReviewsOpen && (
           <motion.div
-          key={2}
+            key={2}
             variants={backdrop}
             initial="hidden"
             animate="visible"
@@ -120,7 +117,7 @@ const SellerArticlePage: React.FC = () => {
         )}
         {openSignInModal && (
           <motion.div
-          key={3}
+            key={3}
             variants={backdrop}
             initial="hidden"
             animate="visible"

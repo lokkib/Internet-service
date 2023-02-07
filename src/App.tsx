@@ -1,32 +1,25 @@
-// import ProfilePage from './pages/ProfilePage/ProfilePage'
-// import MainPage from './pages/MainPage/MainPage';
-// import SellerProfilePage from './pages/SellerProfilePage/SellerProfilePage'
-// import UserArticle from './pages/UserArticle/UserArticle'
-// import SellerArticle from './pages/ArticleItem/SellerArticle'
 import React, { useEffect } from 'react';
-import { useDispatch } from 'react-redux';
 import { getCookie, setCookie } from 'cookies-next';
 import jwt_decode from 'jwt-decode';
 import AppRoutes from './routes/Approutes';
 import { useRefreshTokenMutation } from './redux/api/avitoApi';
-import MyToken from './@types/MyToken';
-import { checkToken } from './redux/slices/checkTokenSlice';
+
+type MyToken = {
+  name: string;
+  exp: number;
+};
 
 const App: React.FC = () => {
-  const dispatch = useDispatch();
-
+  const isLoggedIn = sessionStorage.getItem('isAuth');
   const [refreshToken] = useRefreshTokenMutation();
 
   useEffect(() => {
     const timer = setInterval(() => {
-      if (sessionStorage.getItem('isAuth')) {
-
+      if (isLoggedIn) {
         const token = getCookie('access');
         const decodedToken = jwt_decode<MyToken>(token as string);
         const dateNow = new Date();
         if (decodedToken.exp * 1000 < dateNow.getTime()) {
-     
-          dispatch(checkToken(false));
           const getNewToken = async () => {
             await refreshToken({
               refresh_token: getCookie('refresh'),

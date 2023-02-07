@@ -4,7 +4,7 @@ import styles from './style.module.scss';
 import InfoLeft from './InfoLeft/InfoLeft';
 import InfoRight from './InfoRight/InfoRight';
 import { useGoToConcreteItemQuery } from '../../../../redux/api/avitoApi';
-import { Items } from '../../../../@types/ContentCardsProps';
+import { Items } from '../../../../@types/props/ContentCardsProps';
 
 const ProfileSellerInfo: React.FC = () => {
   const { id } = useParams();
@@ -19,7 +19,11 @@ const ProfileSellerInfo: React.FC = () => {
   }, []);
 
   if (!sellerDate) {
-    return <>Загрузка....</>;
+    return (
+      <div className={styles.loadingSpinnerWrapper}>
+        <div className={styles.loadingSpinner} />
+      </div>
+    );
   }
 
   return (

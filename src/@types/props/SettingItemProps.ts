@@ -1,4 +1,4 @@
-import CurrentUserData from './CurrentUserData';
+import CurrentUserData from './CurrentUserDataProps';
 
 type SettingItemProps = {
   labelText: string;

@@ -5,7 +5,7 @@ import SettingsLeft from './SettingsLeft/SettingsLeft';
 import SettingsRight from './SettingsRight/SettingsRight';
 import { useGetCurrentUserDataQuery } from '../../../../../redux/api/avitoApi';
 import { getCurrentUserData } from '../../../../../redux/slices/detectUserDataChangeSlice';
-import CurrentUserData from '../../../../../@types/CurrentUserData';
+import CurrentUserData from '../../../../../@types/props/CurrentUserDataProps';
 
 const ProfileSettings: React.FC = () => {
   const { data } = useGetCurrentUserDataQuery();
@@ -13,10 +13,10 @@ const ProfileSettings: React.FC = () => {
   const dispatch = useDispatch();
 
   const checkingProperties = (data2: CurrentUserData) => {
-    const newData = {...data2};
+    const newData = { ...data2 };
     for (const key in data2) {
       if (!data2[key as keyof CurrentUserData]) {
-        newData[key] = '';
+        newData[key as keyof CurrentUserData] = '';
       } else {
         newData[key as keyof CurrentUserData] = data2[key as keyof CurrentUserData];
       }
@@ -39,7 +39,11 @@ const ProfileSettings: React.FC = () => {
   }, [data]);
 
   if (!data) {
-    return <>Загрузка...</>;
+    return (
+      <div className={styles.loadingSpinnerWrapper}>
+        <div className={styles.loadingSpinner} />
+      </div>
+    );
   }
 
   return (

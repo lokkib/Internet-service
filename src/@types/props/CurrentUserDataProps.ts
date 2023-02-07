@@ -1,5 +1,5 @@
 export interface CurrentUserData {
-  id: number;
+  id: string;
   name: string;
   email: string;
   city: string;

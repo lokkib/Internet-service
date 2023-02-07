@@ -1,4 +1,4 @@
-type GeneralFunction = {
+type AuthActionsProps = {
   clickEnterAccount?: () => void;
   closeModalNewAdv?: () => void;
   closeSignUpWindow?: () => void;
@@ -8,4 +8,4 @@ type GeneralFunction = {
   openSignInModalCloseSignUp?: () => void;
 };
 
-export default GeneralFunction;
+export default AuthActionsProps;

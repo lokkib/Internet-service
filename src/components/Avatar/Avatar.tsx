@@ -1,24 +1,21 @@
 import React from 'react';
 
-import SellerProfileDataProps from '../../@types/ProfileSellerInfoProps';
+import SellerProfileDataProps from '../../@types/props/ProfileSellerInfoProps';
 import styles from './style.module.scss';
+import api from '../../constants/api';
 
 const Avatar: React.FC<SellerProfileDataProps> = ({ sellerDate, currentUserData }) => {
   if (currentUserData) {
     return (
       <div className={styles.avatar}>
-        {currentUserData.avatar ? (
-          <img alt="profile" src={(process.env.REACT_APP_API as string) + currentUserData.avatar} />
-        ) : (
-          ''
-        )}
+        {currentUserData.avatar ? <img alt="profile" src={api + currentUserData.avatar} /> : ''}
       </div>
     );
   }
   return (
     <div className={styles.avatar}>
       {sellerDate && sellerDate.user.avatar && (
-        <img src={(process.env.REACT_APP_API as string) + sellerDate.user.avatar} alt="profile" />
+        <img src={api + sellerDate.user.avatar} alt="profile" />
       )}
       {sellerDate === undefined && false}
     </div>

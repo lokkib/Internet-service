@@ -12,7 +12,11 @@ const MainContent: React.FC = () => {
   const { data, isLoading } = useGetItemsOfSellerQuery(id);
 
   if (isLoading) {
-    return <p>Загрузка...</p>;
+    return (
+      <div className={styles.loadingSpinnerWrapper}>
+        <div className={styles.loadingSpinner} />
+      </div>
+    );
   }
 
   return (

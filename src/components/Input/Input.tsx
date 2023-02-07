@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import styles from './style.module.scss';
-import InputProps from '../../@types/InputProps';
+import InputProps from '../../@types/props/InputProps';
 
 const Input: React.FC<InputProps> = ({
   placeholderInput,

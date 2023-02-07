@@ -6,7 +6,8 @@ import styles from './style.module.scss';
 import { useFetchItemsQuery } from '../../../../redux/api/avitoApi';
 import Pagination from '../../../../components/Pagination/Pagination';
 import { getAllItems, filteringItems } from '../../../../redux/slices/searchSlice';
-import { Items } from '../../../../@types/ContentCardsProps';
+import { Items } from '../../../../@types/props/ContentCardsProps';
+import api from '../../../../constants/api';
 
 const MainInfo: React.FC = () => {
   const dispatch = useDispatch();
@@ -31,7 +32,7 @@ const MainInfo: React.FC = () => {
   }, [data]);
 
   useEffect(() => {
-    fetch((process.env.REACT_APP_API as string) + 'ads')
+    fetch(api + 'ads')
       .then((res) => {
         return res.json();
       })
@@ -55,19 +56,14 @@ const MainInfo: React.FC = () => {
     console.log(window.location.pathname);
   }, [inputValue]);
 
-  // useEffect(() => {
-  //   if (filteredItemsEmpty) {
-  //     setItems(allItems);
-  //     setFilteredItems([]);
-  //   }
-  // }, [filteredItemsEmpty]);
-
-  if (isLoading) return <p>Загрузка...</p>;
-
   return (
     <div className={styles.mainInfoContainer}>
       <h2 className={styles.heading}>Объявления</h2>
-
+      {isLoading && (
+        <div className={styles.loadingSpinnerWrapper}>
+          <div className={styles.loadingSpinner} />
+        </div>
+      )}
       <ContentCards
         data={filteredItems.length ? filteredItems : items}
         classType="contentCardsMain"

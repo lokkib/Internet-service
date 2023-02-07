@@ -28,15 +28,6 @@ const MainSearch: React.FC = () => {
     }
   };
 
-  // const searching = ()  => {
-  //   if(inputValue) {
-  //     dispatch(searchResultEmptyRenderAllItems(false))
-  //     dispatch(filteringItems(inputValue));
-  //   }
-  //   dispatch(searchResultEmptyRenderAllItems(true))
-
-  // }
-
   return (
     <div className={styles.mainSearch}>
       <Link to="/" className={styles.linkLogo}>

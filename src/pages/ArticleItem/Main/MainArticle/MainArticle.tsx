@@ -1,31 +1,25 @@
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
-import { useDispatch } from 'react-redux';
 import styles from './style.module.scss';
 import ArticleLeft from '../../../../components/ArticleLeft/ArticleLeft';
 import ArticleRight from '../../../../components/ArticleRight/ArticleRight';
-import MainArticleProps from '../../../../@types/MainArticleProps';
+import MainArticleProps from '../../../../@types/props/MainArticleProps';
 import { useGoToConcreteItemQuery } from '../../../../redux/api/avitoApi';
-import { Items } from '../../../../@types/ContentCardsProps';
-import { getPhone } from '../../../../redux/slices/hidePhoneSlice';
+import { Items } from '../../../../@types/props/ContentCardsProps';
 
 const MainArticle: React.FC<MainArticleProps> = ({ onlyOneButton, openModalAdvEdit }) => {
   const { id } = useParams();
   const { data } = useGoToConcreteItemQuery(id);
   const [itemDetails, setItemDetails] = useState<Items>();
 
-  const dispatch = useDispatch();
-
   useEffect(() => {
     if (data) {
       setItemDetails(data);
-      dispatch(getPhone('Телефон отсутствует'));
-     
     }
   }, [data]);
 
   if (!itemDetails) {
-    return <>Загурзка...</>;
+    return null;
   }
 
   return (
