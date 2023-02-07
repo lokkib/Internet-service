@@ -1,9 +1,8 @@
-import CurrentUserData from './CurrentUserData';
+import CurrentUserData from './CurrentUserDataProps';
 
 type InputProps = {
   text?: string;
   placeholderInput: string;
-  placeholder: string;
   id?: string;
   classType: string;
   type?: string;
@@ -14,7 +13,7 @@ type InputProps = {
   clearInput?: (value: string) => void;
   currentUserData?: CurrentUserData;
   currentUserDataProperty?: string;
-  removerError?: () => void
+  removerError?: () => void;
 };
 
 export default InputProps;

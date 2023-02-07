@@ -2,7 +2,7 @@ import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import styles from './style.module.scss';
 import ButtonEnterLogout from '../../../components/ButtonEnterLogout/ButtonEnterLogout';
-import changingStateProp from '../../../@types/ChangingStateProps';
+import changingStateProp from '../../../@types/props/AuthActionsProps';
 
 const Header: React.FC<changingStateProp> = ({ clickEnterAccount }) => {
   const navigate = useNavigate();
@@ -18,7 +18,6 @@ const Header: React.FC<changingStateProp> = ({ clickEnterAccount }) => {
   const navigatingToMyAccount = () => {
     if (isAuth) {
       navigate('/my-account');
-      // console.log(isAuth);
     } else if (clickEnterAccount) {
       clickEnterAccount();
     }

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { AnimatePresence, motion } from 'framer-motion';
 import Header from './Header/Header';
 import MainContent from './MainContent/MainContent';
@@ -6,11 +6,16 @@ import MobFooter from '../../components/MobFooter/MobFooter';
 import SignIn from '../../components/SignIn/SignIn';
 import styles from './style.module.scss';
 import SignUp from '../../components/SignUp/SignUp';
-import backdrop from '../../components/constants/animationConfigure';
+import backdrop from '../../constants/animationConfigure';
 
 const MainPage: React.FC = () => {
   const [openSignInModal, setOpenSignInModal] = useState(false);
   const [openSignUpModal, setOpenSignUpModal] = useState(false);
+  const isLoggedIn = sessionStorage.getItem('isAuth');
+
+  useEffect(() => {
+    console.log(isLoggedIn);
+  }, []);
 
   const clickEnterAccount = () => {
     setOpenSignInModal(true);
@@ -69,7 +74,7 @@ const MainPage: React.FC = () => {
       <Header clickEnterAccount={clickEnterAccount} />
       <MainContent />
 
-      <MobFooter value="" classType="mainPageFooter" />
+      <MobFooter classType="mainPageFooter" />
     </motion.div>
   );
 };

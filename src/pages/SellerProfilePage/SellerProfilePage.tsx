@@ -1,27 +1,28 @@
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { useDispatch , useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import Header from '../../components/Header/Header';
 import MainContent from './MainContent/MainContent';
-import NewAdv from '../../components/NewAdv/NewAdv';
+import NewAd from '../../components/NewAd/NewAd';
 import styles from './style.module.scss';
 import SignIn from '../../components/SignIn/SignIn';
 import SignUp from '../../components/SignUp/SignUp';
-import backdrop from '../../components/constants/animationConfigure';
-import ProhibitingModalWindow from '../../components/ProhibitingModalWindow/ProhibitingModalWindow';
+import backdrop from '../../constants/animationConfigure';
+import NotifyingModalWindow from '../../components/NotifyingModalWindow/NotifyingModalWindow';
 import { getInputValue } from '../../redux/slices/searchSlice';
 import { RootState } from '../../redux/store';
 
 const SellerProfilePage: React.FC = () => {
-  const [newAdv, setNewAdvOpen] = useState(false);
+  const [newAd, setNewAdOpen] = useState(false);
   const [openSignInModal, setOpenSignInModal] = useState(false);
   const [openSignUpModal, setOpenSignUpModal] = useState(false);
-  const [newAdvIsClosed, setNewAdvClosed] = useState(false);
-  const UsersAdPublished = useSelector((state: RootState) => state.notifications.AdPublished);
+  const [newAdIsClosed, setNewAdClosed] = useState(false);
+  const UsersAdPublished = useSelector(
+    (state: RootState) => state.notifications.AdPublishedSuccess
+  );
   const dispatch = useDispatch();
-  const isAuth = sessionStorage.getItem('isAuth');
 
-
+  const isLoggedIn = sessionStorage.getItem('isAuth');
 
   useEffect(() => {
     dispatch(getInputValue(''));
@@ -51,28 +52,25 @@ const SellerProfilePage: React.FC = () => {
   };
 
   const openModalNewAdv = () => {
-    if (isAuth) {
-      setNewAdvOpen(true);
+    if (isLoggedIn) {
+      setNewAdOpen(true);
+    } else {
+      setNewAdClosed(true);
     }
-    else {
-      setNewAdvClosed(true);
-    }
-   
   };
 
   const closeModalNewAdv = () => {
-    setNewAdvOpen(false);
+    setNewAdOpen(false);
   };
 
-
   useEffect(() => {
-    closeModalNewAdv()
+    closeModalNewAdv();
     const timer = setTimeout(() => {
-      setNewAdvClosed(false)
+      setNewAdClosed(false);
     }, 1500);
 
     return () => clearTimeout(timer);
-  }, [newAdvIsClosed]);
+  }, [newAdIsClosed]);
 
   return (
     <motion.div
@@ -82,7 +80,7 @@ const SellerProfilePage: React.FC = () => {
       transition={{ duration: 1 }}
     >
       <AnimatePresence>
-      {UsersAdPublished && (
+        {UsersAdPublished && (
           <motion.div
             key={1}
             variants={backdrop}
@@ -91,29 +89,29 @@ const SellerProfilePage: React.FC = () => {
             exit="exit"
             className={UsersAdPublished ? styles.modalReviewsBlock : styles.modalDisplayNone}
           >
-            <ProhibitingModalWindow checkMark prohibitingText="Объявление успешно размещено." />
+            <NotifyingModalWindow checkMark notifyingText="Объявление успешно размещено." />
           </motion.div>
         )}
-        {newAdvIsClosed && (
+        {newAdIsClosed && (
           <motion.div
             variants={backdrop}
             initial="hidden"
             animate="visible"
             exit="exit"
-            className={newAdvIsClosed ? styles.modalAdvBlock : styles.modalDisplayNone}
+            className={newAdIsClosed ? styles.modalAdvBlock : styles.modalDisplayNone}
           >
-            <ProhibitingModalWindow prohibitingText="Только авторизованные пользователи могут размещать объявления." />
+            <NotifyingModalWindow notifyingText="Только авторизованные пользователи могут размещать объявления." />
           </motion.div>
         )}
-        {newAdv && (
+        {newAd && (
           <motion.div
             variants={backdrop}
             initial="hidden"
             animate="visible"
             exit="exit"
-            className={newAdv ? styles.modalBlock : styles.modalDisplayNone}
+            className={newAd ? styles.modalBlock : styles.modalDisplayNone}
           >
-            <NewAdv closeModalNewAdv={closeModalNewAdv} />
+            <NewAd closeModalNewAdv={closeModalNewAdv} />
           </motion.div>
         )}
         {openSignInModal && (

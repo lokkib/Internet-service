@@ -1,25 +1,21 @@
 import { configureStore } from '@reduxjs/toolkit';
 import avitoApi from './api/avitoApi';
 import getAllTracksReducer from './slices/searchSlice';
-import hidePhoneReducer from './slices/hidePhoneSlice';
-import checkTokenReducer from './slices/checkTokenSlice';
 import setActiveImgReducer from './slices/openNewImg';
 import checkModalsStateReducer from './slices/checkModalsSlice';
-import passNewAdvReducer from './slices/passNewAdvParamsTextOnly';
+import passNewAdvReducer from './slices/passNewAdParamsTextOnly';
 import getComentReducer from './slices/getCommentSlice';
 import detectUserChangeReducer from './slices/detectUserDataChangeSlice';
 import notificationsReducer from './slices/notificationsSlice';
-import editingAdWithImgSlice from './slices/editingAdWithImg';
+import editingAdWithImgSlice from './slices/editingAdWithImgSlice';
 
 const store = configureStore({
   reducer: {
     [avitoApi.reducerPath]: avitoApi.reducer,
     items: getAllTracksReducer,
-    itemData: hidePhoneReducer,
-    isTokenValid: checkTokenReducer,
     activeImg: setActiveImgReducer,
     modalsState: checkModalsStateReducer,
-    newAdvParamsTextOnly: passNewAdvReducer,
+    newAdParamsTextOnly: passNewAdvReducer,
     comment: getComentReducer,
     currentUserData: detectUserChangeReducer,
     notifications: notificationsReducer,

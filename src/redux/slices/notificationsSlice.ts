@@ -1,16 +1,11 @@
 import { createSlice } from '@reduxjs/toolkit';
 import type { PayloadAction } from '@reduxjs/toolkit';
+import Notifications from '../../@types/slices/Notifications';
 
-type ImageId = {
-  AdDeletionSuccess: boolean;
-  AdPublished: boolean;
-  AdEdited: boolean;
-};
-
-const initialState: ImageId = {
+const initialState: Notifications = {
   AdDeletionSuccess: false,
-  AdPublished: false,
-  AdEdited: false,
+  AdPublishedSuccess: false,
+  AdEditedSuccess: false,
 };
 
 const notoficationsSlice = createSlice({
@@ -21,10 +16,10 @@ const notoficationsSlice = createSlice({
       state.AdDeletionSuccess = action.payload;
     },
     successAdPublicationNotify: (state, action: PayloadAction<boolean>) => {
-      state.AdPublished = action.payload;
+      state.AdPublishedSuccess = action.payload;
     },
     editingAdSuccessNotify: (state, action: PayloadAction<boolean>) => {
-      state.AdEdited = action.payload;
+      state.AdEditedSuccess = action.payload;
     },
   },
 });

@@ -1,9 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit';
 import type { PayloadAction } from '@reduxjs/toolkit';
-
-type Comment = {
-  text: string;
-};
+import Comment from '../../@types/slices/Comment';
 
 const initialState: Comment = {
   text: '',

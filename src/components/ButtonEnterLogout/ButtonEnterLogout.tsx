@@ -1,6 +1,6 @@
 import React from 'react';
 import styles from './style.module.scss';
-import ButtonEnterLogoutProps from '../../@types/ButtonEnterLogoutProps';
+import ButtonEnterLogoutProps from '../../@types/props/ButtonEnterLogoutProps';
 
 const ButtonEnterLogout: React.FC<ButtonEnterLogoutProps> = ({ text, classType, onClick }) => {
   return (

@@ -1,19 +1,19 @@
 import React, { useState } from 'react';
 import styles from './style.module.scss';
-import InputProps from '../../../@types/InputProps';
+import InputProps from '../../../@types/props/InputProps';
 
 const InputAuth: React.FC<InputProps> = ({
   type,
   name,
   id,
-  placeholder,
   classType,
+  placeholderInput,
   value,
   onChange,
   clearInput,
-  removerError
+  removerError,
 }) => {
-  const [inputPlaceholder, setInputPlaceholder] = useState(placeholder);
+  const [inputPlaceholder, setInputPlaceholder] = useState(placeholderInput);
 
   return (
     <input
@@ -21,8 +21,12 @@ const InputAuth: React.FC<InputProps> = ({
       onChange={onChange}
       className={styles[classType]}
       placeholder={inputPlaceholder}
-      onFocus={() => [setInputPlaceholder(''), clearInput && clearInput(value), removerError && removerError()]}
-      onBlur={() => setInputPlaceholder(placeholder)}
+      onFocus={() => [
+        setInputPlaceholder(''),
+        clearInput && clearInput(value),
+        removerError && removerError(),
+      ]}
+      onBlur={() => setInputPlaceholder(placeholderInput)}
       name={name}
       type={type}
       id={id}

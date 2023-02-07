@@ -3,14 +3,14 @@ import React from 'react';
 import ButtonEnterLogout from '../ButtonEnterLogout/ButtonEnterLogout';
 import styles from './style.module.scss';
 import MobLogo from '../MobLogo/MobLogo';
-import HeaderProps from '../../@types/HeaderProps';
+import HeaderProps from '../../@types/props/HeaderProps';
 
 const Header: React.FC<HeaderProps> = ({ classType, openModalNewAdv, clickEnterAccount }) => {
   const navigate = useNavigate();
-  const isAuth = sessionStorage.getItem('isAuth');
 
+  const isLoggedIn = sessionStorage.getItem('isAuth');
   const navigatingToMyAccount = () => {
-    if (isAuth) {
+    if (isLoggedIn) {
       navigate('/my-account');
     } else if (clickEnterAccount) {
       clickEnterAccount();
@@ -18,21 +18,21 @@ const Header: React.FC<HeaderProps> = ({ classType, openModalNewAdv, clickEnterA
   };
 
   const checkingIsAuth = () => {
-    if (isAuth) {
+    if (isLoggedIn) {
       return 'Личный кабинет';
     }
     return 'Вход в личный кабинет';
   };
 
   const definingClassName = () => {
-    if (isAuth) {
+    if (isLoggedIn) {
       return 'account';
     }
     return 'mainEnter';
   };
 
   const isLogoutButtonVisible = () => {
-    if (!isAuth) {
+    if (!isLoggedIn) {
       return 'logoutHidden';
     }
     return 'logout';

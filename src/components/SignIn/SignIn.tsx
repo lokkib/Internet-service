@@ -7,11 +7,11 @@ import AuthLogo from './AuthLogo/AuthLogo';
 import InputAuth from './InputAuth/InputAuth';
 import ButtonSearchSave from '../ButtonSearchSave/ButtonSearchSave';
 import ButtonClose from '../ButtonClose/ButtonClose';
-import GeneralFunction from '../../@types/ChangingStateProps';
+import AuthActionsProps from '../../@types/props/AuthActionsProps';
 import { useLoginMutation } from '../../redux/api/avitoApi';
 import { getSignInState, getSignUpState } from '../../redux/slices/checkModalsSlice';
 
-const SignIn: React.FC<GeneralFunction> = ({ clickSignUp, closeSignUpWindow }) => {
+const SignIn: React.FC<AuthActionsProps> = ({ clickSignUp, closeSignUpWindow }) => {
   const [inputErrorLogin, setInputErrorLogin] = useState(false);
   const [inputErrorPassword, setInputErrorPassword] = useState(false);
   const [inputLogin, setInputLogin] = useState('');
@@ -23,16 +23,13 @@ const SignIn: React.FC<GeneralFunction> = ({ clickSignUp, closeSignUpWindow }) =
   useEffect(() => {
     if (inputLogin && inputPassword) {
       setDisabled(false);
-    }
-    else {
+    } else {
       setDisabled(true);
     }
   }, [inputLogin, inputPassword]);
 
-
   const [signingIn] = useLoginMutation();
   const signIn = async () => {
-    
     await signingIn({
       email: inputLogin,
       password: inputPassword,
@@ -42,21 +39,22 @@ const SignIn: React.FC<GeneralFunction> = ({ clickSignUp, closeSignUpWindow }) =
         setInputPasswordType('text');
         if (!inputLogin) {
           setInputLogin('Поле обязательно для входа.');
-          setInputErrorLogin(true)
+          setInputErrorLogin(true);
         }
         if (!inputPassword) {
           setInputPassword('Поле обязательно для входа.');
-          setInputErrorPassword(true)
+          setInputErrorPassword(true);
         } else {
           setInputLogin('Пользователя с таким логином не существует.');
           setInputPassword('Введен неправильный пароль.');
-          setInputErrorPassword(true)
-          setInputErrorLogin(true)
+          setInputErrorPassword(true);
+          setInputErrorLogin(true);
         }
 
         throw new Error(error);
       })
       .then((response) => {
+        console.log('!!!');
         sessionStorage.setItem('isAuth', 'true');
         setCookie('refresh', response.refresh_token);
         setCookie('access', response.access_token);
@@ -95,30 +93,33 @@ const SignIn: React.FC<GeneralFunction> = ({ clickSignUp, closeSignUpWindow }) =
       <form className={styles.formLogin} action="">
         <AuthLogo />
         <InputAuth
-         removerError={() => setInputErrorLogin(false)}
-        placeholderInput = ''
+          removerError={() => setInputErrorLogin(false)}
           clearInput={clearInput}
           value={inputLogin}
           onChange={(e) => setInputLogin(e.target.value)}
           classType={inputErrorLogin ? 'error' : 'login'}
-          placeholder="email"
+          placeholderInput="email"
           id="formlogin"
           name="login"
           type="text"
         />
         <InputAuth
-        removerError  ={() => setInputErrorPassword(false)}
-          placeholderInput = ''
+          removerError={() => setInputErrorPassword(false)}
           clearInput={clearInput}
           value={inputPassword}
           onChange={(e) => setInputPassword(e.target.value)}
           classType={inputErrorPassword ? 'error' : 'password'}
-          placeholder="Пароль"
+          placeholderInput="Пароль"
           id="formpassword"
           name="password"
           type={inputPasswordType}
         />
-        <ButtonSearchSave disabled={disabled} onClick={signIn} classType={ disabled?  'disabledSignIn' : 'signIn'} text="Войти" />
+        <ButtonSearchSave
+          disabled={disabled}
+          onClick={signIn}
+          classType={disabled ? 'disabledSignIn' : 'signIn'}
+          text="Войти"
+        />
         <div onClickCapture={() => clickSignUp && clickSignUp()}>
           <ButtonSearchSave
             onClick={closeSignInOpenSignUp}

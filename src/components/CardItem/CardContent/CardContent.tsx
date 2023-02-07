@@ -1,7 +1,7 @@
 import React from 'react';
 
 import styles from './style.module.scss';
-import ContentCardsProps from '../../../@types/ContentCardsProps';
+import ContentCardsProps from '../../../@types/props/ContentCardsProps';
 
 const CardContent: React.FC<ContentCardsProps> = ({ createdOn, city, price, title }) => {
   const AdCreatedOn = () => {

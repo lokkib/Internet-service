@@ -1,38 +1,15 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
 import { getCookie } from 'cookies-next';
-import CurrentUserData from '../../@types/CurrentUserData';
-import { Items } from '../../@types/ContentCardsProps';
-import { CurrentUserDataMain } from '../slices/detectUserDataChangeSlice';
-
-type Comment = {
-  id: number;
-  text: string;
-  created_on: string;
-  author: {
-    id: number;
-    name: string;
-    email: string;
-    city: string;
-    avatar: string;
-    sells_from: string;
-    phone: string;
-  };
-};
-
-export type Comment3 = {
-  id: number;
-  text: string;
-};
-
-type IdFrDeleting = {
-  id: string;
-};
-
+import CurrentUserData from '../../@types/props/CurrentUserDataProps';
+import { Items } from '../../@types/props/ContentCardsProps';
+import CurrentUserDataMain from '../../@types/slices/CurrentUserData';
+import api from '../../constants/api';
+import CommentResponse, { CommentText } from '../../@types/api/Comments';
 
 const avitoApi = createApi({
   reducerPath: 'avitoApi',
   tagTypes: ['Comments', 'Ads', 'UserSettings', 'Images'],
-  baseQuery: fetchBaseQuery({ baseUrl: process.env.REACT_APP_API }),
+  baseQuery: fetchBaseQuery({ baseUrl: api }),
   endpoints: (build) => ({
     signup: build.mutation({
       query: (body) => ({
@@ -93,12 +70,11 @@ const avitoApi = createApi({
       providesTags: ['Comments'],
     }),
     publishNewAdWithImg: build.mutation({
-      query: (body) => {
-        const { data, formdata } = body;
+      query: ({ formData, data }) => {
         return {
           url: `/ads`,
-          formdata,
           params: data,
+          body: formData,
           method: 'POST',
           headers: {
             Authorization: `Bearer ${getCookie('access')}`,
@@ -107,7 +83,7 @@ const avitoApi = createApi({
       },
       invalidatesTags: ['Ads'],
     }),
-    publishNewAdv: build.mutation({
+    publishNewAdTextOnly: build.mutation({
       query: (body) => ({
         url: `/adstext`,
         body,
@@ -127,7 +103,7 @@ const avitoApi = createApi({
       }),
       providesTags: ['Ads'],
     }),
-    createCommenttoTheAd: build.mutation<Comment, Comment3>({
+    createCommenttoTheAd: build.mutation<CommentResponse, CommentText>({
       query: (body) => ({
         url: `/ads/${body.id as number}/comments`,
         body,
@@ -138,11 +114,10 @@ const avitoApi = createApi({
       }),
       invalidatesTags: ['Comments'],
     }),
-    deleteAd: build.mutation<string, IdFrDeleting>({
-      query: (body) => ({
-        url: `/ads/${body.id}`,
+    deleteAd: build.mutation<string, string>({
+      query: (id) => ({
+        url: `/ads/${id}`,
         method: 'DELETE',
-        body,
         headers: {
           Authorization: `Bearer ${getCookie('access')}`,
         },
@@ -184,6 +159,17 @@ const avitoApi = createApi({
       }),
       invalidatesTags: ['UserSettings'],
     }),
+    deleteImageFromAd: build.mutation({
+      query: (params) => ({
+        url: `/ads/${params.pk}/image`,
+        method: 'DELETE',
+        params,
+        headers: {
+          authorization: `Bearer ${getCookie('access')}`,
+        },
+      }),
+      invalidatesTags: ['Ads'],
+    }),
   }),
 });
 
@@ -200,7 +186,7 @@ export const {
   useChangeCurrentUserDataMutation,
   useGetItemsOfSellerQuery,
   useGetItemCommentsQuery,
-  usePublishNewAdvMutation,
+  usePublishNewAdTextOnlyMutation,
   useGetCurrentUserAdsQuery,
   useCreateCommenttoTheAdMutation,
   useDeleteAdMutation,
@@ -208,4 +194,5 @@ export const {
   useLoadAvatarMutation,
   useAddImageToAdMutation,
   usePublishNewAdWithImgMutation,
+  useDeleteImageFromAdMutation,
 } = avitoApi;

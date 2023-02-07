@@ -1,10 +1,10 @@
 import { Items } from './ContentCardsProps';
-import CurrentUserData from './CurrentUserData';
+import CurrentUserData from './CurrentUserDataProps';
 
 type SellerProfileDataProps = {
   sellerDate?: Items;
   currentUserData?: CurrentUserData;
-  avatar: string;
+  avatar?: Blob;
 };
 
 export default SellerProfileDataProps;

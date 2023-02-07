@@ -4,9 +4,9 @@ import styles from './style.module.scss';
 import HomeIcon from './Icons/HomeIcon';
 import AuthIcon from './Icons/AuthIcon';
 import NewAdvIcon from './Icons/NewAdvIcon';
-import InputProps from '../../@types/InputProps';
+import MobFooterProps from '../../@types/props/MobFooterProps';
 
-const MobFooter: React.FC<InputProps> = ({ classType }) => {
+const MobFooter: React.FC<MobFooterProps> = ({ classType }) => {
   return (
     <footer className={styles[classType]}>
       <div className={styles.footerContainer}>

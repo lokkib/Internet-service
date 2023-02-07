@@ -5,9 +5,9 @@ import ArticleInfo from './ArticleInfo/ArticleInfo';
 import ButtonSearchSave from '../ButtonSearchSave/ButtonSearchSave';
 import ArticleAuthor from './ArticleAuthor/ArticleAuthor';
 import styles from './style.module.scss';
-import MainArticleProps from '../../@types/MainArticleProps';
+import MainArticleProps from '../../@types/props/MainArticleProps';
 import { useDeleteAdMutation } from '../../redux/api/avitoApi';
-import { Items } from '../../@types/ContentCardsProps';
+import { Items } from '../../@types/props/ContentCardsProps';
 import { successDeletionNotify } from '../../redux/slices/notificationsSlice';
 import { RootState } from '../../redux/store';
 
@@ -25,9 +25,7 @@ const ArticleRight: React.FC<MainArticleProps> = ({
     (state: RootState) => state.notifications.AdDeletionSuccess
   );
   const deleteAdOnClick = async () => {
-    await deleteAd({
-      id: id as string,
-    })
+    await deleteAd(id as string)
       .unwrap()
       .catch(() => {
         throw new Error();

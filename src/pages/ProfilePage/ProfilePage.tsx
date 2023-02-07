@@ -4,30 +4,37 @@ import { useSelector, useDispatch } from 'react-redux';
 import Header from '../../components/Header/Header';
 import MainContent from './MainContent/MainContent';
 import MobFooter from '../../components/MobFooter/MobFooter';
-import NewAdv from '../../components/NewAdv/NewAdv';
+import NewAd from '../../components/NewAd/NewAd';
 import styles from './style.module.scss';
-import backdrop from '../../components/constants/animationConfigure';
+import backdrop from '../../constants/animationConfigure';
 import { RootState } from '../../redux/store';
 import { checkisDataChanged } from '../../redux/slices/detectUserDataChangeSlice';
 import { getInputValue } from '../../redux/slices/searchSlice';
-import ProhibitingModalWindow from '../../components/ProhibitingModalWindow/ProhibitingModalWindow';
+import NotifyingModalWindow from '../../components/NotifyingModalWindow/NotifyingModalWindow';
 import { successAdPublicationNotify } from '../../redux/slices/notificationsSlice';
-import currentData2, { newEditedData } from '../../@types/CurrentUsersData';
+import CurrentUserMainData, {
+  CurrentUserUEditedData,
+} from '../../@types/props/CurrentUsersDataProps';
 
 const ProfilePage: React.FC = () => {
   const currentData = useSelector((state: RootState) => state.currentUserData.currentUserData);
 
   const newData = useSelector((state: RootState) => state.currentUserData.newCurrentUserData);
-  const UsersAdPublished = useSelector((state: RootState) => state.notifications.AdPublished);
+  const UsersAdPublished = useSelector(
+    (state: RootState) => state.notifications.AdPublishedSuccess
+  );
 
   const dispatch = useDispatch();
 
-  const comparingCurrentAndNewUserData = (data: currentData2, data2: newEditedData) => {
+  const comparingCurrentAndNewUserData = (
+    data: CurrentUserMainData,
+    data2: CurrentUserUEditedData
+  ) => {
     let isChanged;
     const keys1 = Object.keys(data);
 
     for (const key of keys1) {
-      if (data[key as keyof currentData2 ] !== data2[key as keyof newEditedData]) {
+      if (data[key as keyof CurrentUserMainData] !== data2[key as keyof CurrentUserUEditedData]) {
         isChanged = true;
         dispatch(checkisDataChanged(isChanged));
         break;
@@ -46,14 +53,14 @@ const ProfilePage: React.FC = () => {
     comparingCurrentAndNewUserData(currentData, newData);
   }, [newData]);
 
-  const [newAdv, setNewAdvOpen] = useState(false);
+  const [newAd, setNewAdOpen] = useState(false);
 
   const openModalNewAdv = () => {
-    setNewAdvOpen(true);
+    setNewAdOpen(true);
   };
 
   const closeModalNewAdv = () => {
-    setNewAdvOpen(false);
+    setNewAdOpen(false);
   };
 
   useEffect(() => {
@@ -85,26 +92,26 @@ const ProfilePage: React.FC = () => {
             exit="exit"
             className={UsersAdPublished ? styles.modalReviewsBlock : styles.modalDisplayNone}
           >
-            <ProhibitingModalWindow checkMark prohibitingText="Объявление успешно размещено." />
+            <NotifyingModalWindow checkMark notifyingText="Объявление успешно размещено." />
           </motion.div>
         )}
-        {newAdv && (
+        {newAd && (
           <motion.div
             key={2}
             variants={backdrop}
             initial="hidden"
             animate="visible"
             exit="exit"
-            className={newAdv ? styles.modalBlock : styles.modalDisplayNone}
+            className={newAd ? styles.modalBlock : styles.modalDisplayNone}
           >
-            <NewAdv closeModalNewAdv={closeModalNewAdv} />
+            <NewAd closeModalNewAdv={closeModalNewAdv} />
           </motion.div>
         )}
       </AnimatePresence>
 
       <Header openModalNewAdv={openModalNewAdv} classType="profileHeading" />
       <MainContent />
-      <MobFooter placeholder="" placeholderInput="" value="" classType="profileFooter" />
+      <MobFooter classType="profileFooter" />
     </motion.div>
   );
 };

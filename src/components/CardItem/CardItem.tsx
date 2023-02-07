@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import CardImage from './CardImage/CardImage';
 import CardContent from './CardContent/CardContent';
 import styles from './style.module.scss';
-import ContentCardsProps from '../../@types/ContentCardsProps';
+import ContentCardsProps from '../../@types/props/ContentCardsProps';
 
 const CardItem: React.FC<ContentCardsProps> = ({
   classTypeCardItem,

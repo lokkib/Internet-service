@@ -7,38 +7,45 @@ import FormDescriptionItem from '../FormDescriptionItem/FormDescriptionItem';
 import FormNewArticlePhotos from '../FormNewArticlePhotos/FormNewArticlePhotos';
 import FormArticlePrice from '../FormArticlePrice/FormArticlePrice';
 import ButtonSearchSave from '../ButtonSearchSave/ButtonSearchSave';
-import GeneralFunction from '../../@types/ChangingStateProps';
-import { usePublishNewAdvMutation , usePublishNewAdWithImgMutation  } from '../../redux/api/avitoApi';
+import AuthActionsProps from '../../@types/props/AuthActionsProps';
+import {
+  usePublishNewAdTextOnlyMutation,
+  usePublishNewAdWithImgMutation,
+} from '../../redux/api/avitoApi';
 import { RootState } from '../../redux/store';
 import { successAdPublicationNotify } from '../../redux/slices/notificationsSlice';
-import {  passImg , passInfoOnPublishingWithImg } from '../../redux/slices/editingAdWithImg';
+import { passImg, deleteImg, reset } from '../../redux/slices/editingAdWithImgSlice';
 
-const NewAdv: React.FC<GeneralFunction> = ({ closeModalNewAdv }) => {
-  const newAdvParamsTitle = useSelector((state: RootState) => state.newAdvParamsTextOnly.title);
-  const newAdvParamsPrice = useSelector((state: RootState) => state.newAdvParamsTextOnly.price);
+const NewAd: React.FC<AuthActionsProps> = ({ closeModalNewAdv }) => {
+  const newAdvParamsTitle = useSelector((state: RootState) => state.newAdParamsTextOnly.title);
+  const newAdvParamsPrice = useSelector((state: RootState) => state.newAdParamsTextOnly.price);
   const newAdvParamsDescription = useSelector(
-    (state: RootState) => state.newAdvParamsTextOnly.description
+    (state: RootState) => state.newAdParamsTextOnly.description
   );
   const [file, setFile] = useState<Blob>();
 
   const [publishAdWithImg] = usePublishNewAdWithImgMutation();
 
   const dispatch = useDispatch();
-  const [publishNewAdTextOnly] = usePublishNewAdvMutation();
+  const [publishNewAdTextOnly] = usePublishNewAdTextOnlyMutation();
 
   const AdEditedWithImg = useSelector((state: RootState) => state.editedAd.ImgArray);
-  const adPublishedWithImgBoolean = useSelector(
-    (state: RootState) => state.editedAd.publishingWithImg
-  );
-
 
   const loadImageToAd = (e: React.ChangeEvent<HTMLInputElement>) => {
-    dispatch(passInfoOnPublishingWithImg(true));
+    let objectUrl;
     if (e.target.files) {
       setFile(e.target.files[0]);
-      const objectUrl = URL.createObjectURL(e.target.files[0]);
-      dispatch(passImg(objectUrl));
+      if (e.target.files.length) {
+        objectUrl = URL.createObjectURL(e.target.files[0]);
+        dispatch(passImg(objectUrl));
+        console.log(e.target.files[0]);
+        e.target.value = '';
+      }
     }
+  };
+
+  const deleteImageOnClick = (fileLink: string) => {
+    dispatch(deleteImg(fileLink));
   };
 
   const publishNewAdOnClick = async () => {
@@ -47,29 +54,23 @@ const NewAdv: React.FC<GeneralFunction> = ({ closeModalNewAdv }) => {
       description: newAdvParamsDescription,
       price: newAdvParamsPrice,
     };
-    if (AdEditedWithImg.length && adPublishedWithImgBoolean) {
+    if (AdEditedWithImg.length) {
       const formData = new FormData();
-      if(file) {
+      if (file) {
         formData.append('files', file);
       }
-    
 
-      const finalData = {
-        data,
-        formData,
-      };
-
-      await publishAdWithImg(finalData)
+      await publishAdWithImg({ formData, data })
         .unwrap()
         .catch(() => {
           throw new Error();
         })
         .then(() => {
-          if(closeModalNewAdv) {
+          if (closeModalNewAdv) {
             closeModalNewAdv();
           }
-         
-          dispatch(passInfoOnPublishingWithImg(false));
+          dispatch(reset());
+
           dispatch(successAdPublicationNotify(true));
         });
     } else {
@@ -83,13 +84,17 @@ const NewAdv: React.FC<GeneralFunction> = ({ closeModalNewAdv }) => {
           throw new Error();
         })
         .then(() => {
-          if( closeModalNewAdv) {
+          if (closeModalNewAdv) {
             closeModalNewAdv();
           }
-     
+
           dispatch(successAdPublicationNotify(true));
         });
     }
+  };
+
+  const resetOnClick = () => {
+    dispatch(reset());
   };
 
   return (
@@ -97,12 +102,19 @@ const NewAdv: React.FC<GeneralFunction> = ({ closeModalNewAdv }) => {
       <div className={styles.newAdvContent}>
         <h3 className={styles.advHeading}>Новое объявление</h3>
 
-        <ButtonClose onClick={closeModalNewAdv as () => void} classType="closeLine" />
+        <ButtonClose
+          reset={resetOnClick}
+          onClick={closeModalNewAdv as () => void}
+          classType="closeLine"
+        />
 
         <form className={styles.advSettingsForm} action="">
           <FormNewArticleItem value="" placeholder="Введите название" />
           <FormDescriptionItem value="" />
-          <FormNewArticlePhotos loadImageToAd={loadImageToAd} />
+          <FormNewArticlePhotos
+            deleteImageOnClick={deleteImageOnClick}
+            loadImageToAd={loadImageToAd}
+          />
           <FormArticlePrice value="" />
           <ButtonSearchSave onClick={publishNewAdOnClick} classType="publish" text="Опубликовать" />
         </form>
@@ -111,4 +123,4 @@ const NewAdv: React.FC<GeneralFunction> = ({ closeModalNewAdv }) => {
   );
 };
 
-export default NewAdv;
+export default NewAd;

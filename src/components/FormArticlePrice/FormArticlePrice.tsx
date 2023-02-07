@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import styles from './style.module.scss';
-import { passItemPrice } from '../../redux/slices/passNewAdvParamsTextOnly';
-import FormNewArticleProps from '../../@types/FormNewArticleProps';
+import { passItemPrice } from '../../redux/slices/passNewAdParamsTextOnly';
+import FormNewArticleProps from '../../@types/props/FormNewArticleProps';
 
 const FormArticlePrice: React.FC<FormNewArticleProps> = ({ price }) => {
   const [valueInput, setValueInput] = useState(price || '');

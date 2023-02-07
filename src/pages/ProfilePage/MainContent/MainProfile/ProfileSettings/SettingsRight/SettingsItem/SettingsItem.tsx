@@ -1,7 +1,7 @@
 import React from 'react';
 import Input from '../../../../../../../components/Input/Input';
 import styles from './style.module.scss';
-import SettingItemProps from '../../../../../../../@types/SettingItemProps';
+import SettingItemProps from '../../../../../../../@types/props/SettingItemProps';
 
 const SettingsItem: React.FC<SettingItemProps> = ({
   labelText,
@@ -16,7 +16,6 @@ const SettingsItem: React.FC<SettingItemProps> = ({
         {labelText}
       </label>
       <Input
-        placeholder=""
         value={currentUserDataProperty}
         placeholderInput={labelText}
         onChange={onChange}

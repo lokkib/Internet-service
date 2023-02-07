@@ -1,5 +1,5 @@
 type ProhibitingModalWindowProps = {
-  prohibitingText: string;
+  notifyingText: string;
   checkMark?: boolean;
 };
 

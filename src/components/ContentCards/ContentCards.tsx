@@ -1,7 +1,7 @@
 import React from 'react';
 import CardItem from '../CardItem/CardItem';
 import styles from './style.module.scss';
-import ContentCardsProps from '../../@types/ContentCardsProps';
+import ContentCardsProps from '../../@types/props/ContentCardsProps';
 
 const ContentCards: React.FC<ContentCardsProps> = ({
   classType,

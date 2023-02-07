@@ -15,14 +15,22 @@ const MainContent: React.FC = () => {
       <div className={styles.mainContainer}>
         <div className={styles.centerBlock}>
           <MainMenu />
-          {currentUserDataLoaded && <h2 className={styles.heading}>Загрузка...</h2>}
+          {currentUserDataLoaded && (
+            <div className={styles.loadingSpinnerWrapper}>
+              <div className={styles.loadingSpinner} />
+            </div>
+          )}
           {currentUserData && (
             <h2 className={styles.heading}>Здравствуйте, {currentUserData.name}</h2>
           )}
           <MainProfile />
           <h3 className={styles.myGoodsHeading}>Мои товары</h3>
         </div>
-        {isLoading && <>Товары загружаются...</>}
+        {isLoading && (
+          <div className={styles.loadingSpinnerWrapper}>
+            <div className={styles.loadingSpinner} />
+          </div>
+        )}
         {currentUserAds && (
           <ContentCards
             data={currentUserAds}

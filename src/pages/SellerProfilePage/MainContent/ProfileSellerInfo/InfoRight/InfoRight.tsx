@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import styles from './style.module.scss';
 import ButtonSearchSave from '../../../../../components/ButtonSearchSave/ButtonSearchSave';
-import SellerProfileDataProps from '../../../../../@types/ProfileSellerInfoProps';
-import { Items } from '../../../../../@types/ContentCardsProps';
+import SellerProfileDataProps from '../../../../../@types/props/ProfileSellerInfoProps';
+import { Items } from '../../../../../@types/props/ContentCardsProps';
 
 const InfoRight: React.FC<SellerProfileDataProps> = ({ sellerDate }) => {
   const hidePhoneNumber = (i: Items | undefined) => {
@@ -25,9 +25,14 @@ const InfoRight: React.FC<SellerProfileDataProps> = ({ sellerDate }) => {
 
   return (
     <div className={styles.rightWrapper}>
-      <h3 className={styles.sellerTitle}>{sellerDate.user.name}</h3>
-      <p className={styles.sellerCity}>{sellerDate.user.city}</p>
-      <p className={styles.sellerInfo}>Продает товары с {sellerDate.user.sells_from}</p>
+      {sellerDate && (
+        <>
+          <h3 className={styles.sellerTitle}>{sellerDate.user.name}</h3>
+          <p className={styles.sellerCity}>{sellerDate.user.city}</p>
+          <p className={styles.sellerInfo}>Продает товары с {sellerDate.user.sells_from}</p>
+        </>
+      )}
+
       <ButtonSearchSave
         onClick={showPhoneNumber}
         phoneNumber={phoneNumber}
