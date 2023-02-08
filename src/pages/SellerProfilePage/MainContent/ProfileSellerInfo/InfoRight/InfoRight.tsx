@@ -23,13 +23,56 @@ const InfoRight: React.FC<SellerProfileDataProps> = ({ sellerDate }) => {
     }
   };
 
+  const transformingMonthNumberToWord = (month: string) => {
+    const numbers = [
+      ['01', 'января'],
+      ['02', 'февраля'],
+      ['03', 'марта'],
+      ['04', 'апреля'],
+      ['05', 'мая'],
+      ['06', 'июня'],
+      ['07', 'июля'],
+      ['08', 'августа'],
+      ['09', 'сентября'],
+      ['10', 'октября'],
+      ['11', 'ноября'],
+      ['12', 'декабря'],
+    ];
+
+    for (const elem of numbers) {
+      if (month === elem[0]) {
+        month = elem[1];
+        return month;
+      }
+    }
+    return month;
+  };
+
+  const removingZeroFromMonth = (day: string) => {
+    if (day.startsWith('0')) {
+      day = day.slice(1);
+    }
+    return day;
+  };
+
+  const AdCreatedOn = (sellerData: Items) => {
+    const data = sellerData.user.sells_from;
+    const year = data.slice(0, 4);
+    const month = data.slice(5, 7);
+    const day = data.slice(8, 10);
+    const monthWord = transformingMonthNumberToWord(month);
+    const dayFinal = removingZeroFromMonth(day);
+    const time = data.slice(11, 16);
+    return ` ${dayFinal}  ${monthWord} ${year} ${time}`;
+  };
+
   return (
     <div className={styles.rightWrapper}>
       {sellerDate && (
         <>
           <h3 className={styles.sellerTitle}>{sellerDate.user.name}</h3>
           <p className={styles.sellerCity}>{sellerDate.user.city}</p>
-          <p className={styles.sellerInfo}>Продает товары с {sellerDate.user.sells_from}</p>
+          <p className={styles.sellerInfo}>Продает товары с {AdCreatedOn(sellerDate)}</p>
         </>
       )}
 

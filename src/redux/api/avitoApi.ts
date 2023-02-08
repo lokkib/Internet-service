@@ -94,9 +94,9 @@ const avitoApi = createApi({
       }),
       invalidatesTags: ['Ads'],
     }),
-    getCurrentUserAds: build.query<Items[], void>({
-      query: () => ({
-        url: `/ads/me`,
+    getCurrentUserAds: build.query<Items[], number>({
+      query: (number) => ({
+        url: `/ads/me?page=${number}`,
         headers: {
           Authorization: `Bearer ${getCookie('access')}`,
         },

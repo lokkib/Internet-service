@@ -47,8 +47,7 @@ const Reviews: React.FC = () => {
         .catch(() => {
           throw new Error();
         })
-        .then((response) => {
-          console.log(response);
+        .then(() => {
           dispatch(getComment(''));
           dispatch(passItemDescription(''));
           setComment(() => {

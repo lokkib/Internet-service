@@ -50,7 +50,7 @@ const AdSettings: React.FC<CloseModalAdEditProps> = ({ closeModalAdEdit }) => {
   const loadImageToAd = (e: React.ChangeEvent<HTMLInputElement>) => {
     if (e.target.files) {
       setFile(e.target.files[0]);
-      console.log(e.target);
+
       const objectUrl = URL.createObjectURL(e.target.files[0]);
       dispatch(passImg(objectUrl));
       e.target.value = '';
@@ -75,9 +75,7 @@ const AdSettings: React.FC<CloseModalAdEditProps> = ({ closeModalAdEdit }) => {
           throw new Error();
         })
         .then(() => {
-          console.log(formData);
           dispatch(passInfoOnEditingAd(false));
-          console.log(data);
         });
       await editAd({
         id,
@@ -113,7 +111,6 @@ const AdSettings: React.FC<CloseModalAdEditProps> = ({ closeModalAdEdit }) => {
 
   useEffect(() => {
     if (data) {
-      console.log(data);
       dispatch(passItemDescription(data.description));
       dispatch(passItemPrice(data.price));
       dispatch(passItemTitle(data.title));
@@ -134,9 +131,6 @@ const AdSettings: React.FC<CloseModalAdEditProps> = ({ closeModalAdEdit }) => {
       .unwrap()
       .catch(() => {
         throw new Error();
-      })
-      .then(() => {
-        console.log('ура');
       });
   };
 

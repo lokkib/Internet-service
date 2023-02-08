@@ -38,7 +38,7 @@ const NewAd: React.FC<AuthActionsProps> = ({ closeModalNewAdv }) => {
       if (e.target.files.length) {
         objectUrl = URL.createObjectURL(e.target.files[0]);
         dispatch(passImg(objectUrl));
-        console.log(e.target.files[0]);
+
         e.target.value = '';
       }
     }

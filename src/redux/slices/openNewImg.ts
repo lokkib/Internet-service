@@ -14,6 +14,8 @@ const setActiveImgSlice = createSlice({
     sendActiveImg: (state, action: PayloadAction<ImgLink | string>) => {
       if (typeof action.payload !== 'string') {
         state.imageId = action.payload.url;
+      } else {
+        state.imageId = action.payload;
       }
     },
   },
