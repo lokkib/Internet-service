@@ -111,11 +111,57 @@
   background: #d9d9d9;
   border: 1px solid #d9d9d9;
   line-height: 1;
+
+  &:hover {
+    background: #d9d9d9;
+    cursor: pointer;
+  }
+}
+
+.signUpInSignIn {
+  width: 278px;
+  height: 52px;
+  background-color: transparent;
+  border: 1px solid #d0cece;
+  border-radius: 6px;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 24px;
+  letter-spacing: -0.05px;
+  color: #000000;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  cursor: pointer;
+  &:hover {
+    background: #0080c1;
+    color: white;
+  }
+}
+
+.disabledSignUp {
+  composes: signIn;
+  margin-top: 30px;
+  background: #d9d9d9;
+  border: 1px solid #d9d9d9;
+  line-height: 1;
+
+  &:hover {
+    background: #d9d9d9;
+    cursor: pointer;
+  }
 }
 
 .signUp {
   composes: signIn;
-  margin-top: 0;
+  margin-top: 30px;
   margin-bottom: 0;
   background-color: transparent;
   border: 1px solid #d0cece;

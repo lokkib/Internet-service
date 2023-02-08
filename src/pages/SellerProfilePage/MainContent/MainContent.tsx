@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 
 import { useParams } from 'react-router-dom';
 import styles from './style.module.scss';
@@ -10,6 +10,13 @@ import { useGetItemsOfSellerQuery } from '../../../redux/api/avitoApi';
 const MainContent: React.FC = () => {
   const { id } = useParams();
   const { data, isLoading } = useGetItemsOfSellerQuery(id);
+  const [sellerArticleData, setSellerArticleData] = useState();
+
+  useEffect(() => {
+    if (data) {
+      setSellerArticleData(data);
+    }
+  }, [data]);
 
   if (isLoading) {
     return (
@@ -28,14 +35,13 @@ const MainContent: React.FC = () => {
           <ProfileSellerInfo />
           <h3 className={styles.headerSellersGoods}>Товары продавца</h3>
         </div>
-        {data && (
-          <ContentCards
-            data={data}
-            classTypeCardItem="cardItemMain"
-            classTypeImgMain="itemMainImg"
-            classType="contentCardsMain"
-          />
-        )}
+
+        <ContentCards
+          data={sellerArticleData}
+          classTypeCardItem="cardItemMain"
+          classTypeImgMain="itemMainImg"
+          classType="contentCardsMain"
+        />
       </div>
     </main>
   );
