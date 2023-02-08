@@ -18,12 +18,9 @@ export const checkModalsStateSlice = createSlice({
     getSignInState: (state, action: PayloadAction<boolean>) => {
       state.reviews = action.payload;
     },
-    getSignUpState: (state, action: PayloadAction<boolean>) => {
-      state.reviews = action.payload;
-    },
   },
 });
 
-export const { getReviewsState, getSignInState, getSignUpState } = checkModalsStateSlice.actions;
+export const { getReviewsState, getSignInState } = checkModalsStateSlice.actions;
 
 export default checkModalsStateSlice.reducer;

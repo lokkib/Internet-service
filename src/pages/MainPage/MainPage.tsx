@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import { AnimatePresence, motion } from 'framer-motion';
 import Header from './Header/Header';
 import MainContent from './MainContent/MainContent';
@@ -11,11 +11,6 @@ import backdrop from '../../constants/animationConfigure';
 const MainPage: React.FC = () => {
   const [openSignInModal, setOpenSignInModal] = useState(false);
   const [openSignUpModal, setOpenSignUpModal] = useState(false);
-  const isLoggedIn = sessionStorage.getItem('isAuth');
-
-  useEffect(() => {
-    console.log(isLoggedIn);
-  }, []);
 
   const clickEnterAccount = () => {
     setOpenSignInModal(true);

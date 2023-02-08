@@ -6,7 +6,6 @@ import ContentCardsProps from '../../@types/props/ContentCardsProps';
 
 const ArticleLeft: React.FC<ContentCardsProps> = ({ itemDetails }) => {
   if (itemDetails) {
-    console.log(itemDetails);
     return (
       <div className={styles.leftWrapper}>
         <div className={styles.leftImg}>

@@ -32,18 +32,14 @@ const SettingsRight: React.FC<CurrentUserDataProps> = ({ currentUserData }) => {
       .unwrap()
       .catch(() => {
         throw new Error();
-      })
-      .then((response) => {
-        console.log(response);
       });
   };
-  const currentData = useSelector((state: RootState) => state.currentUserData.currentUserData);
 
   const dispatch = useDispatch();
 
   useEffect(() => {
     dispatch(getNewCurrentUserName((currentUserData as CurrentUserData).name));
-    console.log(currentData);
+
     dispatch(getNewCurrentUserSurName((currentUserData as CurrentUserData).surname));
 
     dispatch(getNewCurrentUserCity((currentUserData as CurrentUserData).city));
