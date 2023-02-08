@@ -33,6 +33,9 @@ const SellerArticlePage: React.FC = () => {
       setNewAdvOpen(true);
     } else {
       setNewAdvClosed(true);
+      setTimeout(() => {
+        setOpenSignInModal(true);
+      }, 1500);
     }
   };
 
@@ -118,10 +121,10 @@ const SellerArticlePage: React.FC = () => {
         {openSignInModal && (
           <motion.div
             key={3}
-            variants={backdrop}
-            initial="hidden"
-            animate="visible"
-            exit="exit"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.5 }}
             className={openSignInModal ? styles.modalBlock : styles.modalDisplayNone}
           >
             <SignIn

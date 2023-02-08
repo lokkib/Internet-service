@@ -184,7 +184,7 @@ const SignUp: React.FC<AuthActionsProps> = ({
         <div onClickCapture={() => [clickSignUp && clickSignUp(), handleSigngUp()]}>
           <ButtonSearchSave
             disabled={disabled}
-            classType={disabled ? 'disabledSignIn' : 'signUpButton'}
+            classType={disabled ? 'disabledSignUp' : 'signUpButton'}
             text="Зарегистрироваться"
           />
         </div>

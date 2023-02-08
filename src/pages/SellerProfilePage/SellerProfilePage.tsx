@@ -58,6 +58,9 @@ const SellerProfilePage: React.FC = () => {
       setNewAdOpen(true);
     } else {
       setNewAdClosed(true);
+      setTimeout(() => {
+        setOpenSignInModal(true);
+      }, 1500);
     }
   };
 
@@ -96,6 +99,7 @@ const SellerProfilePage: React.FC = () => {
         )}
         {newAdIsClosed && (
           <motion.div
+            key={2}
             variants={backdrop}
             initial="hidden"
             animate="visible"
@@ -107,6 +111,7 @@ const SellerProfilePage: React.FC = () => {
         )}
         {newAd && (
           <motion.div
+            key={3}
             variants={backdrop}
             initial="hidden"
             animate="visible"
@@ -118,24 +123,33 @@ const SellerProfilePage: React.FC = () => {
         )}
         {openSignInModal && (
           <motion.div
-            variants={backdrop}
-            initial="hidden"
-            animate="visible"
-            exit="exit"
+            key={4}
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.5 }}
             className={openSignInModal ? styles.modalBlock : styles.modalDisplayNone}
           >
             <SignIn clickSignUp={clickSignUp} closeSignUpWindow={closeSignUpWindow} />
           </motion.div>
         )}
+
         {openSignUpModal && (
-          <div className={openSignUpModal ? styles.modalBlock : styles.modalDisplayNone}>
+          <motion.div
+            key={5}
+            variants={backdrop}
+            initial="hidden"
+            animate="visible"
+            exit="exit"
+            className={openSignUpModal ? styles.modalBlock : styles.modalDisplayNone}
+          >
             <SignUp
               openSignInModalCloseSignUp={openSignInModalCloseSignUp}
               closeSignUpWindow={closeSignUpWindow}
               clickSignUp={clickSignUp}
               closeAuthWindow={closeAuthWindow}
             />
-          </div>
+          </motion.div>
         )}
       </AnimatePresence>
       <Header
