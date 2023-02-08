@@ -1,0 +1,62 @@
+.mainInfoContainer {
+  max-width: 1178px;
+  margin: 0 auto;
+  padding: 52px 10px 37px;
+
+  @media screen and (max-width: 590px) {
+    padding: 85px 10px 84px;
+  }
+}
+
+.heading {
+  font-style: normal;
+  font-weight: 500;
+  font-size: 40px;
+  line-height: 42px;
+  color: #000000;
+  margin-bottom: 30px;
+
+  @media screen and (max-width: 590px) {
+    font-size: 24px;
+    line-height: 29px;
+    color: #000000;
+    margin-bottom: 20px;
+    text-align: center;
+    position: relative;
+  }
+
+  @media screen and (max-width: 590px) {
+    &::before {
+      content: '';
+      display: block;
+      width: 12px;
+      height: 12px;
+      background-color: transparent;
+      border-top: 2px solid #000000;
+      border-left: 2px solid #000000;
+      -webkit-transform: rotate(-45deg);
+      transform: rotate(-45deg);
+      position: absolute;
+      top: 9px;
+      left: 13px;
+      cursor: pointer;
+    }
+  }
+}
+
+.loadingSpinnerWrapper {
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+}
+
+.loadingSpinner {
+  border: 4px solid #330a60;
+  border-top: 4px solid #e0e0e0;
+  border-radius: 50%;
+  height: 30px;
+  width: 30px;
+  animation: spin 2s linear infinite;
+}

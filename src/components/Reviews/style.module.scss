@@ -1,0 +1,124 @@
+.reviewsWrapper {
+  position: absolute;
+  z-index: 5;
+  left: calc(50% - (800px / 2));
+  top: 60px;
+  opacity: 1;
+  overflow-y: scroll;
+  height: 800px;
+  &::-webkit-scrollbar {
+    width: 5px;
+    background: rgba(0, 0, 0, 0.05);
+    border-radius: 10px;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    height: 50px;
+    width: 7px;
+    background: #009ee4;
+    border-radius: 10px;
+
+    &:hover {
+      background-color: #04658f;
+    }
+    &:active {
+      background-color: #04658f;
+    }
+  }
+}
+
+.reviewsContent {
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  flex-direction: column;
+  -webkit-box-align: start;
+  align-items: flex-start;
+  width: 800px;
+  height: auto;
+  padding: 20px 92px 57px 50px;
+  background-color: #ffffff;
+  border-radius: 12px;
+  position: relative;
+}
+
+.reviewsHeading {
+  font-size: 32px;
+  line-height: 46px;
+  font-weight: 500;
+  color: #000000;
+  margin-bottom: 15px;
+}
+
+.reviewsScroll {
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  flex-direction: column;
+  -webkit-box-align: start;
+  align-items: flex-start;
+  width: 100%;
+  overflow-y: auto;
+
+  &::-webkit-scrollbar {
+    display: none;
+  }
+}
+
+.advSettingsForm {
+  margin-top: 5px;
+  margin-bottom: 15px;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  flex-direction: column;
+  width: 100%;
+}
+
+.reviews {
+  width: 100%;
+  height: 495px;
+}
+
+.modalBlock {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(244, 245, 246, 0.7);
+}
+
+.modalReviewsBlock {
+  composes: modalBlock;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 10;
+}
+
+.modalReviewsBlock div {
+  width: 300px;
+  height: 100px;
+  background-color: white;
+  text-align: center;
+  font-size: 18px;
+  font-weight: 500;
+}
+
+.loadingSpinnerWrapper {
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.loadingSpinner {
+  border: 4px solid #330a60;
+  border-top: 4px solid #e0e0e0;
+  border-radius: 50%;
+  height: 30px;
+  width: 30px;
+  animation: spin 2s linear infinite;
+}

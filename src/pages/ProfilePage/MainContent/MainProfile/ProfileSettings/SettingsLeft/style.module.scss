@@ -1,0 +1,47 @@
+.settingsWrapper {
+  display: flex;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  flex-direction: column;
+  -ms-flex-direction: column;
+  -ms-flex-align: center;
+  -webkit-box-align: center;
+  align-items: center;
+  margin-right: 43px;
+
+  @media screen and (max-width: 620px) {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    margin-right: 0;
+  }
+}
+
+.settingsWrapper button {
+  border: none;
+  background: none repeat scroll 0 0 transparent;
+  margin-top: 10px;
+  margin-bottom: 30px;
+  text-decoration: none;
+  font-size: 16px;
+  line-height: 24px;
+  color: #009ee4;
+  text-decoration: none;
+  font-family: 'StratosSkyeng', sans-serif;
+  cursor: pointer;
+}
+
+.settingsWrapper input {
+  position: relative;
+  bottom: 30px;
+  left: 60px;
+}

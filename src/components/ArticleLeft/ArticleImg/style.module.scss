@@ -1,0 +1,23 @@
+.articleImg {
+  width: 480px;
+  height: 480px;
+  background-color: #f0f0f0;
+  margin: 0 5px;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.articleImg img {
+  width: 100%;
+  height: 100%;
+  display: block;
+  -o-object-fit: cover;
+  object-fit: cover;
+}
+
+.articleImg p {
+  font-size: 20px;
+  font-weight: 500;
+}

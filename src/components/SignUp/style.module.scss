@@ -1,0 +1,23 @@
+.signUpWrapper {
+  position: absolute;
+  z-index: 2;
+  left: calc(50% - (366px / 2));
+  top: calc(50% - (647px / 2));
+  opacity: 1;
+}
+
+.formSignUp {
+  width: 366px;
+  height: 647px;
+  background-color: #ffffff;
+  border-radius: 12px;
+
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+
+  flex-direction: column;
+  -webkit-box-align: center;
+  align-items: center;
+  padding: 43px 42px 47px;
+}

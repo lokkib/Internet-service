@@ -1,0 +1,55 @@
+.priceBlock {
+  position: relative;
+  width: 100%;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  flex-direction: column;
+  margin-bottom: 20px;
+}
+
+.priceBlock label {
+  margin-bottom: 4px;
+  font-size: 16px;
+  line-height: 24px;
+  color: #000000;
+}
+
+.priceBlock input {
+  width: 200px;
+  font-size: 16px;
+  line-height: 24px;
+  color: #000000;
+  padding: 13px 19px;
+  background: #ffffff;
+  border: 1px solid rgba(0, 0, 0, 0.2);
+  border-radius: 6px;
+
+  &:focus {
+    outline: 1px solid rgba(0, 158, 228);
+  }
+}
+
+.priceCover {
+  width: 24px;
+  height: 24px;
+  font-size: 16px;
+  line-height: 24px;
+  color: #000000;
+  position: absolute;
+  bottom: 13px;
+  left: 170px;
+  z-index: 0;
+  background-color: #ffffff;
+
+  &::after {
+    content: '\A0 \20BD';
+    width: 24px;
+    height: 24px;
+    position: absolute;
+    font-size: 16px;
+    line-height: 24px;
+    color: #000000;
+    z-index: 2;
+  }
+}

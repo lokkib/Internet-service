@@ -1,0 +1,22 @@
+.rightWrapper {
+  width: auto;
+}
+
+.sellerTitle {
+  font-size: 20px;
+  font-weight: 600;
+  line-height: 40px;
+  color: #000000;
+  margin-bottom: 0px;
+}
+
+.sellerCity {
+  font-size: 16px;
+  line-height: 21px;
+  color: #5f5f5f;
+  margin-bottom: 10px;
+}
+
+.sellerInfo {
+  composes: sellerCity;
+}

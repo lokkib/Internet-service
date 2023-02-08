@@ -1,0 +1,20 @@
+.avatar {
+  width: 170px;
+  height: 170px;
+  border-radius: 50%;
+  background-color: #f0f0f0;
+
+  @media screen and (max-width: 620px) {
+    width: 132px;
+    height: 132px;
+  }
+}
+
+.avatar img {
+  border-radius: 50%;
+  width: 100%;
+  height: auto;
+  display: block;
+  -o-object-fit: cover;
+  object-fit: cover;
+}

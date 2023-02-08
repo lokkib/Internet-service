@@ -1,0 +1,36 @@
+.profileWrapper {
+  width: 100%;
+  padding: 0 0 70px;
+
+  @media screen and (max-width: 620px) {
+    width: 100%;
+    padding: 0 0 40px;
+  }
+}
+
+.profileContent {
+  max-width: 834px;
+
+  @media screen and (max-width: 890px) {
+    max-width: 834px;
+    width: 100%;
+  }
+
+  @media screen and (max-width: 890px) {
+    max-width: 834px;
+    width: 100%;
+  }
+}
+
+.profileHeader {
+  margin-bottom: 20px;
+  font-size: 32px;
+  line-height: 70px;
+  font-weight: 500;
+  color: #000000;
+
+  @media screen and (max-width: 620px) {
+    font-size: 18px;
+    line-height: 1;
+  }
+}

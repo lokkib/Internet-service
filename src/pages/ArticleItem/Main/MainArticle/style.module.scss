@@ -1,0 +1,29 @@
+.mainArticleWrapper {
+  max-width: 1178px;
+  padding: 0 0 70px;
+  margin: 0 auto;
+  padding: 0 5px 70px;
+}
+
+.content {
+  display: flex;
+  -webkit-box-pack: center;
+  justify-content: center;
+}
+
+.loadingSpinnerWrapper {
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.loadingSpinner {
+  border: 4px solid #330a60;
+  border-top: 4px solid #e0e0e0;
+  border-radius: 50%;
+  height: 30px;
+  width: 30px;
+  animation: spin 2s linear infinite;
+}
