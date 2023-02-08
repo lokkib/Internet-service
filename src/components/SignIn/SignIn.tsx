@@ -9,7 +9,7 @@ import ButtonSearchSave from '../ButtonSearchSave/ButtonSearchSave';
 import ButtonClose from '../ButtonClose/ButtonClose';
 import AuthActionsProps from '../../@types/props/AuthActionsProps';
 import { useLoginMutation } from '../../redux/api/avitoApi';
-import { getSignInState, getSignUpState } from '../../redux/slices/checkModalsSlice';
+import { getSignInState } from '../../redux/slices/checkModalsSlice';
 
 const SignIn: React.FC<AuthActionsProps> = ({ clickSignUp, closeSignUpWindow }) => {
   const [inputErrorLogin, setInputErrorLogin] = useState(false);
@@ -54,7 +54,6 @@ const SignIn: React.FC<AuthActionsProps> = ({ clickSignUp, closeSignUpWindow }) 
         throw new Error(error);
       })
       .then((response) => {
-        console.log('!!!');
         sessionStorage.setItem('isAuth', 'true');
         setCookie('refresh', response.refresh_token);
         setCookie('access', response.access_token);
@@ -80,7 +79,6 @@ const SignIn: React.FC<AuthActionsProps> = ({ clickSignUp, closeSignUpWindow }) 
 
   const closeSignInOpenSignUp = () => {
     dispatch(getSignInState(false));
-    dispatch(getSignUpState(true));
   };
 
   return (

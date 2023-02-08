@@ -34,7 +34,6 @@ const ArticleImg: React.FC<ImagesInfo> = ({ imgLinks }) => {
       setMainImageUrl(imageSelected);
       setDefaultImg('');
       dispatch(sendActiveImg(''));
-      console.log(defaultImg);
     }
   }, [imageSelected, mainImageUrl, defaultImg]);
 

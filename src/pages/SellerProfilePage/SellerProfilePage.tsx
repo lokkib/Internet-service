@@ -11,6 +11,7 @@ import backdrop from '../../constants/animationConfigure';
 import NotifyingModalWindow from '../../components/NotifyingModalWindow/NotifyingModalWindow';
 import { getInputValue } from '../../redux/slices/searchSlice';
 import { RootState } from '../../redux/store';
+import { getReviewsState } from '../../redux/slices/checkModalsSlice';
 
 const SellerProfilePage: React.FC = () => {
   const [newAd, setNewAdOpen] = useState(false);
@@ -44,6 +45,7 @@ const SellerProfilePage: React.FC = () => {
   const clickSignUp = () => {
     setOpenSignUpModal(true);
     setOpenSignInModal(false);
+    dispatch(getReviewsState(false));
   };
 
   const closeSignUpWindow = () => {

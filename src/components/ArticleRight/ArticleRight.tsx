@@ -30,10 +30,8 @@ const ArticleRight: React.FC<MainArticleProps> = ({
       .catch(() => {
         throw new Error();
       })
-      .then((response) => {
-        console.log(response);
+      .then(() => {
         dispatch(successDeletionNotify(true));
-        // navigate('/my-account')
       });
   };
 

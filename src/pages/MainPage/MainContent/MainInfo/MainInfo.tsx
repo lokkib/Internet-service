@@ -46,14 +46,10 @@ const MainInfo: React.FC = () => {
     if (inputValue) {
       setFilteredItems(filteredItems);
     }
-    console.log(filteredItems);
-    console.log(items);
 
     if (!inputValue) {
       dispatch(filteringItems(''));
     }
-
-    console.log(window.location.pathname);
   }, [inputValue]);
 
   return (
