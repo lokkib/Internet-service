@@ -121,7 +121,7 @@ const SignIn: React.FC<AuthActionsProps> = ({ clickSignUp, closeSignUpWindow }) 
         <div onClickCapture={() => clickSignUp && clickSignUp()}>
           <ButtonSearchSave
             onClick={closeSignInOpenSignUp}
-            classType="signUp"
+            classType="signUpInSignIn"
             text="Зарегистрироваться"
           />
         </div>

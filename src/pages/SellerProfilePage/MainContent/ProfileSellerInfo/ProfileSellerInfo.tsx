@@ -8,17 +8,17 @@ import { Items } from '../../../../@types/props/ContentCardsProps';
 
 const ProfileSellerInfo: React.FC = () => {
   const { id } = useParams();
-  const [sellerDate, setSellerData] = useState<Items>();
+  const [sellerDate, setSellerData] = useState<Items | false>(false);
 
-  const { data } = useGoToConcreteItemQuery(id);
+  const { data, isLoading } = useGoToConcreteItemQuery(id);
 
   useEffect(() => {
     if (data) {
       setSellerData(data);
     }
-  }, []);
+  }, [data]);
 
-  if (!sellerDate) {
+  if (isLoading) {
     return (
       <div className={styles.loadingSpinnerWrapper}>
         <div className={styles.loadingSpinner} />
@@ -30,8 +30,12 @@ const ProfileSellerInfo: React.FC = () => {
     <div className={styles.infoWrapper}>
       <div className={styles.content}>
         <div className={styles.info}>
-          <InfoLeft sellerDate={sellerDate} />
-          <InfoRight sellerDate={sellerDate} />
+          {sellerDate && (
+            <>
+              <InfoLeft sellerDate={sellerDate} />
+              <InfoRight sellerDate={sellerDate} />
+            </>
+          )}
         </div>
       </div>
     </div>
