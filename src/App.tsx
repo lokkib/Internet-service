@@ -9,6 +9,14 @@ type MyToken = {
   exp: number;
 };
 
+
+type TokenRefresh = {
+
+    access_token: string,
+    refresh_token: string,
+    token_type: string
+}
+
 const App: React.FC = () => {
   const isLoggedIn = sessionStorage.getItem('isAuth');
   const [refreshToken] = useRefreshTokenMutation();
@@ -26,12 +34,12 @@ const App: React.FC = () => {
               access_token: getCookie('access'),
             })
               .unwrap()
-              .then((response) => {
+              .then((response: TokenRefresh) => {
                 setCookie('access', response.access_token);
                 setCookie('refresh', response.refresh_token);
                 sessionStorage.setItem('isAuth', 'true');
               })
-              .catch((error) => {
+              .catch((error: string) => {
                 throw new Error(error);
               });
           };
