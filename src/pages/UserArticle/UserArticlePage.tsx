@@ -4,7 +4,6 @@ import { useSelector, useDispatch } from 'react-redux';
 
 import Header from '../../components/Header/Header';
 import Main from '../ArticleItem/Main/Main';
-import styles from './style.module.scss';
 import AdSettings from '../../components/AdSettings/AdSettings';
 import NewAd from '../../components/NewAd/NewAd';
 import backdrop from '../../constants/animationConfigure';
