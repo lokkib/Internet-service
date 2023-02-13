@@ -1,16 +1,16 @@
-import React, { useState, useEffect } from 'react';
-
+import { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
+import { Items } from '../../../@types/props/ContentCardsProps';
 import styles from './style.module.scss';
 import MainMenu from '../../../components/MainMenu/MainMenu';
 import ContentCards from '../../../components/ContentCards/ContentCards';
 import ProfileSellerInfo from './ProfileSellerInfo/ProfileSellerInfo';
 import { useGetItemsOfSellerQuery } from '../../../redux/api/avitoApi';
 
-const MainContent: React.FC = () => {
+const MainContent = () => {
   const { id } = useParams();
   const { data, isLoading } = useGetItemsOfSellerQuery(id);
-  const [sellerArticleData, setSellerArticleData] = useState();
+  const [sellerArticleData, setSellerArticleData] = useState<Items[]>();
 
   useEffect(() => {
     if (data) {

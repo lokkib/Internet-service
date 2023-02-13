@@ -1,10 +1,9 @@
-import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import styles from './style.module.scss';
 import ButtonEnterLogout from '../../../components/ButtonEnterLogout/ButtonEnterLogout';
 import changingStateProp from '../../../@types/props/AuthActionsProps';
 
-const Header: React.FC<changingStateProp> = ({ clickEnterAccount }) => {
+const Header = ({ clickEnterAccount }: changingStateProp) => {
   const navigate = useNavigate();
   const isAuth = sessionStorage.getItem('isAuth');
 

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import styles from './style.module.scss';
 import ButtonClose from '../ButtonClose/ButtonClose';
@@ -16,7 +16,7 @@ import { RootState } from '../../redux/store';
 import { successAdPublicationNotify } from '../../redux/slices/notificationsSlice';
 import { passImg, deleteImg, reset } from '../../redux/slices/editingAdWithImgSlice';
 
-const NewAd: React.FC<AuthActionsProps> = ({ closeModalNewAdv }) => {
+const NewAd = ({ closeModalNewAdv }: AuthActionsProps) => {
   const newAdvParamsTitle = useSelector((state: RootState) => state.newAdParamsTextOnly.title);
   const newAdvParamsPrice = useSelector((state: RootState) => state.newAdParamsTextOnly.price);
   const newAdvParamsDescription = useSelector(

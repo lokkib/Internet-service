@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import styles from './style.module.scss';
 import InfoLeft from './InfoLeft/InfoLeft';
@@ -6,7 +6,7 @@ import InfoRight from './InfoRight/InfoRight';
 import { useGoToConcreteItemQuery } from '../../../../redux/api/avitoApi';
 import { Items } from '../../../../@types/props/ContentCardsProps';
 
-const ProfileSellerInfo: React.FC = () => {
+const ProfileSellerInfo = () => {
   const { id } = useParams();
   const [sellerDate, setSellerData] = useState<Items | false>(false);
 

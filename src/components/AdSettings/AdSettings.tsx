@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { setCookie } from 'cookies-next';
@@ -32,7 +32,7 @@ type ImageData = {
   url: string;
 };
 
-const AdSettings: React.FC<CloseModalAdEditProps> = ({ closeModalAdEdit }) => {
+const AdSettings = ({ closeModalAdEdit }: CloseModalAdEditProps) => {
   const dispatch = useDispatch();
   const { id } = useParams();
   const [editAd] = useEditAdMutation();

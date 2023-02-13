@@ -16,7 +16,7 @@ import CurrentUserMainData, {
   CurrentUserUEditedData,
 } from '../../@types/props/CurrentUsersDataProps';
 
-const ProfilePage: React.FC = () => {
+const ProfilePage = () => {
   const currentData = useSelector((state: RootState) => state.currentUserData.currentUserData);
 
   const newData = useSelector((state: RootState) => state.currentUserData.newCurrentUserData);
@@ -53,7 +53,7 @@ const ProfilePage: React.FC = () => {
     comparingCurrentAndNewUserData(currentData, newData);
   }, [newData]);
 
-  const [newAd, setNewAdOpen] = useState(false);
+  const [newAd, setNewAdOpen] = useState<boolean>(false);
 
   const openModalNewAdv = () => {
     setNewAdOpen(true);

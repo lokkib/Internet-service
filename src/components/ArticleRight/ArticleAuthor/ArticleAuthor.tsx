@@ -1,14 +1,13 @@
-import React from 'react';
 import { Link } from 'react-router-dom';
 import styles from './style.module.scss';
 import MainArticleProps from '../../../@types/props/MainArticleProps';
 import { Items } from '../../../@types/props/ContentCardsProps';
 import api from '../../../constants/api';
 
-const ArticleAuthor: React.FC<MainArticleProps> = ({ itemDetails }) => {
+const ArticleAuthor = ({ itemDetails }: MainArticleProps) => {
   const id = itemDetails?.user.id;
 
-  const isUserAvatar = (p: Items | undefined) => {
+  const isUserAvatar = (p?: Items) => {
     if (p) {
       return p.user.avatar;
     }

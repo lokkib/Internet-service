@@ -1,11 +1,10 @@
-import React from 'react';
 import { useNavigate, Link } from 'react-router-dom';
 
 import styles from './style.module.scss';
 import Logo from '../Logo/Logo';
 import ButtonSearchSave from '../ButtonSearchSave/ButtonSearchSave';
 
-const MainMenu: React.FC = () => {
+const MainMenu = () => {
   const navigate = useNavigate();
 
   const goBackToMainPage = () => {

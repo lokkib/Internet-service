@@ -3,7 +3,7 @@ type CurrentUserMainData = {
   surname: string;
   phone: string;
   city: string;
-  avatar?: string | undefined;
+  avatar?: string;
 };
 
 export type CurrentUserUEditedData = {

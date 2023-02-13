@@ -1,9 +1,8 @@
-import React from 'react';
 import styles from './style.module.scss';
 import ReviewItemProps from '../../@types/props/ReviewItemProps';
 import api from '../../constants/api';
 
-const ReviewItem: React.FC<ReviewItemProps> = ({ reviewItemData }) => {
+const ReviewItem = ({ reviewItemData }: ReviewItemProps) => {
   const commentedCreatedOn = () => {
     const data = reviewItemData.created_on;
     const day = data.slice(0, 10);

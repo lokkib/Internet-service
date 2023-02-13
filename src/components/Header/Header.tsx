@@ -1,11 +1,11 @@
 import { Link, useNavigate } from 'react-router-dom';
-import React from 'react';
+
 import ButtonEnterLogout from '../ButtonEnterLogout/ButtonEnterLogout';
 import styles from './style.module.scss';
 import MobLogo from '../MobLogo/MobLogo';
 import HeaderProps from '../../@types/props/HeaderProps';
 
-const Header: React.FC<HeaderProps> = ({ classType, openModalNewAdv, clickEnterAccount }) => {
+const Header = ({ classType, openModalNewAdv, clickEnterAccount }: HeaderProps) => {
   const navigate = useNavigate();
 
   const isLoggedIn = sessionStorage.getItem('isAuth');

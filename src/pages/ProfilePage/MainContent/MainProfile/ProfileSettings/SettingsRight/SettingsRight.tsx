@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import styles from './style.module.scss';
 import ButtonSearchSave from '../../../../../../components/ButtonSearchSave/ButtonSearchSave';
@@ -17,7 +17,7 @@ import { RootState } from '../../../../../../redux/store';
 import { useChangeCurrentUserDataMutation } from '../../../../../../redux/api/avitoApi';
 import api from '../../../../../../constants/api';
 
-const SettingsRight: React.FC<CurrentUserDataProps> = ({ currentUserData }) => {
+const SettingsRight = ({ currentUserData }: CurrentUserDataProps) => {
   const [sendNewData] = useChangeCurrentUserDataMutation();
 
   const isCurrentUserDataChanged = useSelector(

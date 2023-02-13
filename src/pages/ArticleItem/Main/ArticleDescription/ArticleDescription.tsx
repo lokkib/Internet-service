@@ -1,9 +1,8 @@
-import React from 'react';
 import { useParams } from 'react-router-dom';
 import styles from './style.module.scss';
 import { useGoToConcreteItemQuery } from '../../../../redux/api/avitoApi';
 
-const ArticleDescription: React.FC = () => {
+const ArticleDescription = () => {
   const { id } = useParams();
   const { data } = useGoToConcreteItemQuery(id);
 

@@ -1,6 +1,4 @@
-import React from 'react';
-
-const Logo: React.FC = () => {
+const Logo = () => {
   return (
     <svg width="54" height="38" viewBox="0 0 54 38" fill="none" xmlns="http://www.w3.org/2000/svg">
       <path

@@ -1,17 +1,16 @@
-import React from 'react';
 import { useDispatch } from 'react-redux';
 import ButtonClose from '../../ButtonClose/ButtonClose';
 import styles from './style.module.scss';
 import FormArticlePhotoProps from '../../../@types/props/FormArticePhotosProps';
 import { deleteItemImages } from '../../../redux/slices/passNewAdParamsTextOnly';
 
-const FormPhoto: React.FC<FormArticlePhotoProps> = ({
+const FormPhoto = ({
   loadImageToAd,
   fileLink,
   file,
   deleteImageOnClick,
   deleteImageFromAdOnClick,
-}) => {
+}: FormArticlePhotoProps) => {
   const dispatch = useDispatch();
 
   const deleteImageOnClick2 = (fileLink1: string) => {

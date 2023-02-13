@@ -1,15 +1,13 @@
-import React from 'react';
-
 import styles from './style.module.scss';
 import ButtonCloseProps from '../../@types/props/ButtonCloseProps';
 
-const ButtonClose: React.FC<ButtonCloseProps> = ({
+const ButtonClose = ({
   classType,
   closeSignUpWindow,
   onClick,
   classType2,
   reset,
-}) => {
+}: ButtonCloseProps) => {
   return (
     <div className={classType2 ? styles.deleteImgWrapper : styles.closeWrapper}>
       <div

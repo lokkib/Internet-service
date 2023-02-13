@@ -1,9 +1,7 @@
-import React from 'react';
-
 import styles from './style.module.scss';
 import ContentCardsProps from '../../../@types/props/ContentCardsProps';
 
-const CardContent: React.FC<ContentCardsProps> = ({ createdOn, city, price, title }) => {
+const CardContent = ({ createdOn, city, price, title }: ContentCardsProps) => {
   const transformingMonthNumberToWord = (month: string) => {
     const numbers = [
       ['01', 'января'],

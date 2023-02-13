@@ -1,11 +1,11 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import styles from './style.module.scss';
 import ImagesInfo, { ImgLink } from '../../../@types/props/ImageLinksProps';
 import { sendActiveImg } from '../../../redux/slices/openNewImg';
 import api from '../../../constants/api';
 
-const ArticleImgBar: React.FC<ImagesInfo> = ({ imgLinks }) => {
+const ArticleImgBar = ({ imgLinks }: ImagesInfo) => {
   const [selected, setSelected] = useState<number>();
 
   const dispatch = useDispatch();
@@ -16,8 +16,8 @@ const ArticleImgBar: React.FC<ImagesInfo> = ({ imgLinks }) => {
 
   return (
     <div className={styles.articleImgWrapper}>
-      {Boolean(imgLinks.length) &&
-        imgLinks.slice(0).map((img) => {
+      {imgLinks.length &&
+        imgLinks.map((img) => {
           return (
             <div
               tabIndex={0}

@@ -1,15 +1,13 @@
-import React from 'react';
-
 import styles from './style.module.scss';
 import ButtonSearchSaveProps from '../../@types/props/ButtonSearchSaveProps';
 
-const ButtonSearchSave: React.FC<ButtonSearchSaveProps> = ({
+const ButtonSearchSave = ({
   text,
   classType,
   phoneNumber,
   onClick,
   disabled,
-}) => {
+}: ButtonSearchSaveProps) => {
   return (
     <button
       disabled={disabled && disabled}

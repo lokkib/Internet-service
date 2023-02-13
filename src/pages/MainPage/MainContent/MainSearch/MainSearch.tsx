@@ -1,4 +1,3 @@
-import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import Logo from '../../../../components/Logo/Logo';
@@ -13,7 +12,7 @@ import {
 } from '../../../../redux/slices/searchSlice';
 import { RootState } from '../../../../redux/store';
 
-const MainSearch: React.FC = () => {
+const MainSearch = () => {
   const dispatch = useDispatch();
 
   const inputValue = useSelector((state: RootState) => state.items.inputValue);

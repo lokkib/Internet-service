@@ -1,4 +1,3 @@
-import React from 'react';
 import { Link } from 'react-router-dom';
 import styles from './style.module.scss';
 import HomeIcon from './Icons/HomeIcon';
@@ -6,7 +5,7 @@ import AuthIcon from './Icons/AuthIcon';
 import NewAdvIcon from './Icons/NewAdvIcon';
 import MobFooterProps from '../../@types/props/MobFooterProps';
 
-const MobFooter: React.FC<MobFooterProps> = ({ classType }) => {
+const MobFooter = ({ classType }: MobFooterProps) => {
   return (
     <footer className={styles[classType]}>
       <div className={styles.footerContainer}>

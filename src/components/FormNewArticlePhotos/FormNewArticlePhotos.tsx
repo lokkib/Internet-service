@@ -1,4 +1,3 @@
-import React from 'react';
 import { useSelector } from 'react-redux';
 import FormPhoto from './FormPhoto/FormPhoto';
 import styles from './style.module.scss';
@@ -8,13 +7,13 @@ import FormArticlePhotoProps from '../../@types/props/FormArticePhotosProps';
 
 import api from '../../constants/api';
 
-const FormNewArticlePhotos: React.FC<FormArticlePhotoProps> = ({
+const FormNewArticlePhotos = ({
   loadImageToAd,
   id,
   dataPhoto,
   deleteImageOnClick,
   deleteImageFromAdOnClick,
-}) => {
+}: FormArticlePhotoProps) => {
   const AdEditedWithImgArray = useSelector((state: RootState) => state.editedAd.ImgArray);
 
   if (id) {

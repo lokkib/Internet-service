@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from '../../../../redux/store';
 import ContentCards from '../../../../components/ContentCards/ContentCards';
@@ -9,9 +9,9 @@ import { getAllItems, filteringItems } from '../../../../redux/slices/searchSlic
 import { Items } from '../../../../@types/props/ContentCardsProps';
 import api from '../../../../constants/api';
 
-const MainInfo: React.FC = () => {
+const MainInfo = () => {
   const dispatch = useDispatch();
-  const [currentPage, setCurrentPage] = useState(1);
+  const [currentPage, setCurrentPage] = useState<number>(1);
   const [items, setItems] = useState<Items[]>([]);
   const [, setFilteredItems] = useState<Items[]>([]);
 
