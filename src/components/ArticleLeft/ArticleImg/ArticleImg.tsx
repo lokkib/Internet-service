@@ -1,7 +1,7 @@
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { useParams } from 'react-router-dom';
-
+import { Items } from '../../../@types/props/ContentCardsProps';
 import ImagesInfo from '../../../@types/props/ImageLinksProps';
 import styles from './style.module.scss';
 import { sendActiveImg } from '../../../redux/slices/openNewImg';
@@ -9,12 +9,12 @@ import { RootState } from '../../../redux/store';
 import { useGoToConcreteItemQuery } from '../../../redux/api/avitoApi';
 import api from '../../../constants/api';
 
-const ArticleImg: React.FC<ImagesInfo> = ({ imgLinks }) => {
+const ArticleImg = ({ imgLinks }: ImagesInfo) => {
   const { id } = useParams();
   const { data } = useGoToConcreteItemQuery(id);
-  const [, setData] = useState([]);
-  const [defaultImg, setDefaultImg] = useState('');
-  const [mainImageUrl, setMainImageUrl] = useState('');
+  const [, setData] = useState<Items>();
+  const [defaultImg, setDefaultImg] = useState<string>('');
+  const [mainImageUrl, setMainImageUrl] = useState<string>('');
   const imageSelected = useSelector((state: RootState) => state.activeImg.imageId);
 
   useEffect(() => {
@@ -39,9 +39,9 @@ const ArticleImg: React.FC<ImagesInfo> = ({ imgLinks }) => {
 
   return (
     <div className={styles.articleImg}>
-      {Boolean(imgLinks.length) && <img src={api + (defaultImg || mainImageUrl)} alt="article" />}
+      {imgLinks.length && <img src={api + (defaultImg || mainImageUrl)} alt="article" />}
 
-      {Boolean(!imgLinks.length) && <p>Фотографий нет</p>}
+      {!imgLinks.length && <p>Фотографий нет</p>}
     </div>
   );
 };

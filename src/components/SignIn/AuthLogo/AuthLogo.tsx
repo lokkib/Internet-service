@@ -1,7 +1,6 @@
-import React from 'react';
 import styles from './style.module.scss';
 
-const AuthLogo: React.FC = () => {
+const AuthLogo = () => {
   return (
     <div className={styles.authLogoBlock}>
       <svg width="140" viewBox="0 0 140 21" fill="none" xmlns="http://www.w3.org/2000/svg">

@@ -1,8 +1,7 @@
-import React from 'react';
 import styles from './style.module.scss';
 import ProfileSettings from './ProfileSettings/ProfileSettings';
 
-const MainProfile: React.FC = () => {
+const MainProfile = () => {
   return (
     <div className={styles.profileWrapper}>
       <div className={styles.profileContent}>

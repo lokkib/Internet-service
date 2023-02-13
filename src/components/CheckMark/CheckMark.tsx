@@ -1,6 +1,4 @@
-import React from 'react';
-
-const CheckMark: React.FC = () => {
+const CheckMark = () => {
   return (
     <svg height="24" version="1.1" width="24" xmlns="http://www.w3.org/2000/svg">
       <g transform="translate(0 -1028.4)">

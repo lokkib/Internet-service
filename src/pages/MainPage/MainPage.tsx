@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { AnimatePresence, motion } from 'framer-motion';
 import Header from './Header/Header';
 import MainContent from './MainContent/MainContent';
@@ -8,9 +8,9 @@ import styles from './style.module.scss';
 import SignUp from '../../components/SignUp/SignUp';
 import backdrop from '../../constants/animationConfigure';
 
-const MainPage: React.FC = () => {
-  const [openSignInModal, setOpenSignInModal] = useState(false);
-  const [openSignUpModal, setOpenSignUpModal] = useState(false);
+const MainPage = () => {
+  const [openSignInModal, setOpenSignInModal] = useState<boolean>(false);
+  const [openSignUpModal, setOpenSignUpModal] = useState<boolean>(false);
 
   const clickEnterAccount = () => {
     setOpenSignInModal(true);

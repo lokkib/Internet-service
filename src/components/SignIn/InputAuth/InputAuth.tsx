@@ -1,8 +1,8 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import styles from './style.module.scss';
 import InputProps from '../../../@types/props/InputProps';
 
-const InputAuth: React.FC<InputProps> = ({
+const InputAuth = ({
   type,
   name,
   id,
@@ -12,8 +12,8 @@ const InputAuth: React.FC<InputProps> = ({
   onChange,
   clearInput,
   removerError,
-}) => {
-  const [inputPlaceholder, setInputPlaceholder] = useState(placeholderInput);
+}: InputProps) => {
+  const [inputPlaceholder, setInputPlaceholder] = useState<string>(placeholderInput);
 
   return (
     <input

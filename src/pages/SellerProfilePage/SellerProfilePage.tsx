@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useDispatch, useSelector } from 'react-redux';
 import Header from '../../components/Header/Header';
@@ -13,11 +13,11 @@ import { getInputValue } from '../../redux/slices/searchSlice';
 import { RootState } from '../../redux/store';
 import { getReviewsState } from '../../redux/slices/checkModalsSlice';
 
-const SellerProfilePage: React.FC = () => {
-  const [newAd, setNewAdOpen] = useState(false);
-  const [openSignInModal, setOpenSignInModal] = useState(false);
-  const [openSignUpModal, setOpenSignUpModal] = useState(false);
-  const [newAdIsClosed, setNewAdClosed] = useState(false);
+const SellerProfilePage = () => {
+  const [newAd, setNewAdOpen] = useState<boolean>(false);
+  const [openSignInModal, setOpenSignInModal] = useState<boolean>(false);
+  const [openSignUpModal, setOpenSignUpModal] = useState<boolean>(false);
+  const [newAdIsClosed, setNewAdClosed] = useState<boolean>(false);
   const UsersAdPublished = useSelector(
     (state: RootState) => state.notifications.AdPublishedSuccess
   );

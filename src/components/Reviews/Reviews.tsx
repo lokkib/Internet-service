@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { AnimatePresence, motion } from 'framer-motion';
 import { useParams } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
@@ -16,12 +16,12 @@ import { RootState } from '../../redux/store';
 import { getComment } from '../../redux/slices/getCommentSlice';
 import { passItemDescription } from '../../redux/slices/passNewAdParamsTextOnly';
 
-const Reviews: React.FC = () => {
+const Reviews = () => {
   const isLoggedIn = sessionStorage.getItem('isAuth');
   const commentText = useSelector((state: RootState) => state.comment.text);
 
   const stringComment = commentText as string;
-  const [prohibitingMakingComment, setProhibitingMakingComment] = useState(false);
+  const [prohibitingMakingComment, setProhibitingMakingComment] = useState<boolean>(false);
   const { id } = useParams();
   const { data, isLoading } = useGetItemCommentsQuery(id);
   const [comment, setComment] = useState<string>(stringComment);

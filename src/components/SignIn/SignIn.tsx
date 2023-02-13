@@ -11,13 +11,13 @@ import AuthActionsProps from '../../@types/props/AuthActionsProps';
 import { useLoginMutation } from '../../redux/api/avitoApi';
 import { getSignInState } from '../../redux/slices/checkModalsSlice';
 
-const SignIn: React.FC<AuthActionsProps> = ({ clickSignUp, closeSignUpWindow }) => {
-  const [inputErrorLogin, setInputErrorLogin] = useState(false);
-  const [inputErrorPassword, setInputErrorPassword] = useState(false);
-  const [inputLogin, setInputLogin] = useState('');
-  const [inputPassword, setInputPassword] = useState('');
-  const [inputPasswordType, setInputPasswordType] = useState('password');
-  const [disabled, setDisabled] = useState(true);
+const SignIn = ({ clickSignUp, closeSignUpWindow }: AuthActionsProps) => {
+  const [inputErrorLogin, setInputErrorLogin] = useState<boolean>(false);
+  const [inputErrorPassword, setInputErrorPassword] = useState<boolean>(false);
+  const [inputLogin, setInputLogin] = useState<string>('');
+  const [inputPassword, setInputPassword] = useState<string>('');
+  const [inputPasswordType, setInputPasswordType] = useState<string>('password');
+  const [disabled, setDisabled] = useState<boolean>(true);
   const navigate = useNavigate();
   const dispatch = useDispatch();
   useEffect(() => {

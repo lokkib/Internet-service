@@ -1,8 +1,8 @@
 import { Navigate } from 'react-router-dom';
-import React from 'react';
+
 import ProtectedRouteProps from '../@types/props/PtotectedRouteProps';
 
-const ProtectedRoute: React.FC<ProtectedRouteProps> = ({ children }) => {
+const ProtectedRoute = ({ children }: ProtectedRouteProps) => {
   const isLoggedIn = sessionStorage.getItem('isAuth');
   if (!isLoggedIn) {
     return <Navigate to="/" />;

@@ -13,12 +13,7 @@ export type currentUserDataState = {
     city: string;
     avatar?: string;
   };
-  newCurrentUserData: {
-    name: string;
-    surname: string;
-    phone: string;
-    city: string;
-  };
+  newCurrentUserData: CurrentUserDataMain;
   isDataChanged: {
     DataChanged: boolean;
   };

@@ -1,14 +1,13 @@
-import React from 'react';
 import CardItem from '../CardItem/CardItem';
 import styles from './style.module.scss';
 import ContentCardsProps from '../../@types/props/ContentCardsProps';
 
-const ContentCards: React.FC<ContentCardsProps> = ({
+const ContentCards = ({
   classType,
   classTypeCardItem,
   classTypeImgMain,
   data,
-}) => {
+}: ContentCardsProps) => {
   return (
     <div className={styles.contentWrapper}>
       <div className={classType && styles[classType]}>

@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import { AnimatePresence, motion } from 'framer-motion';
 import { useSelector, useDispatch } from 'react-redux';
 
@@ -16,12 +16,12 @@ import {
   successAdPublicationNotify,
 } from '../../redux/slices/notificationsSlice';
 
-const UserArticlePage: React.FC = () => {
+const UserArticlePage = () => {
   const isLoggedIn = sessionStorage.getItem('isAuth');
 
-  const [newAdv, setNewAdvOpen] = useState(false);
-  const [AdEdit, setAdEditOpen] = useState(false);
-  const [, setNewAdvClosed] = useState(false);
+  const [newAdv, setNewAdvOpen] = useState<boolean>(false);
+  const [AdEdit, setAdEditOpen] = useState<boolean>(false);
+  const [, setNewAdvClosed] = useState<boolean>(false);
   const UsersAdPublished = useSelector(
     (state: RootState) => state.notifications.AdPublishedSuccess
   );

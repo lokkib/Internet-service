@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { AnimatePresence, motion } from 'framer-motion';
 import { useSelector, useDispatch } from 'react-redux';
 import Header from '../../components/Header/Header';
@@ -13,18 +13,18 @@ import NotifyingModalWindow from '../../components/NotifyingModalWindow/Notifyin
 import { getInputValue } from '../../redux/slices/searchSlice';
 import { RootState } from '../../redux/store';
 
-const SellerArticlePage: React.FC = () => {
+const SellerArticlePage = () => {
   const dispatch = useDispatch();
-  const [openSignInModal, setOpenSignInModal] = useState(false);
-  const [openSignUpModal, setOpenSignUpModal] = useState(false);
+  const [openSignInModal, setOpenSignInModal] = useState<boolean>(false);
+  const [openSignUpModal, setOpenSignUpModal] = useState<boolean>(false);
 
   const isLoggedIn = sessionStorage.getItem('isAuth');
 
   const clickEnterAccount = () => {
     setOpenSignInModal(true);
   };
-  const [newAdv, setNewAdvOpen] = useState(false);
-  const [newAdvIsClosed, setNewAdvClosed] = useState(false);
+  const [newAdv, setNewAdvOpen] = useState<boolean>(false);
+  const [newAdvIsClosed, setNewAdvClosed] = useState<boolean>(false);
 
   const isReviewsOpen = useSelector((state: RootState) => state.modalsState.reviews);
 

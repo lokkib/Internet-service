@@ -1,10 +1,8 @@
-import React from 'react';
-
 import SellerProfileDataProps from '../../@types/props/ProfileSellerInfoProps';
 import styles from './style.module.scss';
 import api from '../../constants/api';
 
-const Avatar: React.FC<SellerProfileDataProps> = ({ sellerDate, currentUserData }) => {
+const Avatar = ({ sellerDate, currentUserData }: SellerProfileDataProps) => {
   if (currentUserData) {
     return (
       <div className={styles.avatar}>

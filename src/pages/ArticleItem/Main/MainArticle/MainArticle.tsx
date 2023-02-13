@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import styles from './style.module.scss';
 import ArticleLeft from '../../../../components/ArticleLeft/ArticleLeft';
@@ -7,7 +7,7 @@ import MainArticleProps from '../../../../@types/props/MainArticleProps';
 import { useGoToConcreteItemQuery } from '../../../../redux/api/avitoApi';
 import { Items } from '../../../../@types/props/ContentCardsProps';
 
-const MainArticle: React.FC<MainArticleProps> = ({ onlyOneButton, openModalAdvEdit }) => {
+const MainArticle = ({ onlyOneButton, openModalAdvEdit }: MainArticleProps) => {
   const { id } = useParams();
   const { data } = useGoToConcreteItemQuery(id);
   const [itemDetails, setItemDetails] = useState<Items>();

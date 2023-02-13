@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import styles from './style.module.scss';
 import Avatar from '../../../../../../components/Avatar/Avatar';
 import {
@@ -7,7 +7,7 @@ import {
 } from '../../../../../../@types/props/CurrentUserDataProps';
 import { useLoadAvatarMutation } from '../../../../../../redux/api/avitoApi';
 
-const SettingsLeft: React.FC<CurrentUserDataProps> = ({ currentUserData }) => {
+const SettingsLeft = ({ currentUserData }: CurrentUserDataProps) => {
   const [file, setFile] = useState<Blob>();
   const [loadAvatar] = useLoadAvatarMutation();
 

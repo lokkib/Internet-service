@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import AuthLogo from '../SignIn/AuthLogo/AuthLogo';
 import InputAuth from '../SignIn/InputAuth/InputAuth';
@@ -9,22 +9,22 @@ import AuthActionsProps from '../../@types/props/AuthActionsProps';
 import { useSignupMutation } from '../../redux/api/avitoApi';
 import api from '../../constants/api';
 
-const SignUp: React.FC<AuthActionsProps> = ({
+const SignUp = ({
   closeSignUpWindow,
   closeAuthWindow,
   clickSignUp,
   openSignInModalCloseSignUp,
-}) => {
-  const [inputErrorMail, setInputErrorMail] = useState(false);
-  const [inputErrorPassword, setInputErrorPassword] = useState(false);
-  const [inputLogin, setInputLogin] = useState('');
-  const [inputPassword, setInputPassword] = useState('');
-  const [inputPasswordRepeat, setInputPasswordRepeat] = useState('');
-  const [inputName, setInputName] = useState('');
-  const [inputLastName, setInputLastName] = useState('');
-  const [inputCity, setInputCity] = useState('');
-  const [disabled, setDisabled] = useState(true);
-  const [inputPasswordType, setInputPasswordType] = useState('password');
+}: AuthActionsProps) => {
+  const [inputErrorMail, setInputErrorMail] = useState<boolean>(false);
+  const [inputErrorPassword, setInputErrorPassword] = useState<boolean>(false);
+  const [inputLogin, setInputLogin] = useState<string>('');
+  const [inputPassword, setInputPassword] = useState<string>('');
+  const [inputPasswordRepeat, setInputPasswordRepeat] = useState<string>('');
+  const [inputName, setInputName] = useState<string>('');
+  const [inputLastName, setInputLastName] = useState<string>('');
+  const [inputCity, setInputCity] = useState<string>('');
+  const [disabled, setDisabled] = useState<boolean>(true);
+  const [inputPasswordType, setInputPasswordType] = useState<string>('password');
 
   const [signUp] = useSignupMutation();
 

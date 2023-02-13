@@ -1,11 +1,11 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import styles from './style.module.scss';
 import { passItemPrice } from '../../redux/slices/passNewAdParamsTextOnly';
 import FormNewArticleProps from '../../@types/props/FormNewArticleProps';
 
-const FormArticlePrice: React.FC<FormNewArticleProps> = ({ price }) => {
-  const [valueInput, setValueInput] = useState(price || '');
+const FormArticlePrice = ({ price }: FormNewArticleProps) => {
+  const [valueInput, setValueInput] = useState<string | number>(price || '');
 
   const dispatch = useDispatch();
 

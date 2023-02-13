@@ -1,10 +1,10 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import styles from './style.module.scss';
 import ButtonSearchSave from '../../../../../components/ButtonSearchSave/ButtonSearchSave';
 import SellerProfileDataProps from '../../../../../@types/props/ProfileSellerInfoProps';
 import { Items } from '../../../../../@types/props/ContentCardsProps';
 
-const InfoRight: React.FC<SellerProfileDataProps> = ({ sellerDate }) => {
+const InfoRight = ({ sellerDate }: SellerProfileDataProps) => {
   const hidePhoneNumber = (i: Items | undefined) => {
     if (i) {
       const phoneNumber = i.user.phone;

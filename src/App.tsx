@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import { useEffect } from 'react';
 import { getCookie, setCookie } from 'cookies-next';
 import jwt_decode from 'jwt-decode';
 import AppRoutes from './routes/Approutes';
@@ -9,15 +9,13 @@ type MyToken = {
   exp: number;
 };
 
-
 type TokenRefresh = {
+  access_token: string;
+  refresh_token: string;
+  token_type: string;
+};
 
-    access_token: string,
-    refresh_token: string,
-    token_type: string
-}
-
-const App: React.FC = () => {
+const App = () => {
   const isLoggedIn = sessionStorage.getItem('isAuth');
   const [refreshToken] = useRefreshTokenMutation();
 

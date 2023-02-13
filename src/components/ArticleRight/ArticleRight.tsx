@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import ArticleInfo from './ArticleInfo/ArticleInfo';
@@ -11,11 +11,7 @@ import { Items } from '../../@types/props/ContentCardsProps';
 import { successDeletionNotify } from '../../redux/slices/notificationsSlice';
 import { RootState } from '../../redux/store';
 
-const ArticleRight: React.FC<MainArticleProps> = ({
-  onlyOneButton,
-  openModalAdvEdit,
-  itemDetails,
-}) => {
+const ArticleRight = ({ onlyOneButton, openModalAdvEdit, itemDetails }: MainArticleProps) => {
   const { id } = useParams();
   const [deleteAd] = useDeleteAdMutation();
 

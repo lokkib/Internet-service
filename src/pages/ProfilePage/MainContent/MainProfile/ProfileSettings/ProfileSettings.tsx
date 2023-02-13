@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import styles from './style.module.scss';
 import SettingsLeft from './SettingsLeft/SettingsLeft';
@@ -7,7 +7,7 @@ import { useGetCurrentUserDataQuery } from '../../../../../redux/api/avitoApi';
 import { getCurrentUserData } from '../../../../../redux/slices/detectUserDataChangeSlice';
 import CurrentUserData from '../../../../../@types/props/CurrentUserDataProps';
 
-const ProfileSettings: React.FC = () => {
+const ProfileSettings = () => {
   const { data } = useGetCurrentUserDataQuery();
 
   const dispatch = useDispatch();

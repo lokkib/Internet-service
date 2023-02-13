@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import styles from './style.module.scss';
 import FormNewArticleProps from '../../@types/props/FormNewArticleProps';
@@ -7,9 +7,9 @@ import { getComment } from '../../redux/slices/getCommentSlice';
 
 import { RootState } from '../../redux/store';
 
-const FormDescriptionItem: React.FC<FormNewArticleProps> = ({ value }) => {
+const FormDescriptionItem = ({ value }: FormNewArticleProps) => {
   const commentText = useSelector((state: RootState) => state.comment.text);
-  const [textArea, setTextArea] = useState(value || '');
+  const [textArea, setTextArea] = useState<string>(value || '');
   const [textAreaPlaceholder, setTextAreaPlaceholder] = useState('Введите описание');
   const dispatch = useDispatch();
 
