@@ -1,0 +1,13 @@
+{
+  "files": {
+    "main.css": "/Internet-service/static/css/main.b3e03fe2.css",
+    "main.js": "/Internet-service/static/js/main.1aa35ec4.js",
+    "index.html": "/Internet-service/index.html",
+    "main.b3e03fe2.css.map": "/Internet-service/static/css/main.b3e03fe2.css.map",
+    "main.1aa35ec4.js.map": "/Internet-service/static/js/main.1aa35ec4.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.b3e03fe2.css",
+    "static/js/main.1aa35ec4.js"
+  ]
+}
