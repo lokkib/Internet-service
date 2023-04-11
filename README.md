@@ -12,12 +12,6 @@
 
 
 
-
-https://user-images.githubusercontent.com/101714147/231282741-1e66c250-8244-47cf-816c-0159bd1fe33f.mp4
-
-
-
-
 ### Сборка проекта
 
 npm run build
